@@ -2,21 +2,9 @@
   <div class="header">
     <div class="search_teacher">
       <a href="http://localhost:8080/" class="titlelogo">
-       TUTOR  
+
       </a>
-      <!-- <a href="http://localhost:8080/" class="titlelogo">
-        <img class="title" src="~@/assets/image/logo.jpg"  />
-      </a> -->
-   
-      <div class="search">
-        <a class="header_search" href="http://localhost:8080/member/mypage">先生を探す</a>
-      </div>
-      <div class="search">
-        <a  class="header_search" href="http://localhost:8080/member/mypage">生徒を探す</a>
-      </div>
-      <div class="search">
-        <a  class="header_search" href="http://localhost:8080/member/mypage">投稿する</a>
-      </div>
+     
     </div>
    
 

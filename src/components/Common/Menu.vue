@@ -21,8 +21,8 @@
           <div class="title">
             <p>Mypage</p>
           </div>
-          <p>リンク</p>
-          <p>リンク</p>
+          <p>トップ</p>
+          <p>メッセージ</p>
           <p>リンク</p>
         </div>
       </div>
@@ -46,7 +46,7 @@
           <div class="title">
             <p>Message</p>
           </div>
-     <span>新着</span>
+          <span>新着</span>
         </div>
       </div>
       <div class="hover2">
@@ -56,11 +56,11 @@
           @mouseover="hidden_3=true"
           @mouseleave="hidden_3=false"
         >
-          先生を募集する
+          先生を探す
           <i class="img_mypage" :class="{rotate:hidden_3}"></i>
         </a>
 
-          <div
+        <div
           class="menu_hidden_3"
           v-show="hidden_3"
           @mouseover="hidden_3=true"
@@ -69,9 +69,9 @@
           <div class="title">
             <p>Mypage</p>
           </div>
-          <p>リンク</p>
-          <p>リンク</p>
-          <p>リンク</p>
+          <p>英会話</p>
+          <p>TOEIC</p>
+          <p>ビジネス英語</p>
         </div>
       </div>
       <div class="hover2">
@@ -81,7 +81,7 @@
           @mouseover="hidden_4=true"
           @mouseleave="hidden_4=false"
         >
-          英会話
+          生徒を探す
           <i class="img_mypage" :class="{rotate:hidden_4}"></i>
         </a>
 
@@ -95,65 +95,37 @@
             <p>Daily English Conversation</p>
           </div>
           <div>
-            <p>   <a href="http://localhost:8080/member/searchresults/3">英会話</a>
-          </p>
-         
+            <p>
+              <a
+                class="menu_title_student"
+                href="http://localhost:8080/member/searchresults/3"
+              >TOEIC対策</a>
+            </p>
           </div>
           <div>
-            <p>日本人の先生を検索する</p>
+            <p>
+              <a class="menu_title_student" href="http://localhost:8080/member/searchresults/1">英会話</a>
+            </p>
+          </div>
+          <div>
+            <p>
+              <a class="menu_title_student" href="http://localhost:8080/member/searchresults/4">英文添削</a>
+            </p>
+          </div>
+          <div>
+            <p>
+              <a
+                class="menu_title_student"
+                href="http://localhost:8080/member/searchresults/2"
+              >ビジネス英語</a>
+            </p>
+          </div>
+          <div>
+            <p>全てを表示</p>
           </div>
         </div>
       </div>
-      <div class="hover2">
-        <a
-          class="menu_tab"
-          href="http://localhost:8080/member/mypage"
-          @mouseover="hidden_5=true"
-          @mouseleave="hidden_5=false"
-        >
-        大学受験
-          <i class="img_mypage" :class="{rotate:hidden_5}"></i>
-        </a>
 
-        <div
-          class="menu_hidden_5"
-          v-show="hidden_5"
-          @mouseover="hidden_5=true"
-          @mouseleave="hidden_5=false"
-        >
-          <div class="title">
-            <div class="title">
-              <p>TOEIC</p>
-            </div>
-          </div>
-          <p>リンク</p>
-          <p>リンク</p>
-        </div>
-      </div>
-      <div class="hover2">
-        <a
-          class="menu_tab"
-          href="http://localhost:8080/member/mypage"
-          @mouseover="hidden_6=true"
-          @mouseleave="hidden_6=false"
-        >
-        文系資格
-          <i class="img_mypage" :class="{rotate:hidden_6}"></i>
-        </a>
-
-        <div
-          class="menu_hidden_6"
-          v-show="hidden_6"
-          @mouseover="hidden_6=true"
-          @mouseleave="hidden_6=false"
-        >
-          <div class="title">
-            <p>Correction of English</p>
-          </div>
-          <p>リンク</p>
-          <p>リンク</p>
-        </div>
-      </div>
       <div class="hover2">
         <a
           class="menu_tab"
@@ -161,7 +133,7 @@
           @mouseover="hidden_7=true"
           @mouseleave="hidden_7=false"
         >
-          理系資格
+          投稿する
           <i class="img_mypage" :class="{rotate:hidden_7}"></i>
         </a>
 
@@ -171,8 +143,8 @@
           @mouseover="hidden_7=true"
           @mouseleave="hidden_7=false"
         >
-          <p>リンク</p>
-          <p>リンク</p>
+          <p>先生を募集する</p>
+          <p>生徒を募集する</p>
           <p>リンク</p>
         </div>
       </div>
@@ -183,7 +155,7 @@
           @mouseover="hidden_8=true"
           @mouseleave="hidden_8=false"
         >
-          ビジネス英語
+          未定
           <i class="img_mypage" :class="{rotate:hidden_8}"></i>
         </a>
         <div
@@ -206,7 +178,7 @@
           @mouseover="hidden_9=true"
           @mouseleave="hidden_9=false"
         >
-          その他言語
+          未定
           <i class="img_mypage" :class="{rotate:hidden_9}"></i>
         </a>
         <div
@@ -264,11 +236,11 @@ div.menu_hidden_1 {
   position: absolute;
   width: 350px;
   height: 300px;
-    background: rgb(58, 76, 135);
+  background: rgb(58, 76, 135);
   color: white;
   animation: fadeIn 0.2s ease 0.1s normal;
   z-index: 1;
-     /* transform: translateY(-100vh) translateY(0px); */
+  /* transform: translateY(-100vh) translateY(0px); */
 }
 div.menu_hidden_2 {
   /* float: left; */
@@ -285,8 +257,8 @@ div.menu_hidden_3 {
   left: 28.1%;
   position: absolute;
   width: 350px;
-    height: 300px;
-    background: rgb(49, 74, 154);
+  height: 300px;
+  background: rgb(49, 74, 154);
   color: white;
   z-index: 1;
 }
@@ -295,8 +267,8 @@ div.menu_hidden_4 {
   left: 31.9%;
   position: absolute;
   width: 450px;
-    height: 300px;
-    background: rgb(49, 74, 154);
+  height: 400px;
+  background: rgb(49, 74, 154);
   color: white;
   z-index: 1;
 }
@@ -305,8 +277,8 @@ div.menu_hidden_5 {
   left: 39%;
   position: absolute;
   width: 350px;
-    height: 300px;
-    background: rgb(49, 74, 154);
+  height: 300px;
+  background: rgb(49, 74, 154);
   color: white;
   z-index: 1;
 }
@@ -315,18 +287,18 @@ div.menu_hidden_6 {
   left: 44.3%;
   position: absolute;
   width: 350px;
-    height: 300px;
-    background: rgb(49, 74, 154);
+  height: 300px;
+  background: rgb(49, 74, 154);
   color: white;
   z-index: 1;
 }
 div.menu_hidden_7 {
   /* float: left; */
-  left: 49.5%;
+  left: 39%;
   position: absolute;
   width: 350px;
-    height: 300px;
-    background: rgb(85, 116, 218);
+  height: 300px;
+  background: rgb(85, 116, 218);
   color: white;
   z-index: 1;
 }
@@ -335,8 +307,8 @@ div.menu_hidden_8 {
   left: 55.4%;
   position: absolute;
   width: 350px;
-    height: 300px;
-    background: rgb(67, 97, 198);
+  height: 300px;
+  background: rgb(67, 97, 198);
   color: white;
   z-index: 1;
 }
@@ -345,8 +317,8 @@ div.menu_hidden_9 {
   left: 62%;
   position: absolute;
   width: 350px;
-    height: 300px;
-    background: rgb(49, 74, 154);
+  height: 300px;
+  background: rgb(49, 74, 154);
   color: white;
   z-index: 1;
 }
@@ -422,7 +394,6 @@ div.menu_wrapper {
   overflow: hidden;
 }
 
-
 div {
   overflow: hidden;
 }
@@ -444,7 +415,7 @@ div.title {
   div.menu {
     width: 100%;
     background: rgb(139, 157, 213);
-       /* background: rgb(49, 74, 154); */
+    /* background: rgb(49, 74, 154); */
     /* background: linear-gradient(rgb(158, 189, 232), rgb(88, 132, 198)); */
   }
   p {
@@ -453,6 +424,17 @@ div.title {
   }
   div.menu {
     /* width: 1200px; */
+  }
+  a.menu_title_student {
+    color: white;
+    text-decoration: none;
+  }
+  a.menu_title_student:hover {
+    cursor: pointer;
+    opacity: 0.5;
+  }
+  a.menu_title_student:visited {
+    color: white;
   }
 }
 </style>
