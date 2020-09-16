@@ -1,8 +1,14 @@
 <template>
   <div class="card">
-    <span class="new">New 教えてください</span>
-    <span class="hours" v-if="value.diff_in_minutes>=60">{{Math.floor(value.diff_in_minutes/60)}}時間前</span>
-    <span class="minutes" v-else>{{value.diff_in_minutes}}分前</span>
+    <div class="card_title_wrapper">
+      <span class="new">New [教えてください]</span>
+      <span
+        class="hours"
+        v-if="value.diff_in_minutes>=60"
+      >[{{Math.floor(value.diff_in_minutes/60)}}時間前]</span>
+      <span class="minutes" v-else>{{value.diff_in_minutes}}分前</span>
+    </div>
+
     <br />
     <div class="title">
       <a
@@ -10,19 +16,24 @@
         class="to_plan_page"
       >{{value.title}}</a>
     </div>
-    <div class="amount">予算 ¥{{price}}円</div>
+    <div class="amount">¥{{price}}円</div>
 
-    <span class="name">
+    <div class="name">
       <a :href="'http://localhost:8080/member/profile/'+value.member_id +'?params=top'">
         <img :src="'http://127.0.0.1:8001'+value.member.icon" alt class="icon" />
-        <span class="name">{{value.member.name}}さん</span>
+        <span>{{value.member.name}}さん</span>
       </a>
-    </span>
-    <p class="tag" >
-    <template v-for="(tag,index) in value.student_plan_tags ">
-      <span  :key="index">{{tag.tag_name}}</span>、
-    </template>
-    </p>
+    </div>
+    <div class="tag">
+      <template v-for="(tags,index) in value.student_plan_tags ">
+        <span :key="index" class="tag_name">
+          <a
+            :href="'http://localhost:8080/member/searchresults/' +tags.tag_id"
+            class="tag_style"
+          >#{{tags.tag_name}}</a>
+        </span>
+      </template>
+    </div>
   </div>
 </template>
 
@@ -44,7 +55,7 @@ export default {
   computed: {
     price() {
       return this.value.amount.toLocaleString();
-    },
+    }
   }
 };
 </script>
@@ -55,22 +66,13 @@ a {
 }
 div.card {
   margin-bottom: 15px;
-  padding: 10px;
+  margin-top: 15px;
 }
 img.icon {
   width: 30px;
-  height:30px;
+  height: 30px;
   display: block;
 }
-/* .card {
-  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-  transition: all 0.3s ease 0s;
-}
-.card:hover {
-  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.25);
-  transform: translateY(-0.1875em);
-} */
 
 @media screen and (max-width: 640px) {
   div {
@@ -80,12 +82,17 @@ img.icon {
   div.card {
     /* width: 350px; */
     box-shadow: 0 3px 3px 0 rgb(144, 159, 182);
-    background: white;
+
     border-radius: 1px;
+  }
+  div.card_title_wrapper {
+    background: rgb(255, 248, 248);
+    border-bottom: 1px dotted black;
+    padding: 5px;
   }
   span.hours {
     font-size: 10px;
-    color: rgb(132, 99, 99);
+    color: rgb(35, 30, 30);
     float: right;
     margin-top: 7px;
   }
@@ -102,32 +109,53 @@ img.icon {
     max-width: 400px;
     margin-top: 5px;
     font-size: 18px;
+    padding: 5px;
   }
   div.amount {
     font-size: 16px;
     margin: 5px 0;
-    color: rgb(96, 96, 103);
+    padding: 5px;
   }
   span.new {
     font-size: 0.8em;
-    color: rgb(239, 146, 146);
+    color: rgb(255, 121, 123);
   }
-  span.name {
+  div.name {
     font-size: 0.8em;
+    padding: 5px;
   }
- 
 
   a.to_plan_page:hover {
     cursor: pointer;
     opacity: 0.5;
   }
   a.to_plan_page:visited {
-  color: black;
+    color: black;
   }
-  p.tag{
+  a.to_plan_page {
+    color: black;
+    font-size: 20px;
+  }
+
+  a.tag_style:hover {
+    cursor: pointer;
+    opacity: 0.5;
+  }
+  a.tag_style:visited {
+    color: rgb(121, 91, 91);
+  }
+  a.tag_style {
+    color: rgb(121, 91, 91);
+  }
+  div.tag {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+
+    padding:5px 0 7px 7px;
+  }
+  span.tag_name {
+    padding-right: 7px;
   }
 }
 </style>

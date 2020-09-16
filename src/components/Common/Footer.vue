@@ -31,7 +31,7 @@ div.footer p{
 }
 div.footer {
 
-  background-color:rgb(15, 18, 17);
+  background: rgb(89, 44, 50);
   color: white;
   width:100%;
 }

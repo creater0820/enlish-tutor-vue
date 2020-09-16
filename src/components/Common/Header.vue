@@ -173,7 +173,7 @@ div.search_teacher:hover .hidden_menu {
 }
 
 div.header {
-  background-color: rgb(91, 133, 223);
+  background-color: rgb(255, 246, 246);
   /* background: white; */
   overflow: hidden;
   height: 100px;

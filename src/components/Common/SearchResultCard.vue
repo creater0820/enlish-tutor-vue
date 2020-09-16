@@ -1,12 +1,16 @@
 <template>
-  <div>
-    <span class="search_results_title">
+  <div  class="search_result_wrapper">
+    
+    <div class="search_result_wrapper_title">
+         <span class="search_results_title">
       <a
         :href="'http://localhost:8080/member/profile/'+value.member_id +'?params='+value.id"
         class="to_plan_page"
       >{{value.title}}</a>
     </span>
-    <span class="time">{{time}}時間前</span>
+    <span class="time">[{{time}}時間前]</span>
+    </div>
+   
 
     <p>¥{{price}}</p>
     <p>{{value.content}}</p>
@@ -25,19 +29,26 @@
         >#{{tags.tag_name}}</a>
       </span>
     </template>
+
+
+ 
   </div>
 </template>
 
 <script>
+
 export default {
   props: {
     value: Object
   },
   data() {
-    return {};
+    return {
+     
+    };
   },
   mounted: function() {
     window.console.log(this.value.student_plan_tags);
+    this.logs = this.value.student_plan_tags
   },
   computed: {
     price() {
@@ -84,5 +95,11 @@ a.tags:hover {
 }
 a.tags:visited {
   color: rgb(86, 84, 84);
+}
+
+div.search_result_wrapper_title{
+    background: rgb(230, 227, 226);
+    border-bottom:1px dotted black ;
+    padding:2px 0 2px 7px;
 }
 </style>

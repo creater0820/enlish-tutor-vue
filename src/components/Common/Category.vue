@@ -7,10 +7,8 @@
       <common-side-scroll></common-side-scroll>
     </div>
 
-     
     <div class="recruit_teacher_wrapper">
-      <div class="recruit_teacher_left">先生を募集中
-      </div>
+      <div class="recruit_teacher_left">先生を募集中</div>
       <div class="recruit_teacher_right">新着案件をさらに表示する</div>
     </div>
     <div class="time_line">
@@ -23,10 +21,6 @@
         <common-card :value="value"></common-card>
       </div>
     </div>
-
-    
-    
-   
 
     <div class="ranking" :class="{'mr-2':isCenter(n)}" v-for="n of 9" :key="'ranking_'+n">
       <common-teacher-ranking></common-teacher-ranking>
@@ -68,7 +62,7 @@ export default {
   },
   data() {
     return {
-      interestedPlans:[],
+      interestedPlans: [],
       newPlans: []
     };
   },
@@ -139,12 +133,10 @@ div.what {
   clear: both;
 }
 div.recruit_teacher_left {
-  color: rgb(28, 61, 249);
   font-size: 15px;
   float: left;
 }
 div.recruit_teacher_right {
-  color: rgb(28, 61, 249);
   font-size: 13px;
   color: rgb(39, 31, 60);
   float: right;
@@ -152,7 +144,8 @@ div.recruit_teacher_right {
 div.recruit_teacher_wrapper {
   width: 810px;
   overflow: hidden;
-  background: rgb(235, 243, 250);
+  background-color: rgb(255, 249, 249);
+  border-bottom: 0.1px dotted rgb(79, 55, 55);
 }
 
 div.education_materials {
@@ -175,8 +168,6 @@ div.ranking {
 }
 @media screen and (max-width: 640px) {
   div.category {
-    border: 1px solid black;
-    /* padding:10px; */
   }
 }
 @media screen and (min-width: 640px) {
@@ -185,6 +176,8 @@ div.ranking {
     float: left;
     width: 821px;
     margin: 15px 0;
+    border-right: double 4px rgb(230, 217, 217);
+    border-left: double 4px rgb(232, 228, 228);
   }
   div.time_line {
     overflow: hidden;

@@ -8,9 +8,10 @@
     </div>
 
     <div class="navigationMenu" v-if=" Number($store.state.memberId) !==Number($route.params.id)">
-        <div class="member_name_cut_navigation">
-      <a href="http://localhost:8080">TOP</a>
-      ></div>
+      <div class="member_name_cut_navigation">
+        <a href="http://localhost:8080">TOP</a>
+        >
+      </div>
       <div class="member_name_cut_name">{{memberName}}</div>さんのプロフィール
     </div>
 
@@ -45,6 +46,12 @@
     >
       <a href="http://localhost:8080">TOP</a> > 先生を募集する
     </div>
+    <div
+      class="navigationMenu"
+      v-if=" 'http://localhost:8080'+$route.path === 'http://localhost:8080/member/searchresults/3'"
+    >
+      <a href="http://localhost:8080">TOP</a> > 生徒を探す
+    </div>
   </div>
 </template>
 
@@ -71,28 +78,22 @@ a:visited {
 }
 div.navigationBar {
   width: 100%;
-  background: rgb(186, 200, 249);
+  background: rgb(89, 44, 50);
 }
 div.navigationMenu {
   padding: 3px;
   width: 1172px;
   margin: 0 auto;
-
 }
 div.member_name_cut_navigation {
-
-
   float: left;
- 
 }
 div.member_name_cut_name {
-
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   float: left;
   max-width: 180px;
   padding-left: 5px;
- 
 }
 </style>

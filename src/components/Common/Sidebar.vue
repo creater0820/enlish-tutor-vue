@@ -74,10 +74,16 @@ div {
     margin: 15px 0;
   }
   div.side_bar {
-    /* background: rgb(247, 253, 255); */
+       border-right: double 4px rgb(230, 217, 217);
+       /* border-left: dotted 1px rgb(232, 228, 228); */
+       height: 3000px;
+
   }
   div.reccomend_for_you {
-    background: rgb(232, 245, 245);
+ background-color: rgb(255, 247, 247);
+ border-bottom: 0.1px dotted;
+ 
+
   }
 }
 </style>

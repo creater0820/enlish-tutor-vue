@@ -98,25 +98,25 @@
             <p>
               <a
                 class="menu_title_student"
-                href="http://localhost:8080/member/searchresults/3"
+                href="http://localhost:8080/member/searchresults/3?page=1"
               >TOEIC対策</a>
             </p>
           </div>
           <div>
             <p>
-              <a class="menu_title_student" href="http://localhost:8080/member/searchresults/1">英会話</a>
+              <a class="menu_title_student" href="http://localhost:8080/member/searchresults/1?page=1">英会話</a>
             </p>
           </div>
           <div>
             <p>
-              <a class="menu_title_student" href="http://localhost:8080/member/searchresults/4">英文添削</a>
+              <a class="menu_title_student" href="http://localhost:8080/member/searchresults/4?page=1">英文添削</a>
             </p>
           </div>
           <div>
             <p>
               <a
                 class="menu_title_student"
-                href="http://localhost:8080/member/searchresults/2"
+                href="http://localhost:8080/member/searchresults/2?page=1"
               >ビジネス英語</a>
             </p>
           </div>
@@ -236,8 +236,7 @@ div.menu_hidden_1 {
   position: absolute;
   width: 350px;
   height: 300px;
-  background: rgb(58, 76, 135);
-  color: white;
+ background: rgb(255, 241, 251);
   animation: fadeIn 0.2s ease 0.1s normal;
   z-index: 1;
   /* transform: translateY(-100vh) translateY(0px); */
@@ -248,8 +247,8 @@ div.menu_hidden_2 {
   position: absolute;
   width: 350px;
   height: 300px;
-  background: rgb(49, 74, 154);
-  color: white;
+  background: rgb(251, 247, 250);
+ 
   z-index: 1;
 }
 div.menu_hidden_3 {
@@ -258,9 +257,8 @@ div.menu_hidden_3 {
   position: absolute;
   width: 350px;
   height: 300px;
-  background: rgb(49, 74, 154);
-  color: white;
-  z-index: 1;
+ background: rgb(251, 247, 250);
+   z-index: 1;
 }
 div.menu_hidden_4 {
   /* float: left; */
@@ -268,9 +266,7 @@ div.menu_hidden_4 {
   position: absolute;
   width: 450px;
   height: 400px;
-  background: rgb(49, 74, 154);
-  color: white;
-  z-index: 1;
+ background: rgb(251, 247, 250);  z-index: 1;
 }
 div.menu_hidden_5 {
   /* float: left; */
@@ -278,9 +274,7 @@ div.menu_hidden_5 {
   position: absolute;
   width: 350px;
   height: 300px;
-  background: rgb(49, 74, 154);
-  color: white;
-  z-index: 1;
+ background: rgb(251, 247, 250);  z-index: 1;
 }
 div.menu_hidden_6 {
   /* float: left; */
@@ -288,9 +282,7 @@ div.menu_hidden_6 {
   position: absolute;
   width: 350px;
   height: 300px;
-  background: rgb(49, 74, 154);
-  color: white;
-  z-index: 1;
+ background: rgb(251, 247, 250);  z-index: 1;
 }
 div.menu_hidden_7 {
   /* float: left; */
@@ -298,9 +290,7 @@ div.menu_hidden_7 {
   position: absolute;
   width: 350px;
   height: 300px;
-  background: rgb(85, 116, 218);
-  color: white;
-  z-index: 1;
+ background: rgb(250, 224, 244);  z-index: 1;
 }
 div.menu_hidden_8 {
   /* float: left; */
@@ -308,8 +298,7 @@ div.menu_hidden_8 {
   position: absolute;
   width: 350px;
   height: 300px;
-  background: rgb(67, 97, 198);
-  color: white;
+ background: rgb(251, 247, 250);
   z-index: 1;
 }
 div.menu_hidden_9 {
@@ -318,8 +307,7 @@ div.menu_hidden_9 {
   position: absolute;
   width: 350px;
   height: 300px;
-  background: rgb(49, 74, 154);
-  color: white;
+  background: rgb(251, 247, 250);
   z-index: 1;
 }
 </style>
@@ -382,7 +370,7 @@ div.hover2 a {
 .hover2:hover {
   /* opacity: 0.6; */
   cursor: pointer;
-  background: rgb(99, 122, 250);
+  background: rgb(137, 152, 237);
 }
 div.menu {
   overflow: hidden;
@@ -414,7 +402,7 @@ div.title {
 @media screen and (min-width: 640px) {
   div.menu {
     width: 100%;
-    background: rgb(139, 157, 213);
+    background: rgb(89, 44, 50);
     /* background: rgb(49, 74, 154); */
     /* background: linear-gradient(rgb(158, 189, 232), rgb(88, 132, 198)); */
   }
@@ -426,7 +414,7 @@ div.title {
     /* width: 1200px; */
   }
   a.menu_title_student {
-    color: white;
+
     text-decoration: none;
   }
   a.menu_title_student:hover {
@@ -434,7 +422,7 @@ div.title {
     opacity: 0.5;
   }
   a.menu_title_student:visited {
-    color: white;
+   color: black;
   }
 }
 </style>
