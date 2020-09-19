@@ -17,6 +17,7 @@ import CreateStudentPlan from "@/view/CreateStudentPlan";
 import SearchResults from "@/view/SearchResults";
 // import MyLessonList from "@/components/member/lesson/MyLessonList";
 import MyFollowList from "@/components/member/follow/MyFollowList";
+import SearchResultTeacher from "@/view/SearchResultTeacher";
 
 
 
@@ -112,6 +113,11 @@ export default new Router({
             path: '/member/searchresults/:id',           //パスの設定
             component:SearchResults ,    //表示するコンポーネント
             name: 'membersearchresults',       //ルートの名前を指定
+        },
+        {
+            path: '/member/searchresultsteacher/:id',           //パスの設定
+            component:SearchResultTeacher ,    //表示するコンポーネント
+            name: 'membersearchresultsteacher',       //ルートの名前を指定
         },
     ]
 });

@@ -8,9 +8,10 @@
       <div class="followLeft">
         <common-side-menu></common-side-menu>
       </div>
-      <my-follow-list></my-follow-list>
+      <div class="followRight">
+        <my-follow-list></my-follow-list>
+      </div>
     </div>
-    <common-footer-image></common-footer-image>
     <common-footer></common-footer>
   </div>
 </template>
@@ -18,7 +19,6 @@
 <script>
 import CommonHeader from "@/components/Common/Header";
 import CommonFooter from "@/components/Common/Footer";
-import CommonFooterImage from "@/components/Common/FooterImage";
 import CommonSideMenu from "@/components/Common/SideMenu";
 import MyFollowList from "@/components/member/follow/MyFollowList";
 import NavigationBar from "@/components/Common/NavigationBar";
@@ -41,7 +41,6 @@ export default {
   components: {
     CommonHeader,
     CommonFooter,
-    CommonFooterImage,
     CommonSideMenu,
     MyFollowList,
     NavigationBar
@@ -86,28 +85,22 @@ div.follow div {
   padding: 20px 0;
   width: 400px;
 }
-div.followPage {
-  /* width: 1500px; */
-  margin: 0 auto;
-  overflow: hidden;
-}
 div.followPage_wrapper {
-  width: 100%;
+ /* overflow: hidden;
+ width: 1500px; */
 }
-div.follow {
+
+div.followPage {
+  width: 1200px;
+  margin: 10px auto;
   overflow: hidden;
-  width: 1400px;
 }
 div.followLeft {
-  /* background: rgb(194, 215, 240); */
-  width: 300px;
   float: left;
 }
 div.followRight {
-  /* background: rgb(249, 238, 238); */
-  width: 800px;
-  margin: 0 auto;
   float: left;
+  margin-left: 10px;
 }
 
 @media screen and (max-width: 640px) {

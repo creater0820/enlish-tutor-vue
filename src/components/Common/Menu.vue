@@ -4,7 +4,6 @@
       <div class="hover2">
         <a
           class="menu_tab"
-          :href="'http://localhost:8080/member/profile/'+$store.state.memberId"
           @mouseover="hidden_1=true"
           @mouseleave="hidden_1=false"
         >
@@ -29,7 +28,6 @@
       <div class="hover2">
         <a
           class="menu_tab"
-          :href="'http://localhost:8080/member/message/list/'+$store.state.memberId"
           @mouseover="hidden_2=true"
           @mouseleave="hidden_2=false"
         >
@@ -52,9 +50,9 @@
       <div class="hover2">
         <a
           class="menu_tab"
-          href="http://localhost:8080/member/mypage"
           @mouseover="hidden_3=true"
           @mouseleave="hidden_3=false"
+
         >
           先生を探す
           <i class="img_mypage" :class="{rotate:hidden_3}"></i>
@@ -69,15 +67,22 @@
           <div class="title">
             <p>Mypage</p>
           </div>
-          <p>英会話</p>
-          <p>TOEIC</p>
-          <p>ビジネス英語</p>
+
+              <template v-for="(value,index) in tags">
+            <div :key="index">
+              <div>
+                <a
+                  :href="'http://localhost:8080/member/searchresultsteacher/'+value.id+'?page=1'"
+                  class="menu_title_student"
+                >{{value.name}}</a>
+              </div>
+            </div>
+          </template>
         </div>
       </div>
       <div class="hover2">
         <a
           class="menu_tab"
-          href="http://localhost:8080/member/mypage"
           @mouseover="hidden_4=true"
           @mouseleave="hidden_4=false"
         >
@@ -94,42 +99,22 @@
           <div class="title">
             <p>Daily English Conversation</p>
           </div>
-          <div>
-            <p>
-              <a
-                class="menu_title_student"
-                href="http://localhost:8080/member/searchresults/3?page=1"
-              >TOEIC対策</a>
-            </p>
-          </div>
-          <div>
-            <p>
-              <a class="menu_title_student" href="http://localhost:8080/member/searchresults/1?page=1">英会話</a>
-            </p>
-          </div>
-          <div>
-            <p>
-              <a class="menu_title_student" href="http://localhost:8080/member/searchresults/4?page=1">英文添削</a>
-            </p>
-          </div>
-          <div>
-            <p>
-              <a
-                class="menu_title_student"
-                href="http://localhost:8080/member/searchresults/2?page=1"
-              >ビジネス英語</a>
-            </p>
-          </div>
-          <div>
-            <p>全てを表示</p>
-          </div>
+          <template v-for="(value,index) in tags">
+            <div :key="index">
+              <div>
+                <a
+                  :href="'http://localhost:8080/member/searchresults/'+value.id+'?page=1'"
+                  class="menu_title_student"
+                >{{value.name}}</a>
+              </div>
+            </div>
+          </template>
         </div>
       </div>
 
       <div class="hover2">
         <a
           class="menu_tab"
-          href="http://localhost:8080/member/mypage"
           @mouseover="hidden_7=true"
           @mouseleave="hidden_7=false"
         >
@@ -151,7 +136,6 @@
       <div class="hover2">
         <a
           class="menu_tab"
-          href="http://localhost:8080/member/mypage"
           @mouseover="hidden_8=true"
           @mouseleave="hidden_8=false"
         >
@@ -174,7 +158,6 @@
       <div class="hover2">
         <a
           class="menu_tab"
-          href="http://localhost:8080/member/mypage"
           @mouseover="hidden_9=true"
           @mouseleave="hidden_9=false"
         >
@@ -199,10 +182,11 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
-  components: {},
   data() {
     return {
+      tags: [],
       setValue: "",
       hidden_1: false,
       hidden_2: false,
@@ -216,6 +200,20 @@ export default {
       // memberId:"",
     };
   },
+  created: function() {
+    this.getTags();
+  },
+  methods: {
+    getTags() {
+      axios.get("http://127.0.0.1:8001/api/tags").then(this.tagsShow);
+    },
+    tagsShow(response) {
+      window.console.log(response.data.tags);
+      this.tags = response.data.tags;
+    }
+  },
+  components: {},
+
   props: {
     memberId: {
       type: String
@@ -236,7 +234,7 @@ div.menu_hidden_1 {
   position: absolute;
   width: 350px;
   height: 300px;
- background: rgb(255, 241, 251);
+  background: rgb(255, 241, 251);
   animation: fadeIn 0.2s ease 0.1s normal;
   z-index: 1;
   /* transform: translateY(-100vh) translateY(0px); */
@@ -248,7 +246,7 @@ div.menu_hidden_2 {
   width: 350px;
   height: 300px;
   background: rgb(251, 247, 250);
- 
+
   z-index: 1;
 }
 div.menu_hidden_3 {
@@ -257,8 +255,8 @@ div.menu_hidden_3 {
   position: absolute;
   width: 350px;
   height: 300px;
- background: rgb(251, 247, 250);
-   z-index: 1;
+  background: rgb(251, 247, 250);
+  z-index: 1;
 }
 div.menu_hidden_4 {
   /* float: left; */
@@ -266,7 +264,8 @@ div.menu_hidden_4 {
   position: absolute;
   width: 450px;
   height: 400px;
- background: rgb(251, 247, 250);  z-index: 1;
+  background: rgb(251, 247, 250);
+  z-index: 1;
 }
 div.menu_hidden_5 {
   /* float: left; */
@@ -274,7 +273,8 @@ div.menu_hidden_5 {
   position: absolute;
   width: 350px;
   height: 300px;
- background: rgb(251, 247, 250);  z-index: 1;
+  background: rgb(251, 247, 250);
+  z-index: 1;
 }
 div.menu_hidden_6 {
   /* float: left; */
@@ -282,7 +282,8 @@ div.menu_hidden_6 {
   position: absolute;
   width: 350px;
   height: 300px;
- background: rgb(251, 247, 250);  z-index: 1;
+  background: rgb(251, 247, 250);
+  z-index: 1;
 }
 div.menu_hidden_7 {
   /* float: left; */
@@ -290,7 +291,8 @@ div.menu_hidden_7 {
   position: absolute;
   width: 350px;
   height: 300px;
- background: rgb(250, 224, 244);  z-index: 1;
+  background: rgb(250, 224, 244);
+  z-index: 1;
 }
 div.menu_hidden_8 {
   /* float: left; */
@@ -298,7 +300,7 @@ div.menu_hidden_8 {
   position: absolute;
   width: 350px;
   height: 300px;
- background: rgb(251, 247, 250);
+  background: rgb(251, 247, 250);
   z-index: 1;
 }
 div.menu_hidden_9 {
@@ -414,7 +416,6 @@ div.title {
     /* width: 1200px; */
   }
   a.menu_title_student {
-
     text-decoration: none;
   }
   a.menu_title_student:hover {
@@ -422,7 +423,7 @@ div.title {
     opacity: 0.5;
   }
   a.menu_title_student:visited {
-   color: black;
+    color: black;
   }
 }
 </style>

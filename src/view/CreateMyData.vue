@@ -1,6 +1,7 @@
 <template>
   <div class="parent">
     <common-header></common-header>
+    <navigation-bar :value="params"/>
     <div class="include_contents">
       <div class="side">
         <common-side-menu></common-side-menu>
@@ -63,13 +64,15 @@
 import CommonHeader from "@/components/Common/Header";
 import CommonSideMenu from "@/components/Common/SideMenu";
 import CommonFooter from "@/components/Common/Footer";
+import NavigationBar from "@/components/Common/NavigationBar";
 import axios from "axios";
 
 export default {
   components: {
     CommonHeader,
     CommonSideMenu,
-    CommonFooter
+    CommonFooter,
+    NavigationBar,
   },
   data() {
     return {
@@ -86,13 +89,15 @@ export default {
       }
     };
   },
-  created:function(){
-      this.getProfile();
+  created: function() {
+    this.getProfile();
   },
-  methods:{
-        getProfile() {
+  methods: {
+    getProfile() {
       axios
-        .get("http://127.0.0.1:8001/api/member/id", {params:{remember_token:this.params.user_id}})
+        .get("http://127.0.0.1:8001/api/member/id", {
+          params: { remember_token: this.params.user_id }
+        })
         .then(this.submitSuccess)
         .catch(this.errors);
     },
@@ -118,12 +123,15 @@ export default {
     errors(e) {
       window.console.log(e);
       //   this.userErrors = e.response.data.errors
-    },
+    }
   }
 };
 </script>
 <style scoped>
 div.include_contents {
+  overflow: hidden;
+  width: 1200px;
+  margin: 10px auto;
 }
 .form_group span {
   color: rgb(115, 127, 179);
@@ -153,13 +161,15 @@ div.include_contents {
 div.parent {
 }
 div.input_user_information {
-  width: 1200px;
+  width: 800px;
   background: rgb(229, 229, 241);
   text-align: center;
-  margin:0 auto;
+  margin: 0 auto;
   padding: 10px;
+  float: left;
 }
 div.side {
   float: left;
+  margin-right:10px ;
 }
 </style>

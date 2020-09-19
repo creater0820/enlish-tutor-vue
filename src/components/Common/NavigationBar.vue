@@ -4,53 +4,57 @@
       class="navigationMenu"
       v-if=" 'http://localhost:8080'+$route.path === 'http://localhost:8080/member/profile/'+$store.state.memberId"
     >
-      <a href="http://localhost:8080">TOP</a> > マイページ
+      <a class="navigationTop" href="http://localhost:8080">TOP</a> > マイページ
     </div>
 
     <div class="navigationMenu" v-if=" Number($store.state.memberId) !==Number($route.params.id)">
-      <div class="member_name_cut_navigation">
-        <a href="http://localhost:8080">TOP</a>
-        >
+      <div
+        v-if=" 'http://localhost:8080'+$route.path === 'http://localhost:8080/member/createmydata'"
+      >
+        <div class="member_name_cut_navigation">
+          <a class="navigationTop" href="http://localhost:8080">TOP</a>
+          >
+        </div>
+        <div class="member_name_cut_name">{{value.name}}</div>さんのプロフィール
       </div>
-      <div class="member_name_cut_name">{{memberName}}</div>さんのプロフィール
     </div>
 
     <div
       class="navigationMenu"
       v-if=" 'http://localhost:8080'+$route.path === 'http://localhost:8080/member/message/list/'+$store.state.memberId"
     >
-      <a href="http://localhost:8080">TOP</a> > メッセージ
+      <a class="navigationTop" href="http://localhost:8080">TOP</a> > メッセージ
     </div>
 
     <div
       class="navigationMenu"
       v-if=" 'http://localhost:8080'+$route.path === 'http://localhost:8080/member/lesson/'+$store.state.memberId"
     >
-      <a href="http://localhost:8080">TOP</a> > レッスン一覧
+      <a class="navigationTop" href="http://localhost:8080">TOP</a> > レッスン一覧
     </div>
     <div
       class="navigationMenu"
       v-if=" 'http://localhost:8080'+$route.path === 'http://localhost:8080/member/follows/'+$store.state.memberId"
     >
-      <a href="http://localhost:8080">TOP</a> > フォロー
+      <a class="navigationTop" href="http://localhost:8080">TOP</a> > フォロー
     </div>
     <div
       class="navigationMenu"
       v-if=" 'http://localhost:8080'+$route.path === 'http://localhost:8080/member/createplan/'+$store.state.memberId"
     >
-      <a href="http://localhost:8080">TOP</a> > レッスンを作成する
+      <a class="navigationTop" href="http://localhost:8080">TOP</a> > レッスンを作成する
     </div>
     <div
       class="navigationMenu"
       v-if=" 'http://localhost:8080'+$route.path === 'http://localhost:8080/member/createstudentplan/'+$store.state.memberId"
     >
-      <a href="http://localhost:8080">TOP</a> > 先生を募集する
+      <a class="navigationTop" href="http://localhost:8080">TOP</a> > 先生を募集する
     </div>
-    <div
-      class="navigationMenu"
-      v-if=" 'http://localhost:8080'+$route.path === 'http://localhost:8080/member/searchresults/3'"
-    >
-      <a href="http://localhost:8080">TOP</a> > 生徒を探す
+    <div class="navigationMenu" v-if=" $route.name === 'membersearchresults'">
+      <a href="http://localhost:8080" class="navigationTop">TOP</a> > 生徒を探す＞検索結果を表示
+    </div>
+    <div class="navigationMenu" v-if=" $route.name === 'membersearchresultsteacher'">
+      <a href="http://localhost:8080" class="navigationTop">TOP</a> > 先生を探す＞検索結果を表示
     </div>
   </div>
 </template>
@@ -58,7 +62,7 @@
     <script>
 export default {
   props: {
-    memberName: {
+    value: {
       type: String
     }
   }
@@ -84,6 +88,7 @@ div.navigationMenu {
   padding: 3px;
   width: 1172px;
   margin: 0 auto;
+  color: rgb(217, 237, 255);
 }
 div.member_name_cut_navigation {
   float: left;
@@ -95,5 +100,8 @@ div.member_name_cut_name {
   float: left;
   max-width: 180px;
   padding-left: 5px;
+}
+a.navigationTop {
+  color: rgb(227, 202, 202);
 }
 </style>

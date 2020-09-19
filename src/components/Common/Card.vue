@@ -28,7 +28,7 @@
       <template v-for="(tags,index) in value.student_plan_tags ">
         <span :key="index" class="tag_name">
           <a
-            :href="'http://localhost:8080/member/searchresults/' +tags.tag_id"
+            :href="'http://localhost:8080/member/searchresults/' +tags.tag_id+'?page=1'"
             class="tag_style"
           >#{{tags.tag_name}}</a>
         </span>

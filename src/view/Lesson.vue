@@ -1,15 +1,15 @@
 
 <template>
-  <div class="followPage">
-    <common-header></common-header>
-    <navigation-bar></navigation-bar>
-
-    <div class="followPage">
-      <div class="followLeft">
-        <common-side-menu></common-side-menu>
+  <div class="lessonPageWrapper">
+    <common-header />
+    <navigation-bar />
+    <div class="lessonPage">
+      <div class="lessonLeft">
+        <common-side-menu />
       </div>
-
-      <my-lesson-list></my-lesson-list>
+      <div class="lessonRight">
+        <my-lesson-list />
+      </div>
     </div>
     <common-footer></common-footer>
   </div>
@@ -107,19 +107,19 @@ div.lesson_inactive:hover {
   opacity: 0.6;
 }
 
-div.lessonRight {
-  width: 800px;
-  margin: 0 auto;
-  float: left;
-  /* background: linear-gradient(rgb(154, 164, 245), rgb(202, 222, 235)); */
-  background: rgb(213, 235, 250);
-  min-height: 600px;
-  /* cursor: pointer; */
+div.lessonPage{
+  overflow: hidden;
+  width: 1200px;
+  margin: 10px auto;
 }
-div.list_active {
-  /* background: linear-gradient(rgb(154, 164, 245), rgb(202, 222, 235)); */
-  /* width: 800px; */
-  /* text-align: center; */
+div.lessonRight {
+  float: left;
+  background: rgb(213, 235, 250);
+  margin-left: 10px;
+}
+div.lessonLeft {
+  float: left;
+  background: rgb(213, 235, 250);
 }
 
 @media screen and (max-width: 640px) {

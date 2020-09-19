@@ -15,13 +15,13 @@
 
           <div class="form_group">
             <label for>レッスン名</label>
-      
+
             <br />
             <input type="text" class="c_1" v-model="params.title" placeholder="例：TOEICスコアアップ講座！" />
           </div>
           <div class="form_group">
             <label for>内容</label>
-          
+
             <br />
             <textarea
               name
@@ -33,14 +33,14 @@
           </div>
           <div class="form_group">
             <label for>カテゴリー</label>
-  
+
             <br />
             <select name id class="c_4" v-model="params.category_type">
               <option value="0">選択してください</option>
               <option value="1">英語全般 (English)</option>
               <option value="2">大学受験</option>
-              <option value="3">文系資格 </option>
-              <option value="4">理系資格 </option>
+              <option value="3">文系資格</option>
+              <option value="4">理系資格</option>
             </select>
 
             <div class="tags_check_box">
@@ -59,15 +59,14 @@
 
           <div class="form_group">
             <label for>授業料：¥ {{params.amount}}円/ 1回</label>
-           
+
             <br />
             <input type="text" v-model="params.amount" placeholder="2,000円" class="c_5" />
             <span>一回の金額です</span>
           </div>
 
-      
           <div>
-            <button type="button" @click="submit()">送信する</button>
+            <button type="button" @click="storeTeacherPlan()">送信する</button>
           </div>
         </form>
       </div>
@@ -110,7 +109,7 @@ export default {
           { key: 4, value: "英文添削" },
           { key: 5, value: "大学受験英語" },
           { key: 6, value: "英ネイティブ" },
-          { key: 7, value: "米ネイティブ" },
+          { key: 7, value: "米ネイティブ" }
         ],
         [
           { key: 1, value: "英語" },
@@ -147,11 +146,24 @@ export default {
           { key: 5, value: "宅地建物取引士" },
           { key: 6, value: "危険物取扱者" },
           { key: 7, value: "社会保険労務士" }
-        ],
+        ]
       ]
     };
   },
+  created: function() {
+  
+  },
   methods: {
+    storeTeacherPlan() {
+      axios
+        .post("http://127.0.0.1:8001/api/teacherplan", this.params
+        )
+        .then(this.teacherPlanShow);
+    },
+    teacherPlanShow(response) {
+      window.console.log(response.data);
+    },
+
     submit() {
       window.console.log(this.params);
       axios
@@ -225,18 +237,23 @@ export default {
   padding: 0;
 }
 div.create_content {
-  /* overflow: hidden; */
+  overflow: hidden;
+  width: 1200px;
+  margin:10px auto;
 }
 div.input_user_information {
   margin: 0 auto;
-  width: 1200px;
-  background: rgb(215, 223, 237);
+  width: 950px;
+  background: rgb(250, 234, 230);
   text-align: center;
   padding: 10px;
+  float: left;
 }
 div.side {
   float: left;
-  height: 100%;
-  /* background: rgb(207, 214, 228); */
+margin-right:10px ;
+}
+div.parent{
+  overflow: hidden;
 }
 </style>

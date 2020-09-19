@@ -1,17 +1,17 @@
 <template>
   <div>
     <common-header></common-header>
-    <navigation-bar nowPage="search_results"/>
-    <pagination :planUrl="teacherPlanUrl" :plan ="paginatedPlan" />
+    <navigation-bar />
+    <pagination :planUrl="teacherPlanUrl" :plan="paginatedPlan" />
     <div class="create_content">
-      <div class="search_title">
+         <div class="search_title">
         <span>検索結果を表示</span>
         <span class="look_for_teacher">[先生を募集中]</span>
       </div>
       <div class="side">
         <common-side-menu></common-side-menu>
       </div>
-      <div class="search_results_wrapper">
+        <div class="search_results_wrapper">
         <template v-for="(value,index) in paginatedPlan.data">
           <div class="search_results" :key="index">
             <search-result-card :value="value" />
@@ -55,7 +55,7 @@ export default {
       searchResults: [],
       paginatedPlan: {},
       currentPage: "1",
-      teacherPlanUrl: 'http://localhost:8080/member/searchresults/'
+      teacherPlanUrl:'http://localhost:8080/member/searchresultsteacher/',
     };
   },
 
@@ -69,18 +69,21 @@ export default {
       let params = {
         from_member_id: this.$store.state.memberId,
         tag_id: [this.$route.params.id],
-        current_page: this.$route.query.page ?? 1
+        current_page: this.$route.query.page ?? 1,
+        paginatedPlan:[],
+
       };
       axios
-        .get("http://127.0.0.1:8001/api/getsearchresults", { params: params })
+        .get("http://127.0.0.1:8001/api/teacherplan", { params: params })
         .then(this.showSearchResults)
         .catch(this.errors);
     },
     showSearchResults(response) {
-      window.console.log(response.data.search_results);
-      window.console.log(response.data.paginated_plan);
-      this.searchResults = response.data.search_results;
-      this.paginatedPlan = response.data.paginated_plan;
+      window.console.log(response.data.teacher_plans);
+      window.console.log(response.data.paginated_plans);
+      window.console.log(response.data.teacher_plans);
+      this.searchResults = response.data.teacher_plans;
+      this.paginatedPlan = response.data.paginated_plans;
     }
   }
 };
@@ -96,6 +99,7 @@ div.search_results {
 }
 div.side {
   float: left;
+ 
 }
 p.search_results_title {
   font-size: 27px;

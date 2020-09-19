@@ -1,45 +1,40 @@
-  
   <template>
-  <div class="paginationWrapper">
-    <div>全{{paginatedPlan.total}}件</div>
-    <div class="pagination" v-if="Number($route.query.page) === 1 ">1〜{{paginatedPlan.to}}件を表示</div>
+  <div v-if="plan" class="paginationWrapper">
+    <div>全{{plan.total}}件</div>
+    <div class="pagination" v-if="Number($route.query.page) === 1 ">1〜{{plan.to}}件を表示</div>
     <div
       class="pagination"
       v-if="Number($route.query.page) !== 1"
-    >{{Number(current)+1}}〜{{paginatedPlan.to}}件を表示</div>
-
+    >{{Number(current)+1}}〜{{plan.to}}件を表示</div>
     <span>
-        <a 
-    v-if="Number(paginatedPlan.current_page) !== 1"
-       :href="'http://localhost:8080/member/searchresults/3?page='+(Number(paginatedPlan.current_page)-1)"
-        class="paginationNumber"
-    >
-        Prev
-        </a>
-        </span>
-    <template v-for="n in paginatedPlan.last_page">
       <a
-     
-        :href="'http://localhost:8080/member/searchresults/3?page='+n"
+        v-if="Number(plan.current_page) !== 1"
+        :href="planUrl+$route.params.id+'?page='+(Number(plan.current_page)-1)"
+        class="paginationNumber"
+      >Prev</a>
+    </span>
+    <template v-for="n in plan.last_page">
+      <a
+        :href="planUrl+$route.params.id+'?page='+n"
         :key="n"
         :class="[Number($route.query.page) === n?'paginationNumberActive ':'paginationNumber']"
       >{{n}}</a>
     </template>
-    <span><a 
-    v-if="Number(paginatedPlan.current_page) !== Number(paginatedPlan.last_page)"
-       :href="'http://localhost:8080/member/searchresults/3?page='+(Number(paginatedPlan.current_page)+1)"
-  class="paginationNumber"
-    >Next</a></span>
+    <span>
+      <a
+        v-if="Number(plan.current_page) !== Number(plan.last_page)"
+        :href="planUrl+$route.params.id+'?page='+(Number(paginatedPlan.current_page)+1)"
+        class="paginationNumber"
+      >Next</a>
+    </span>
   </div>
 </template>
 
 <script>
-import axios from "axios";
 export default {
-  components: {},
-
-  created: function() {
-    this.getNextPage();
+  props: {
+    planUrl: String,
+    plan: Object
   },
   data() {
     return {
@@ -48,31 +43,11 @@ export default {
     };
   },
   computed: {
- 
     current() {
       return (
-        Number(this.paginatedPlan.per_page) *
-        (Number(this.paginatedPlan.current_page) - 1)
+        Number(this.plan.per_page) *
+        (Number(this.plan.current_page) - 1)
       );
-    },
-  
-  },
-  methods: {
-    getNextPage() {
-      let params = {
-        current_page: this.$route.query.page ?? 1,
-        from_member_id: this.$store.state.memberId,
-        tag_id: [this.$route.params.id]
-      };
-      axios
-        .get("http://127.0.0.1:8001/api/getsearchresults", { params: params })
-        .then(this.searchResults)
-        .catch(this.errors);
-    },
-    searchResults(response) {
-      window.console.log(response.data.paginated_plan.last_page);
-      this.searchResults = response.data.search_results;
-      this.paginatedPlan = response.data.paginated_plan;
     }
   }
 };

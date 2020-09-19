@@ -115,7 +115,7 @@ export default {
     card(response) {
       window.console.log(response.data.student_plans);
       window.console.log(response.data.tags_id);
-      // window.console.log(response.data.tagsId);
+      window.console.log(response.data);
       this.interestedPlans = response.data.student_plans;
     },
     error(e) {

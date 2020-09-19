@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-for="(value,index) in plans" :key="index">
+    <div v-for="(value,index) in plans" :key="index" class="studentPlan">
       <div v-if="Number(value.id)=== Number($route.query.params)" class="student_plan_wrapper">
         <!-- <div v-if="'top'+value.id === $route.query.params" class="student_plan_wrapper"> -->
 
@@ -60,7 +60,9 @@ export default {
 <style scoped>
 div.student_plan_wrapper {
   width: 800px;
-  background: rgb(148, 206, 242);
+  background: rgb(255, 240, 240); 
+
+
 }
 div.studentPlanTitle {
   font-size: 30px;
@@ -77,4 +79,5 @@ div.studentPlanContent {
   padding: 20px;
   margin: 5px 0;
 }
+
 </style>

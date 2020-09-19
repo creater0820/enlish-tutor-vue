@@ -5,7 +5,7 @@
       <div @click="success=true" :class="[success?'lesson_active':'lesson_inactive']">フォローリスト</div>
       <div @click="success=false" :class="[!success?'lesson_active':'lesson_inactive']">フォロワーリスト</div>
     </div>
-    <div class="lessonRight">
+    <div class="myFollowRight">
       <div class="list">
         <div v-if="success">
           <div
@@ -106,7 +106,7 @@ div.lesson_inactive:hover {
   opacity: 0.6;
 }
 
-div.lessonRight {
+div.myFollowRight {
   width: 800px;
   margin: 0 auto;
   float: left;

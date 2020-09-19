@@ -221,19 +221,22 @@ export default {
   padding: 0;
 }
 div.create_content {
-  /* overflow: hidden; */
+  overflow: hidden;
+  width: 1200px;
+  margin: 10px auto;
 }
 div.input_user_information {
   margin: 0 auto;
-  width: 800px;
-  background: rgb(231, 240, 255);
+  width: 950px;
+  background: rgb(255, 245, 243);
   text-align: left;
   padding: 10px;
+  float:left;
 }
 div.side {
   float: left;
   height: 100%;
-  /* background: rgb(207, 214, 228); */
+ margin-right:10px ;
 }
 div.register_success {
   width: 1200px;

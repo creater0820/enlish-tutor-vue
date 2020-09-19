@@ -6,12 +6,9 @@
       <div class="side">
         <common-side-menu></common-side-menu>
       </div>
-      <div class="profile_wrapper">
 
-   
-
-        <div class="user_information_right">
-            <show-student-plan></show-student-plan>
+        <div class="user_information_center">
+          <show-student-plan></show-student-plan>
         </div>
         <div class="input_user_information">
           <div class="edit" v-if="Number($store.state.memberId)===Number($route.params.id)">
@@ -59,7 +56,7 @@
             <br />
           </div>
         </div>
-      </div>
+ 
     </div>
     <common-footer></common-footer>
   </div>
@@ -81,7 +78,7 @@ export default {
     CommonFooter,
     FollowButton,
     NavigationBar,
-    ShowStudentPlan,
+    ShowStudentPlan
   },
   data() {
     return {
@@ -150,31 +147,35 @@ export default {
 <style scoped>
 div.wrapper {
   overflow: hidden;
-
-  /* background: rgb(229, 229, 241); */
-}
-div.profile_wrapper {
   width: 1200px;
-  margin: 0 auto;
+  margin: 10px auto;
+
 }
+
 
 div.input_user_information {
-  margin-top: 10px;
-  float: right;
+  float: left;
   width: 300px;
-  position: fixed;
-  /* margin: 0 auto ; */
-  background: rgb(229, 229, 241);
-  /* padding: 20px; */
+  height: 450px;
+  background: rgb(245, 253, 255);
+
   text-align: center;
   border-radius: 3px;
   padding: 10px;
+  border-left:4px double rgb(227, 223, 223) ;
+  border-right:4px double rgb(211, 208, 208) ;
 }
-div.user_information_right {
-  float: right;
-  width: 800px;
-  background: rgb(198, 219, 237);
-  min-height: 600px;
+div.user_information_center {
+  float: left;
+  width: 638px;
+  background: rgb(255, 243, 240);
+  /* min-height: 600px; */
+  margin:0 10px;
+  border-left:2px dotted rgb(227, 223, 223) ;
+  border-right:2px dotted rgb(211, 208, 208) ;
+  border-bottom:2px dotted rgb(211, 208, 208) ;
+  border-top:2px dotted rgb(211, 208, 208) ;
+ 
 }
 img.icon {
   width: 100px;
@@ -191,14 +192,13 @@ div.favorite {
 div.form_group {
   width: 300px;
   margin: 0 auto;
-   
 }
-div.form_group_name_cut{
+div.form_group_name_cut {
   width: 180px;
   margin: 0 auto;
-   overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .form_group span {
   color: rgb(115, 127, 179);
@@ -228,7 +228,7 @@ div.form_group_name_cut{
   padding: 0;
 }
 div.parent {
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 div.side {

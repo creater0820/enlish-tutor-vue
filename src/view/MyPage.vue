@@ -96,6 +96,6 @@ div.input_user_information {
 }
 div.side {
   float: left;
-  background: rgb(162, 245, 150);
+
 }
 </style>

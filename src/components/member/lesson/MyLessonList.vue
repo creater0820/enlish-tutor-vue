@@ -95,7 +95,6 @@ body {
   margin: 0;
 }
 div.lesson_active {
-  /* text-align: center; */
   background: linear-gradient(rgb(200, 206, 250), rgb(187, 228, 255));
   border-radius: 3px 3px 0 0;
 }
