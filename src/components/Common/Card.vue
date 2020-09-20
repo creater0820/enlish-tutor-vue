@@ -117,7 +117,7 @@ div.profile_wrapper {
     white-space: nowrap;
     max-width: 400px;
     margin-top: 5px;
-    font-size: 18px;
+    font-size: 20px;
     padding: 5px;
     float: left;
   }
@@ -141,6 +141,7 @@ div.profile_wrapper {
     white-space: nowrap;
     overflow: hidden;
     max-width: 285px;
+    font-size: 14px;
   }
 
   a.to_plan_page:hover {
@@ -148,10 +149,10 @@ div.profile_wrapper {
     opacity: 0.5;
   }
   a.to_plan_page:visited {
-    color: black;
+    color: rgb(28, 10, 9);
   }
   a.to_plan_page {
-    color: black;
+    color: rgb(28, 10, 9);
     font-size: 20px;
   }
 

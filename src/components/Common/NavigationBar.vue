@@ -1,11 +1,11 @@
 <template>
   <div class="navigationBar">
-    <div
+    <!-- <div
       class="navigationMenu"
       v-if=" 'http://localhost:8080'+$route.path === 'http://localhost:8080/member/profile/'+$store.state.memberId"
     >
       <a class="navigationTop" href="http://localhost:8080">TOP</a> > マイページ
-    </div>
+    </div> -->
 
     <div class="navigationMenu" v-if=" Number($store.state.memberId) !==Number($route.params.id)">
       <div
@@ -19,11 +19,8 @@
       </div>
     </div>
 
-    <div
-      class="navigationMenu"
-      v-if=" 'http://localhost:8080'+$route.path === 'http://localhost:8080/member/message/list/'+$store.state.memberId"
-    >
-      <a class="navigationTop" href="http://localhost:8080">TOP</a> > メッセージ
+    <div class="navigationMenu" v-if=" $route.name === 'membermessage'">
+      <a href="http://localhost:8080" class="navigationTop">TOP</a> > メッセージ
     </div>
 
     <div
@@ -58,6 +55,9 @@
     </div>
     <div class="navigationMenu" v-if=" $route.name === 'membereditprofile'">
       <a href="http://localhost:8080" class="navigationTop">TOP</a> > プロフィール編集
+    </div>
+    <div class="navigationMenu" v-if=" $route.name === 'memberprofile'">
+      <a href="http://localhost:8080" class="navigationTop">TOP</a> > プロフィール
     </div>
   </div>
 </template>

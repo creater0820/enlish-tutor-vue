@@ -25,7 +25,7 @@
           </div>
 
           <div class="form_group">
-            <img src="@/assets/image/account_circle-black-18dp.svg" alt class="icon" />
+            <img :src="'http://127.0.0.1:8001'+params.icon" alt class="icon" />
 
             <br />
           </div>
@@ -178,7 +178,10 @@ div.user_information_center {
  
 }
 img.icon {
-  width: 100px;
+   width: 100px;
+  height: 100px;
+  /* display: block; */
+  border-radius: 50px;
 }
 div.edit {
   /* float: right; */

@@ -9,14 +9,20 @@
         >
           おめでとうございます！
           <br />
-          <span class="timeline_member_name">
-            <a :href="'http://localhost:8080/member/profile/'+value.member.id">
+          <div class="time_line_wrapper">
+            <div class="img_wrapper">
               <img class="time_line_icon" :src="'http://127.0.0.1:8001'+value.member.icon" />
-              {{value.member.name}}
-            </a>
-          </span>さんの
-          <span class="member_plan">{{value.plan.title}}</span>が契約されました
-          <br />
+            </div>
+            <div class="name_wrapper">
+              <span class="timeline_member_name">
+                <a
+                  :href="'http://localhost:8080/member/profile/'+value.member.id"
+                >{{value.member.name}}</a>
+              </span>さんの
+              <a class="member_plan" href="">{{value.plan.title}}</a>が契約されました
+            </div>
+          </div>
+
           <div
             class="hours"
             v-if="value.diff_in_minutes>=60"
@@ -95,11 +101,13 @@ div.VueCarousel-pagination {
 }
 </style>
 <style scoped>
-a{
+a {
   text-decoration: none;
 }
 img.time_line_icon {
-  width: 20px;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
 }
 div.hours {
   color: rgb(39, 92, 92);
@@ -116,6 +124,17 @@ span.member_plan {
 }
 .example-slide {
   align-items: center;
+}
+div.time_line_wrapper{
+  overflow: hidden;
+}
+div.img_wrapper{
+  float: left;
+  margin-right: 10px;
+}
+div.name_wrapper{
+  float: left;
+  padding-top: 3px;
 }
 @media screen and (max-width: 640px) {
   div {

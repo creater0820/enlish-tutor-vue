@@ -1,17 +1,16 @@
 <template>
   <div class="new_teacher">
-    <img
-      class="new_teacher_img"
-      src="https://cdn.aprico-media.com/production/imgs/images/000/008/511/original.jpg?1505866639"
-      alt
-    />
+    <div class="member_icon">
+      <img class="new_teacher_img" :src="'http://127.0.0.1:8001'+value.icon" alt="" />
+    </div>
     <div>
-      <div class="new_teacher_information">
-        <a
-          :href="'http://localhost:8080/member/profile/'+value.id"
-          class="popular_member_name"
-        >{{value.name}}</a>
-      </div>
+      <a
+        :href="'http://localhost:8080/member/profile/'+value.id"
+        class="popular_member_name"
+      >{{value.name}}</a>
+    </div>
+
+    <div>
       <div class="new_teacher_information_profile">{{value.profile}}</div>
       <!-- <div class="new_teacher_information">{{value.tag_name[0]}}</div> -->
     </div>
@@ -63,11 +62,17 @@ div.new_teacher_information {
     opacity: 0.5;
   }
   a.popular_member_name:visited {
-   color:black;
+    color: black;
   }
-  div.new_teacher_information_profile{
+  div.new_teacher_information_profile {
     font-size: 14px;
     color: rgb(69, 62, 62);
+  }
+  img.new_teacher_img {
+    width: 60px;
+    height: 60px;
+    display: block;
+    border-radius: 30px;
   }
 }
 </style>

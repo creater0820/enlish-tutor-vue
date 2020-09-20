@@ -10,22 +10,33 @@
       <span v-if="Number(value.diff_in_minutes) < 2880 " class="newPlan">[New!]</span>
       <span class="time">[{{time}}]</span>
     </div>
-    <p>¥{{price}}</p>
-    <p>{{value.content}}</p>
-    <p>
-      <a
-        :href="'http://localhost:8080/member/profile/'+value.member_id"
-        class="to_plan_page"
-      >{{value.member.name}}さん</a>
-    </p>
-    <template v-for="(tags,index) in value.student_plan_tags">
-      <span class="tag_name" :key="index">
+    <div class="title_price_wrapper">
+      <div class="plan_content">{{value.content}}</div>
+      <div class="plan_price">¥{{price}}</div>
+    </div>
+
+    <div class="img_name_wrapper">
+      <div class="img_wrapper">
+        <img :src="'http://127.0.0.1:8001'+value.member.icon" class="member_icon" />
+      </div>
+      <div class="name_wrapper">
         <a
-          :href="'http://localhost:8080/member/searchresults/' +tags.tag_id+'?page=1'"
-          class="tags"
-        >#{{tags.tag_name}}</a>
-      </span>
-    </template>
+          :href="'http://localhost:8080/member/profile/'+value.member_id"
+          class="to_plan_page"
+        >{{value.member.name}}さん</a>
+      </div>
+    </div>
+
+    <div class="template_roop_wrapper">
+      <template v-for="(tags,index) in value.student_plan_tags" class="wrapper">
+        <div class="tag_name" :key="index">
+          <a
+            :href="'http://localhost:8080/member/searchresults/' +tags.tag_id+'?page=1'"
+            class="tags"
+          >#{{tags.tag_name}}</a>
+        </div>
+      </template>
+    </div>
   </div>
 </template>
 
@@ -46,7 +57,10 @@ export default {
       return this.value.amount.toLocaleString();
     },
     time() {
-      if (Number(this.value.diff_in_minutes) >= 2880 && Number(this.value.diff_in_minutes) <= 43200) {
+      if (
+        Number(this.value.diff_in_minutes) >= 2880 &&
+        Number(this.value.diff_in_minutes) <= 43200
+      ) {
         return Math.floor(this.value.diff_in_minutes / 1440) + "日前";
       }
       if (
@@ -58,16 +72,25 @@ export default {
       if (Number(this.value.diff_in_minutes) === 0) {
         return "たった今";
       }
-      if (Number(this.value.diff_in_minutes) >= 43200 && Number(this.value.diff_in_minutes) <= 86400) {
+      if (
+        Number(this.value.diff_in_minutes) >= 43200 &&
+        Number(this.value.diff_in_minutes) <= 86400
+      ) {
         return "１ヶ月前";
       }
-      if (Number(this.value.diff_in_minutes) >=86400 && Number(this.value.diff_in_minutes) <=129600) {
+      if (
+        Number(this.value.diff_in_minutes) >= 86400 &&
+        Number(this.value.diff_in_minutes) <= 129600
+      ) {
         return "２ヶ月前";
       }
-      if (Number(this.value.diff_in_minutes) >=129600 && Number(this.value.diff_in_minutes) <=172800) {
+      if (
+        Number(this.value.diff_in_minutes) >= 129600 &&
+        Number(this.value.diff_in_minutes) <= 172800
+      ) {
         return "３ヶ月前";
       }
-      if (Number(this.value.diff_in_minutes) >=172800) {
+      if (Number(this.value.diff_in_minutes) >= 172800) {
         return "３ヶ月以上前";
       }
       return Math.floor(this.value.diff_in_minutes / 60) + "時間前";
@@ -121,5 +144,39 @@ span.newPlan {
   color: lightcoral;
   font-size: 20px;
   margin-left: 5px;
+}
+img.member_icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}
+div.img_name_wrapper {
+  overflow: hidden;
+}
+div.img_wrapper {
+  float: left;
+  margin-right: 10px;
+  margin-left: 6px;
+}
+div.name_wrapper {
+  float: left;
+  padding-top: 6px;
+}
+div.plan_content {
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+div.plan_price {
+  margin-left: 10px;
+}
+div.title_price_wrapper {
+  margin: 15px 6px 15px 4px;
+}
+div.tag_name {
+  margin-left: 6px;
+  float: left;
+}
+div.template_roop_wrapper {
+  overflow: hidden;
 }
 </style>

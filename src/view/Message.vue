@@ -2,6 +2,7 @@
 <template>
   <div class="message">
     <common-header></common-header>
+    <navigation-bar/>
     <div class="messageContents">
       <div class="messageLeft">
         <common-side-menu></common-side-menu>
@@ -38,7 +39,7 @@
 <script>
 import CommonHeader from "@/components/Common/Header";
 import CommonFooter from "@/components/Common/Footer";
-
+import NavigationBar from "@/components/Common/NavigationBar";
 import CommonSideMenu from "@/components/Common/SideMenu";
 import ChatMessage from "@/components/member/message/ChatMessage";
 import axios from "axios";
@@ -69,7 +70,8 @@ export default {
     CommonHeader,
     CommonFooter,
     CommonSideMenu,
-    ChatMessage
+    ChatMessage,
+    NavigationBar
   },
   created: function() {
     this.submit();
