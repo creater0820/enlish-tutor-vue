@@ -113,7 +113,7 @@ a.tags:visited {
 }
 
 div.search_result_wrapper_title {
-  background: rgb(230, 227, 226);
+  background: rgb(234, 178, 166);
   border-bottom: 1px dotted black;
   padding: 2px 0 2px 7px;
 }

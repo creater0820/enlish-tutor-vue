@@ -71,8 +71,7 @@ export default {
         .catch(this.errors);
     },
     submitSuccess(response) {
-    
-      window.console.log(response.data.members.id);
+      window.console.log(response.data.members);
       this.newTeacher = response.data.members;
       this.memberId = response.data.member.id;
     },

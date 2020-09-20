@@ -6,6 +6,7 @@
           class="menu_tab"
           @mouseover="hidden_1=true"
           @mouseleave="hidden_1=false"
+          :href="'http://localhost:8080/member/profile/'+$store.state.memberId"
         >
           マイページ
           <i class="img_mypage" :class="{rotate:hidden_1}"></i>
@@ -65,7 +66,7 @@
           @mouseleave="hidden_3=false"
         >
           <div class="title">
-            <p>Mypage</p>
+            <p></p>
           </div>
 
               <template v-for="(value,index) in tags">
@@ -97,7 +98,7 @@
           @mouseleave="hidden_4=false"
         >
           <div class="title">
-            <p>Daily English Conversation</p>
+            <p></p>
           </div>
           <template v-for="(value,index) in tags">
             <div :key="index">

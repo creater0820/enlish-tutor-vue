@@ -10,20 +10,25 @@
     </div>
 
     <br />
-    <div class="title">
-      <a
-        :href="'http://localhost:8080/member/profile/'+value.member_id +'?params='+value.id"
-        class="to_plan_page"
-      >{{value.title}}</a>
-    </div>
-    <div class="amount">¥{{price}}円</div>
 
-    <div class="name">
-      <a :href="'http://localhost:8080/member/profile/'+value.member_id +'?params=top'">
-        <img :src="'http://127.0.0.1:8001'+value.member.icon" alt class="icon" />
+    <div class="profile_wrapper">
+      <div class="name">
+        <a :href="'http://localhost:8080/member/profile/'+value.member_id +'?params=top'">
+          <img :src="'http://127.0.0.1:8001'+value.member.icon" alt class="icon" />
+        </a>
         <span>{{value.member.name}}さん</span>
-      </a>
+      </div>
+      <div class="title">
+        <a
+          :href="'http://localhost:8080/member/profile/'+value.member_id +'?params='+value.id"
+          class="to_plan_page"
+        >{{value.title}}</a>
+        <div class="plan_content">{{value.content}}</div>
+        <div class="amount">¥{{price}}円</div>
+      </div>
     </div>
+    <div></div>
+
     <div class="tag">
       <template v-for="(tags,index) in value.student_plan_tags ">
         <span :key="index" class="tag_name">
@@ -69,9 +74,13 @@ div.card {
   margin-top: 15px;
 }
 img.icon {
-  width: 30px;
-  height: 30px;
+  width: 60px;
+  height: 60px;
   display: block;
+  border-radius: 30px;
+}
+div.profile_wrapper {
+  overflow: hidden;
 }
 
 @media screen and (max-width: 640px) {
@@ -82,7 +91,7 @@ img.icon {
   div.card {
     /* width: 350px; */
     box-shadow: 0 3px 3px 0 rgb(144, 159, 182);
-
+    overflow: hidden;
     border-radius: 1px;
   }
   div.card_title_wrapper {
@@ -110,6 +119,7 @@ img.icon {
     margin-top: 5px;
     font-size: 18px;
     padding: 5px;
+    float: left;
   }
   div.amount {
     font-size: 16px;
@@ -123,6 +133,14 @@ img.icon {
   div.name {
     font-size: 0.8em;
     padding: 5px;
+    border-radius: 3px;
+    float: left;
+  }
+  div.plan_content {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 285px;
   }
 
   a.to_plan_page:hover {
@@ -152,7 +170,7 @@ img.icon {
     text-overflow: ellipsis;
     white-space: nowrap;
 
-    padding:5px 0 7px 7px;
+    padding: 5px 0 7px 7px;
   }
   span.tag_name {
     padding-right: 7px;

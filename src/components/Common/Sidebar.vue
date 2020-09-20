@@ -3,7 +3,7 @@
     <div class="reccomend_for_you">おすすめの先生</div>
 
     <template v-for="(value,index) in popular_members">
-      <div class="common-new-teacher" :key="index">
+      <div class="common_new_teacher" :key="index">
         <common-new-teacher :value="value"></common-new-teacher>
       </div>
     </template>
@@ -81,9 +81,10 @@ div {
   }
   div.reccomend_for_you {
  background-color: rgb(255, 247, 247);
- border-bottom: 0.1px dotted;
- 
-
+ border-bottom: 1px dotted rgb(242, 196, 170);
+  }
+  div.common_new_teacher{
+    border-bottom:3px  double rgb(225, 229, 230) ;
   }
 }
 </style>

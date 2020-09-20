@@ -56,6 +56,9 @@
     <div class="navigationMenu" v-if=" $route.name === 'membersearchresultsteacher'">
       <a href="http://localhost:8080" class="navigationTop">TOP</a> > 先生を探す＞検索結果を表示
     </div>
+    <div class="navigationMenu" v-if=" $route.name === 'membereditprofile'">
+      <a href="http://localhost:8080" class="navigationTop">TOP</a> > プロフィール編集
+    </div>
   </div>
 </template>
 

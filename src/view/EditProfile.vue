@@ -1,6 +1,7 @@
 <template>
   <div class="parent">
     <common-header></common-header>
+    <navigation-bar/>
     <div class="wrapper_content">
       <div class="side">
         <common-side-menu></common-side-menu>
@@ -75,7 +76,7 @@
             name
             id
             class="c_2"
-            placeholder="例：アメリカ留学を３年経験しまして、英語の日常会話からビジネス会話まで幅広く対応可能です。TOEIC対策講座も受付しています。初心者にもわかりやすい指導を心掛けています。よろしくお願いします"
+            placeholder=""
             v-model="params.profile"
           ></textarea>
           <div id="app">
@@ -95,13 +96,15 @@
 import CommonHeader from "@/components/Common/Header";
 import CommonSideMenu from "@/components/Common/SideMenu";
 import CommonFooter from "@/components/Common/Footer";
+import NavigationBar from "@/components/Common/NavigationBar";
 import axios from "axios";
 
 export default {
   components: {
     CommonHeader,
     CommonSideMenu,
-    CommonFooter
+    CommonFooter,
+    NavigationBar,
   },
   created: function() {
     this.init();
@@ -199,11 +202,13 @@ label.icon {
 }
 
 div.wrapper_content {
-  background: rgb(190, 204, 230);
   overflow: hidden;
+  width: 1200px;
+  margin: 0 auto;
 }
 div.side {
   float: left;
+  margin-right: 10px;
 }
 div.form_group {
   width: 600px;
@@ -248,8 +253,9 @@ div.parent {
   /* overflow: hidden; */
 }
 div.input_user_information {
-  /* float: left; */
-  width: 100%;
+  float: left;
+  background: rgb(239, 253, 255);
+  width: 800px;
 }
 div.side {
   /* float: left; */
