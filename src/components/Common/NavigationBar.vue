@@ -22,6 +22,9 @@
     <div class="navigationMenu" v-if=" $route.name === 'membermessage'">
       <a href="http://localhost:8080" class="navigationTop">TOP</a> > メッセージ
     </div>
+    <div class="navigationMenu" v-if=" $route.name === 'membermessagelist'">
+      <a href="http://localhost:8080" class="navigationTop">TOP</a> > メッセージ
+    </div>
 
     <div
       class="navigationMenu"

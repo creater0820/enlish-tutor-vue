@@ -6,57 +6,41 @@
       <div class="side">
         <common-side-menu></common-side-menu>
       </div>
-
-        <div class="user_information_center">
-          <show-student-plan></show-student-plan>
+      <div class="user_information_center">
+        <show-student-plan></show-student-plan>
+      </div>
+      <div class="input_user_information">
+        <div class="edit" v-if="Number($store.state.memberId)===Number($route.params.id)">
+          <a href="http://localhost:8080/member/editprofile">
+            <img src="@/assets/image/edit-24px.svg" />プロフィールを編集する
+          </a>
         </div>
-        <div class="input_user_information">
-          <div class="edit" v-if="Number($store.state.memberId)===Number($route.params.id)">
-            <a href="http://localhost:8080/member/editprofile">
-              <img src="@/assets/image/edit-24px.svg" />プロフィールを編集する
-            </a>
-          </div>
-          <div class="favorite" v-if="Number($store.state.memberId)!==Number($route.params.id)">
-            <follow-button @showFollowNumber="showFollowNumber"></follow-button>
-          </div>
-
-          <div class="form_group" v-if="Number($store.state.memberId)!==Number($route.params.id)">
-            <a :href="'http://localhost:8080/member/message/'+$route.params.id">メッセージを送る</a>
-          </div>
-
+        <div class="form_group_img">
+          <img :src="'http://127.0.0.1:8001'+params.icon" alt class="icon" />
+          <br />
+        </div>
+        <div class="form_group_name_cut">
+          <label for>{{params.name}}</label>
+          <br />
+        </div>
+        <div>
           <div class="form_group">
-            <img :src="'http://127.0.0.1:8001'+params.icon" alt class="icon" />
-
+            <p>{{params.profile}}</p>
             <br />
           </div>
-          <div class="form_group_name_cut">
-            <label for>{{params.name}}</label>
-
-            <br />
-          </div>
-          <div>
+          <div class="follow_member">
             <span>フォロワー</span>
             <span class="count_follower">{{follower}}</span>
             <span>人</span>
           </div>
-          <div class="form_group">
-            <label for>TOEICスコア</label>
-            <p>{{params.educational_background}}</p>
-
-            <br />
-          </div>
-          <div class="form_group">
-            <label for>ネイティブ言語</label>
-            <br />
-          </div>
-
-          <div class="form_group">
-            <label for>経歴・指導方針</label>
-            <p>{{params.profile}}</p>
-            <br />
-          </div>
         </div>
- 
+        <div class="favorite" v-if="Number($store.state.memberId)!==Number($route.params.id)">
+          <follow-button @showFollowNumber="showFollowNumber"></follow-button>
+        </div>
+        <div class="form_group" v-if="Number($store.state.memberId)!==Number($route.params.id)">
+          <a :href="'http://localhost:8080/member/message/'+$route.params.id">メッセージを送る</a>
+        </div>
+      </div>
     </div>
     <common-footer></common-footer>
   </div>
@@ -149,9 +133,7 @@ div.wrapper {
   overflow: hidden;
   width: 1200px;
   margin: 10px auto;
-
 }
-
 
 div.input_user_information {
   float: left;
@@ -162,23 +144,22 @@ div.input_user_information {
   text-align: center;
   border-radius: 3px;
   padding: 10px;
-  border-left:4px double rgb(227, 223, 223) ;
-  border-right:4px double rgb(211, 208, 208) ;
+  border-left: 4px double rgb(227, 223, 223);
+  border-right: 4px double rgb(211, 208, 208);
 }
 div.user_information_center {
   float: left;
   width: 638px;
   background: rgb(255, 243, 240);
   /* min-height: 600px; */
-  margin:0 10px;
-  border-left:2px dotted rgb(227, 223, 223) ;
-  border-right:2px dotted rgb(211, 208, 208) ;
-  border-bottom:2px dotted rgb(211, 208, 208) ;
-  border-top:2px dotted rgb(211, 208, 208) ;
- 
+  margin: 0 10px;
+  border-left: 2px dotted rgb(227, 223, 223);
+  border-right: 2px dotted rgb(211, 208, 208);
+  border-bottom: 2px dotted rgb(211, 208, 208);
+  border-top: 2px dotted rgb(211, 208, 208);
 }
 img.icon {
-   width: 100px;
+  width: 100px;
   height: 100px;
   /* display: block; */
   border-radius: 50px;
@@ -189,11 +170,11 @@ div.edit {
   color: rgb(99, 91, 91);
 }
 div.favorite {
-  font-size: 0.8em;
-  color: rgb(99, 91, 91);
+  font-size: １５px;
+  /* color: rgb(99, 91, 91); */
 }
-div.form_group {
-  width: 300px;
+div.form_group_img {
+  width: 150px;
   margin: 0 auto;
 }
 div.form_group_name_cut {
@@ -241,5 +222,11 @@ span.count_follower {
   font-size: 18px;
   font: bold;
   color: rgb(75, 78, 223);
+}
+div.follow_member {
+  margin: 10px 0;
+}
+div.favorite {
+  margin-bottom: 10px;
 }
 </style>

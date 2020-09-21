@@ -1,12 +1,8 @@
 <template>
   <div class="header">
     <div class="search_teacher">
-      <a href="http://localhost:8080/" class="titlelogo">
-
-      </a>
-     
+      <a href="http://localhost:8080/" class="titlelogo"></a>
     </div>
-   
 
     <a href="http://localhost:8080/member/signup" v-if="!success">新規登録</a>
     <div class="header_logout" @click="logout()" v-if="success">ログアウト</div>
@@ -22,14 +18,13 @@ export default {
   },
   data() {
     return {
-      success: false,
+      success: false
     };
   },
   created: function() {
     this.isLogin();
   },
   methods: {
- 
     logout() {
       axios
         .get("http://127.0.0.1:8001/api/logout")
@@ -45,14 +40,15 @@ export default {
     },
     isLogin() {
       window.console.log(localStorage.getItem("token"));
-
       let params = {
         remember_token: localStorage.getItem("token")
       };
-      axios
-        .get("http://127.0.0.1:8001/api/login/check", { params: params })
-        .then(this.confirmLogin)
-        .catch(this.errors);
+      if (localStorage.getItem("token")) {
+        axios
+          .get("http://127.0.0.1:8001/api/login/check", { params: params })
+          .then(this.confirmLogin)
+          .catch(this.errors);
+      }
     },
     confirmLogin(response) {
       window.console.log(response.data);
@@ -60,17 +56,16 @@ export default {
     },
     error(e) {
       window.console.log(e);
-      //   this.userErrors = e.response.data.errors
     }
   }
 };
 </script>
 
 <style scoped>
-a.header_search{
+a.header_search {
   text-decoration: none;
 
-  color:rgb(32, 32, 38);
+  color: rgb(32, 32, 38);
 }
 div.search_teacher {
   /* overflow: hidden;
@@ -123,11 +118,11 @@ img.search_1 {
   opacity: 0.7;
   cursor: pointer;
 }
-a.titlelogo{
-font-size: 2em;
-font:bold;
-color: aliceblue;
-text-decoration: none;
+a.titlelogo {
+  font-size: 2em;
+  font: bold;
+  color: aliceblue;
+  text-decoration: none;
 }
 img.title {
   width: 100px;

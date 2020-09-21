@@ -4,12 +4,23 @@
       <p>{{text}}</p>
     </div>
 
-    <input
-      class="input_information"
-      :name="text"
-      :placeholder="[placeholder.length ?placeholder : this.text+'を入力してください']"
-      v-model="setValue"
-    />
+    <template v-if="password">
+      <input
+        type="password"
+        class="input_information"
+        :name="text"
+        :placeholder="[placeholder.length ?placeholder : this.text+'を入力してください']"
+        v-model="setValue"
+      />
+    </template>
+    <template v-else>
+      <input
+        class="input_information"
+        :name="text"
+        :placeholder="[placeholder.length ?placeholder : this.text+'を入力してください']"
+        v-model="setValue"
+      />
+    </template>
   </div>
 </template>
 
@@ -19,6 +30,10 @@ export default {
     text: {
       type: String,
       default: ""
+    },
+    password: {
+      type: Boolean,
+      default: false
     },
     value: {
       type: String,
@@ -49,7 +64,7 @@ export default {
 :focus::-webkit-input-placeholder {
   color: white;
 }
-div.user_name{
+div.user_name {
   color: white;
   font-weight: 700;
 }
@@ -57,6 +72,6 @@ input.input_information {
   width: 300px;
   height: 40px;
   border-radius: 5px;
-  box-shadow: 2px 2px  4px rgb(82, 84, 84);
+  box-shadow: 2px 2px 4px rgb(82, 84, 84);
 }
 </style>

@@ -9,9 +9,12 @@
       <div>
         <div class="input_user_information">
           <div class="c_0">
-            <p>ユーザー情報</p>
+            <p>マイプロフィール</p>
           </div>
 
+          <div v-if="success" class="name">
+           <img :src="'http://127.0.0.1:8001'+params.icon" alt="" class="member_icon">
+          </div>
           <div v-if="success" class="name">
             <p>ユーザーネーム：{{params.name}}</p>
           </div>
@@ -44,15 +47,6 @@
           </div>
           <div v-if="success" class="language_type">
             <p>母国語：{{params.language_type}}</p>
-          </div>
-          <div v-if="!success" class="language_type">
-            <p>未入力</p>
-          </div>
-          <div v-if="success" class="icon">
-            <p>アイコン：{{params.icon}}</p>
-          </div>
-          <div v-if="!success" class="icon">
-            <p>未入力</p>
           </div>
         </div>
       </div>
@@ -162,7 +156,7 @@ div.parent {
 }
 div.input_user_information {
   width: 800px;
-  background: rgb(229, 229, 241);
+  background: rgb(255, 220, 217);
   text-align: center;
   margin: 0 auto;
   padding: 10px;
@@ -171,5 +165,10 @@ div.input_user_information {
 div.side {
   float: left;
   margin-right:10px ;
+}
+img.member_icon{
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
 }
 </style>

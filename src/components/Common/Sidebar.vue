@@ -75,8 +75,9 @@ div {
   }
   div.side_bar {
        border-right: double 4px rgb(230, 217, 217);
+      margin-bottom: 0;
        /* border-left: dotted 1px rgb(232, 228, 228); */
-       height: 3000px;
+       height: 1568px;
 
   }
   div.reccomend_for_you {

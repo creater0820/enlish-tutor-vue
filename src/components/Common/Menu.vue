@@ -342,7 +342,8 @@ i.img_mypage {
   width: 30px;
   height: 50px;
   background: url("~@/assets/image/arrow.svg") 50% 50% no-repeat;
-  color: rgb(8, 8, 9);
+  /* background: url("~@/assets/image/expand_more_grey_192x192.png") 50% 50% no-repeat; */
+
   text-decoration: none;
 }
 i.img_mypage.rotate {

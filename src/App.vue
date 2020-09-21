@@ -22,12 +22,14 @@ export default {
   methods: {
     getMemberId() {
       window.console.log(localStorage.getItem("token"));
-      axios
-        .get("http://127.0.0.1:8001/api/member/id", {
-          params: { remember_token: localStorage.getItem("token") }
-        })
-        .then(this.confirmLogin)
-        .catch(this.errors);
+      if (localStorage.getItem("token")) {
+        axios
+          .get("http://127.0.0.1:8001/api/member/id", {
+            params: { remember_token: localStorage.getItem("token") }
+          })
+          .then(this.confirmLogin)
+          .catch(this.errors);
+      }
     },
     confirmLogin(response) {
       // action代わり

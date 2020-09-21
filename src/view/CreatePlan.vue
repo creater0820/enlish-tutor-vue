@@ -18,6 +18,11 @@
 
             <br />
             <input type="text" class="c_1" v-model="params.title" placeholder="例：TOEICスコアアップ講座！" />
+            <div v-if="validationErrors.title" class="validationMessage">
+              <template v-for="(value,index) in this.validationErrors.title">
+                <p :key="index">{{value}}</p>
+              </template>
+            </div>
           </div>
           <div class="form_group">
             <label for>内容</label>
@@ -30,6 +35,11 @@
               v-model="params.content"
               placeholder="例：この授業では主にTOEICのスコアアップを目指したカリキュラムを組んで指導していきます。ご興味のある方は是非一度お問い合わせください。e.g. I can offer you high quality plan to improve your english skills.Please contact me if you like.Best regards"
             ></textarea>
+            <div v-if="validationErrors.content" class="validationMessage">
+              <template v-for="(value,index) in this.validationErrors.content">
+                <p :key="index">{{value}}</p>
+              </template>
+            </div>
           </div>
           <div class="form_group">
             <label for>カテゴリー</label>
@@ -54,6 +64,11 @@
                 />
                 {{value.value}}
               </template>
+              <div v-if="validationErrors.tags" class="validationMessage">
+                <template v-for="(value,index) in this.validationErrors.tags">
+                  <p :key="index">{{value}}</p>
+                </template>
+              </div>
             </div>
           </div>
 
@@ -63,6 +78,11 @@
             <br />
             <input type="text" v-model="params.amount" placeholder="2,000円" class="c_5" />
             <span>一回の金額です</span>
+            <div v-if="validationErrors.amount" class="validationMessage">
+              <template v-for="(value,index) in this.validationErrors.amount">
+                <p :key="index">{{value}}</p>
+              </template>
+            </div>
           </div>
 
           <div>
@@ -99,6 +119,7 @@ export default {
         amount: "",
         tags: []
       },
+      validationErrors: [],
       selectTypeList: [],
       typeList: [
         [],
@@ -150,18 +171,21 @@ export default {
       ]
     };
   },
-  created: function() {
-  
-  },
+  created: function() {},
   methods: {
     storeTeacherPlan() {
       axios
-        .post("http://127.0.0.1:8001/api/teacherplan", this.params
-        )
-        .then(this.teacherPlanShow);
+        .post("http://127.0.0.1:8001/api/teacherplan", this.params)
+        .then(this.teacherPlanShow)
+        .catch(this.error);
     },
     teacherPlanShow(response) {
       window.console.log(response.data);
+      location.href = "http://localhost:8080/view/registersuccess";
+    },
+    error(e) {
+      window.console.log(e.response.data.errors);
+      this.validationErrors = e.response.data.errors;
     },
 
     submit() {
@@ -174,6 +198,7 @@ export default {
     submitSuccess(response) {
       this.success = true;
       window.console.log(response.data);
+
       // location.href = "http://localhost:8080/member/lesson";
       // localStorage.setItem("token", response.data.token);
       //   location.href = "http://localhost:8080/";
@@ -195,6 +220,9 @@ export default {
 };
 </script>
 <style scoped>
+div.validationMessage {
+  color: red;
+}
 .form_group {
   width: 700px;
   margin: 0 auto;
@@ -239,7 +267,7 @@ export default {
 div.create_content {
   overflow: hidden;
   width: 1200px;
-  margin:10px auto;
+  margin: 10px auto;
 }
 div.input_user_information {
   margin: 0 auto;
@@ -251,9 +279,9 @@ div.input_user_information {
 }
 div.side {
   float: left;
-margin-right:10px ;
+  margin-right: 10px;
 }
-div.parent{
+div.parent {
   overflow: hidden;
 }
 </style>

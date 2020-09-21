@@ -19,15 +19,10 @@
                   :href="'http://localhost:8080/member/profile/'+value.member.id"
                 >{{value.member.name}}</a>
               </span>さんの
-              <a class="member_plan" href="">{{value.plan.title}}</a>が契約されました
+              <a class="member_plan" href>{{value.plan.title}}</a>が契約されました
             </div>
           </div>
-
-          <div
-            class="hours"
-            v-if="value.diff_in_minutes>=60"
-          >{{Math.floor(value.diff_in_minutes/60)}}時間前</div>
-          <div class="minutes" v-else>{{value.diff_in_minutes}}分前</div>
+          <div class="hours">{{time(value)}}</div>
         </div>
       </slide>
     </carousel>
@@ -57,10 +52,50 @@ export default {
     Carousel,
     Slide
   },
+  computed: {},
   created: function() {
     this.newPlans();
   },
   methods: {
+    time(value) {
+      if (
+        Number(value.diff_in_minutes) >= 2880 &&
+        Number(value.diff_in_minutes) <= 43200
+      ) {
+        return Math.floor(value.diff_in_minutes / 1440) + "日前";
+      }
+      if (
+        Number(value.diff_in_minutes) < 60 &&
+        Number(value.diff_in_minutes) > 0
+      ) {
+        return Math.floor(value.diff_in_minutes) + "分前";
+      }
+      if (Number(value.diff_in_minutes) === 0) {
+        return "たった今";
+      }
+      if (
+        Number(value.diff_in_minutes) >= 43200 &&
+        Number(value.diff_in_minutes) <= 86400
+      ) {
+        return "１ヶ月前";
+      }
+      if (
+        Number(value.diff_in_minutes) >= 86400 &&
+        Number(value.diff_in_minutes) <= 129600
+      ) {
+        return "２ヶ月前";
+      }
+      if (
+        Number(value.diff_in_minutes) >= 129600 &&
+        Number(value.diff_in_minutes) <= 172800
+      ) {
+        return "３ヶ月前";
+      }
+      if (Number(value.diff_in_minutes) >= 172800) {
+        return "３ヶ月以上前";
+      }
+      return Math.floor(value.diff_in_minutes / 60) + "時間前";
+    },
     newPlans() {
       let params = {
         from_at: "2020-07-24 00:00:00",
@@ -73,21 +108,8 @@ export default {
     },
     newPlan(response) {
       this.contract = response.data.newPlans;
-      // 画像
       this.icon = response.data.icon;
-
-      // this.plan = response.data.newPlans[0].title;
-      // this.differenceTimeMinutes = response.data.differenceTime;
-      // this.differenceTimeHours = Math.round(response.data.differenceTime / 60);
-      // this.memberName = response.data.memberName[0].timeline_member_name[0].name;
-      // this.memberName = response.data.memberName;
       window.console.log(response.data.newPlans);
-      // window.console.log(response.data.icon);
-      // window.console.log(response.data.carbon);
-      // window.console.log(response.data.image);
-      // window.console.log(response.data.differenceTime);
-      // window.console.log(this.differenceTimeHours);
-      // window.console.log(response.data.memberName);
     },
     error(e) {
       window.console.log(e);
@@ -125,14 +147,14 @@ span.member_plan {
 .example-slide {
   align-items: center;
 }
-div.time_line_wrapper{
+div.time_line_wrapper {
   overflow: hidden;
 }
-div.img_wrapper{
+div.img_wrapper {
   float: left;
   margin-right: 10px;
 }
-div.name_wrapper{
+div.name_wrapper {
   float: left;
   padding-top: 3px;
 }

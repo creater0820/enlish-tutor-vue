@@ -8,7 +8,7 @@
         <div class="studentPlanAmount">¥{{price}}</div>
         <div class="studentPlanContent">{{value.content}}</div>
         <template v-for="(values,indexs) in planTags.student_plan_tags">
-          <div :key="indexs">{{values}}</div>
+          <div :key="indexs" class="student_plan_content">{{values}}</div>
         </template>
       </div>
     </div>
@@ -59,10 +59,8 @@ export default {
 
 <style scoped>
 div.student_plan_wrapper {
-  width: 800px;
+  /* width: 800px; */
   background: rgb(255, 240, 240); 
-
-
 }
 div.studentPlanTitle {
   font-size: 30px;
@@ -79,5 +77,6 @@ div.studentPlanContent {
   padding: 20px;
   margin: 5px 0;
 }
+
 
 </style>

@@ -93,9 +93,16 @@ div.favorite_button {
 }
 
 button.follow_active {
-  background: rgb(94, 135, 218);
+  background: rgb(255, 235, 225);
+  border-radius: 4px;
 }
 button.follow_inactive {
-  background: rgb(218, 94, 181);
+  background: rgb(198, 234, 249);
+  border-radius: 4px;
+}
+div.favorite_button_wrapper{
+  /* width: 10px;
+  height: 10px;
+border-radius: 5px; */
 }
 </style>

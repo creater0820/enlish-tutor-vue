@@ -8,18 +8,30 @@
       </div>
 
       <form-input-text text="Email" :value.sync="params.email" v-model="params.email"></form-input-text>
+      <div v-if="userErrors.email" class="validationMessage">
+        <template v-for="(value,index) in userErrors.email">
+          <div :key="index">
+            <p>{{value}}</p>
+          </div>
+        </template>
+      </div>
       <form-input-text text="Password" :value.sync="params.password" v-model="params.password"></form-input-text>
+      <div v-if="userErrors.password" class="validationMessage">
+        <template v-for="(value,index) in userErrors.password">
+          <div :key="index">
+            <p>{{value}}</p>
+          </div>
+        </template>
+      </div>
       <!-- <input type="text" v-model="params.email"><br>
       <input type="text" v-model="params.password"><br>-->
       <button type="button" @click="submit">Login</button>
-      <br />
+
       <input type="checkbox" class="check" />
       <label for="check">ログイン状態を保持する</label>
-      <br />
-  
-      <br />
+
       <p>アカウントをお持ちでない方はこちら</p>
-      <br />
+
       <p>パスワードをお忘れの方</p>
     </div>
     <common-footer></common-footer>
@@ -44,7 +56,8 @@ export default {
         email: "",
         password: ""
       },
-      success: false
+      success: false,
+      userErrors: []
     };
   },
 
@@ -63,8 +76,8 @@ export default {
       // this.newTeacher = response.data.members;
     },
     errors(e) {
-      window.console.log(e);
-      //   this.userErrors = e.response.data.errors
+      window.console.log(e.response.data.errors);
+      this.userErrors = e.response.data.errors;
     }
   }
 };
@@ -92,6 +105,9 @@ p.login {
   color: white;
   font-weight: 900;
   font-weight: bold;
+}
+div.validationMessage{
+  color: red;
 }
 
 @media screen and (max-width: 640px) {

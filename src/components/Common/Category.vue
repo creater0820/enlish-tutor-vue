@@ -22,25 +22,25 @@
       </div>
     </div>
 
-    <div class="ranking" :class="{'mr-2':isCenter(n)}" v-for="n of 9" :key="'ranking_'+n">
+    <!-- <div class="ranking" :class="{'mr-2':isCenter(n)}" v-for="n of 9" :key="'ranking_'+n">
       <common-teacher-ranking></common-teacher-ranking>
-    </div>
-    <div
-      class="education_materials"
-      :class="{'mr-2':isCenter(n)}"
-      v-for="n of 6"
-      :key="'education_'+n"
-    >
-      <common-education-materials></common-education-materials>
-    </div>
+    </div> -->
+      <!-- <div
+        class="education_materials"
+        :class="{'mr-2':isCenter(n)}"
+        v-for="n of 6"
+        :key="'education_'+n"
+      >
+        <common-education-materials></common-education-materials>
+      </div> -->
   </div>
 </template>
 
 <script>
 import CommonCard from "@/components/Common/Card";
 import CommonNewContractTimeline from "@/components/Common/NewContractTimeline";
-import CommonTeacherRanking from "@/components/Common/TeacherRanking";
-import CommonEducationMaterials from "@/components/Common/EducationMaterials";
+// import CommonTeacherRanking from "@/components/Common/TeacherRanking";
+// import CommonEducationMaterials from "@/components/Common/EducationMaterials";
 import CommonSideScroll from "@/components/Common/SideScroll";
 import axios from "axios";
 
@@ -48,8 +48,8 @@ export default {
   components: {
     CommonCard,
     CommonNewContractTimeline,
-    CommonTeacherRanking,
-    CommonEducationMaterials,
+    // CommonTeacherRanking,
+    // CommonEducationMaterials,
     CommonSideScroll
   },
   props: {

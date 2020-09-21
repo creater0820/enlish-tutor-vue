@@ -5,8 +5,8 @@
       <span
         class="hours"
         v-if="value.diff_in_minutes>=60"
-      >[{{Math.floor(value.diff_in_minutes/60)}}時間前]</span>
-      <span class="minutes" v-else>{{value.diff_in_minutes}}分前</span>
+      >[{{time}}]</span>
+      <span class="minutes" v-else>{{time}}</span>
     </div>
 
     <br />
@@ -60,6 +60,45 @@ export default {
   computed: {
     price() {
       return this.value.amount.toLocaleString();
+    },
+    time() {
+      if (
+        Number(this.value.diff_in_minutes) >= 2880 &&
+        Number(this.value.diff_in_minutes) <= 43200
+      ) {
+        return Math.floor(this.value.diff_in_minutes / 1440) + "日前";
+      }
+      if (
+        Number(this.value.diff_in_minutes) < 60 &&
+        Number(this.value.diff_in_minutes) > 0
+      ) {
+        return Math.floor(this.value.diff_in_minutes) + "分前";
+      }
+      if (Number(this.value.diff_in_minutes) === 0) {
+        return "たった今";
+      }
+      if (
+        Number(this.value.diff_in_minutes) >= 43200 &&
+        Number(this.value.diff_in_minutes) <= 86400
+      ) {
+        return "１ヶ月前";
+      }
+      if (
+        Number(this.value.diff_in_minutes) >= 86400 &&
+        Number(this.value.diff_in_minutes) <= 129600
+      ) {
+        return "２ヶ月前";
+      }
+      if (
+        Number(this.value.diff_in_minutes) >= 129600 &&
+        Number(this.value.diff_in_minutes) <= 172800
+      ) {
+        return "３ヶ月前";
+      }
+      if (Number(this.value.diff_in_minutes) >= 172800) {
+        return "３ヶ月以上前";
+      }
+      return Math.floor(this.value.diff_in_minutes / 60) + "時間前";
     }
   }
 };

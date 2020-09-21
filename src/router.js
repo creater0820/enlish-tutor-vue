@@ -18,6 +18,7 @@ import SearchResults from "@/view/SearchResults";
 // import MyLessonList from "@/components/member/lesson/MyLessonList";
 import MyFollowList from "@/components/member/follow/MyFollowList";
 import SearchResultTeacher from "@/view/SearchResultTeacher";
+import RegisterSuccess from "@/view/RegisterSuccess";
 
 
 
@@ -118,6 +119,11 @@ export default new Router({
             path: '/member/searchresultsteacher/:id',           //パスの設定
             component:SearchResultTeacher ,    //表示するコンポーネント
             name: 'membersearchresultsteacher',       //ルートの名前を指定
+        },
+        {
+            path: '/view/registersuccess',           //パスの設定
+            component:RegisterSuccess ,    //表示するコンポーネント
+            name: 'registersuccess',       //ルートの名前を指定
         },
     ]
 });

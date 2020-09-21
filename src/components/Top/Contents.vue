@@ -47,7 +47,7 @@ div {
   /* background: rgb(237, 236, 231); */
     overflow: hidden;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0 auto 0 auto;
   }
 }
 </style>
