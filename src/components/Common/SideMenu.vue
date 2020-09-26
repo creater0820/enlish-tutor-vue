@@ -88,7 +88,7 @@ div.sideBar {
 
 div.side_menu {
   width: 200px;
-  background: rgb(236, 242, 255);
+  background: #3282b8;
   padding: 10px 5px 10px 5px;
   border-bottom: 0.2px solid rgb(223, 228, 237);
 }

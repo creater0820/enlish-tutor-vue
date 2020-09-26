@@ -184,6 +184,7 @@ export default {
     },
     showProfile(response) {
       window.console.log(response.data);
+      location.href="http://localhost:8080/member/editprofile"
     },
     selectedFile(e) {
       // 選択された File の情報を保存しておく

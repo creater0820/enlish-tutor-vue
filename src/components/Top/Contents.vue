@@ -1,6 +1,5 @@
 <template>
   <div class="contents">
-   
     <common-sidebar :newTeacher="newTeacher"></common-sidebar>
     <common-category :newTeacher="newTeacher"></common-category>
   </div>
@@ -13,8 +12,7 @@ import CommonCategory from "@/components/Common/Category";
 export default {
   components: {
     CommonSidebar,
-    CommonCategory,
-   
+    CommonCategory
   },
   data() {
     return {
@@ -34,20 +32,20 @@ export default {
 
 <style scoped>
 div {
-  padding: 15px;
+  padding: 0 30px;
   /* display:flex; */
 }
 @media screen and (max-width: 640px) {
   div {
- 
   }
 }
 @media screen and (min-width: 640px) {
   div.contents {
-  /* background: rgb(237, 236, 231); */
     overflow: hidden;
-    max-width: 1200px;
+    max-width: 1260px;
     margin: 0 auto 0 auto;
+    border-left: solid 1px #3282b8;
+    border-right: solid 1px #3282b8;
   }
 }
 </style>

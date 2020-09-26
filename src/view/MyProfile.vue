@@ -139,7 +139,7 @@ div.input_user_information {
   float: left;
   width: 300px;
   height: 450px;
-  background: rgb(245, 253, 255);
+  background:#bbe1fa;
 
   text-align: center;
   border-radius: 3px;

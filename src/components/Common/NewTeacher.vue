@@ -1,9 +1,9 @@
 <template>
   <div class="new_teacher">
     <div class="member_icon">
-      <img class="new_teacher_img" :src="'http://127.0.0.1:8001'+value.icon" alt="" />
+      <img class="new_teacher_img" :src="'http://127.0.0.1:8001'+value.icon" alt />
     </div>
-    <div>
+    <div class="recommend_teacher_name">
       <a
         :href="'http://localhost:8080/member/profile/'+value.id"
         class="popular_member_name"
@@ -30,7 +30,16 @@ export default {
 
 <style scoped>
 div.new_teacher {
-  margin-bottom: 15px;
+  margin: 30px 0;
+}
+div.recommend_teacher_name {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  color: #3282b8;
+}
+div.recommend_teacher_name:visited {
+  color: #3282b8;
 }
 div.new_teacher_information {
   margin: 0;
@@ -38,6 +47,25 @@ div.new_teacher_information {
   text-overflow: ellipsis;
   white-space: wrap;
   max-width: 250px;
+}
+div.new_teacher_information_profile {
+  font-size: 14px;
+  color: #1b262c;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+a.popular_member_name {
+  text-decoration: none;
+  font-size: 15px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 100px;
+  color: #3282b8;
+}
+a.popular_member_name:visited {
+  color: #3282b8;
 }
 
 @media screen and (max-width: 640px) {
@@ -53,21 +81,13 @@ div.new_teacher_information {
     float: left;
     margin-right: 10px;
   }
-  a.popular_member_name {
-    text-decoration: none;
-    font-size: 17px;
-  }
+
   a.popular_member_name:hover {
     cursor: pointer;
     opacity: 0.5;
   }
-  a.popular_member_name:visited {
-    color: black;
-  }
-  div.new_teacher_information_profile {
-    font-size: 14px;
-    color: rgb(69, 62, 62);
-  }
+
+
   img.new_teacher_img {
     width: 60px;
     height: 60px;

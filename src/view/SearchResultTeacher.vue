@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="search_result_wrapper">
     <common-header></common-header>
     <navigation-bar />
     <pagination :planUrl="teacherPlanUrl" :plan="paginatedPlan" />
@@ -124,9 +124,13 @@ div.create_content {
   overflow: hidden;
   width: 1500px;
   margin: 10px auto 10px auto;
+
 }
 div.search_results_wrapper {
   float: left;
   margin-left: 20px;
+}
+div.search_result_wrapper{
+  background: #f9fcfe;
 }
 </style>

@@ -88,7 +88,7 @@ a:visited {
 }
 div.navigationBar {
   width: 100%;
-  background: rgb(89, 44, 50);
+  background: #0f4c75;
 }
 div.navigationMenu {
   padding: 3px;

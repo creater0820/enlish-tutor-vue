@@ -27,11 +27,7 @@
         </div>
       </div>
       <div class="hover2">
-        <a
-          class="menu_tab"
-          @mouseover="hidden_2=true"
-          @mouseleave="hidden_2=false"
-        >
+        <a class="menu_tab" @mouseover="hidden_2=true" @mouseleave="hidden_2=false">
           メッセージ
           <i class="img_mypage" :class="{rotate:hidden_2}"></i>
         </a>
@@ -49,12 +45,7 @@
         </div>
       </div>
       <div class="hover2">
-        <a
-          class="menu_tab"
-          @mouseover="hidden_3=true"
-          @mouseleave="hidden_3=false"
-
-        >
+        <a class="menu_tab" @mouseover="hidden_3=true" @mouseleave="hidden_3=false">
           先生を探す
           <i class="img_mypage" :class="{rotate:hidden_3}"></i>
         </a>
@@ -69,7 +60,7 @@
             <p></p>
           </div>
 
-              <template v-for="(value,index) in tags">
+          <template v-for="(value,index) in tags">
             <div :key="index">
               <div>
                 <a
@@ -82,11 +73,7 @@
         </div>
       </div>
       <div class="hover2">
-        <a
-          class="menu_tab"
-          @mouseover="hidden_4=true"
-          @mouseleave="hidden_4=false"
-        >
+        <a class="menu_tab" @mouseover="hidden_4=true" @mouseleave="hidden_4=false">
           生徒を探す
           <i class="img_mypage" :class="{rotate:hidden_4}"></i>
         </a>
@@ -114,11 +101,7 @@
       </div>
 
       <div class="hover2">
-        <a
-          class="menu_tab"
-          @mouseover="hidden_7=true"
-          @mouseleave="hidden_7=false"
-        >
+        <a class="menu_tab" @mouseover="hidden_7=true" @mouseleave="hidden_7=false">
           投稿する
           <i class="img_mypage" :class="{rotate:hidden_7}"></i>
         </a>
@@ -135,11 +118,7 @@
         </div>
       </div>
       <div class="hover2">
-        <a
-          class="menu_tab"
-          @mouseover="hidden_8=true"
-          @mouseleave="hidden_8=false"
-        >
+        <a class="menu_tab" @mouseover="hidden_8=true" @mouseleave="hidden_8=false">
           未定
           <i class="img_mypage" :class="{rotate:hidden_8}"></i>
         </a>
@@ -157,11 +136,7 @@
         </div>
       </div>
       <div class="hover2">
-        <a
-          class="menu_tab"
-          @mouseover="hidden_9=true"
-          @mouseleave="hidden_9=false"
-        >
+        <a class="menu_tab" @mouseover="hidden_9=true" @mouseleave="hidden_9=false">
           未定
           <i class="img_mypage" :class="{rotate:hidden_9}"></i>
         </a>
@@ -229,89 +204,108 @@ export default {
 };
 </script>
 <style>
+div.menu{
+  border-bottom: 1px solid #4db7fe;;
+}
 div.menu_hidden_1 {
   /* float: left; */
-  left: 15.3%;
+  left: 21.7%;
   position: absolute;
   width: 350px;
   height: 300px;
-  background: rgb(255, 241, 251);
+  background: #1468a0;
   animation: fadeIn 0.2s ease 0.1s normal;
   z-index: 1;
-  /* transform: translateY(-100vh) translateY(0px); */
+  color: #e9f6fe;
+  border-top: 1px solid #4db7fe;
 }
 div.menu_hidden_2 {
   /* float: left; */
-  left: 21.4%;
+  left: 26.7%;
   position: absolute;
   width: 350px;
   height: 300px;
-  background: rgb(251, 247, 250);
-
+  background: #1468a0;
+  border-top: 1px solid #4db7fe;
   z-index: 1;
+  color: #e9f6fe;
 }
 div.menu_hidden_3 {
   /* float: left; */
-  left: 28.1%;
+  color: #e9f6fe;
+  left: 31.5%;
   position: absolute;
   width: 350px;
   height: 300px;
-  background: rgb(251, 247, 250);
+  background: #1468a0;
   z-index: 1;
+  border-top: 1px solid #4db7fe;
 }
 div.menu_hidden_4 {
   /* float: left; */
-  left: 31.9%;
+  color: #e9f6fe;
+  left: 39%;
   position: absolute;
-  width: 450px;
-  height: 400px;
-  background: rgb(251, 247, 250);
+  width: 200px;
+  height: 300px;
+  background: #1468a0;
   z-index: 1;
+  border-top: 1px solid #4db7fe;
 }
 div.menu_hidden_5 {
   /* float: left; */
+  color: #e9f6fe;
   left: 39%;
   position: absolute;
   width: 350px;
   height: 300px;
-  background: rgb(251, 247, 250);
+  background: #1468a0;
   z-index: 1;
+  border-top: 1px solid #4db7fe;
 }
 div.menu_hidden_6 {
   /* float: left; */
+  color: #e9f6fe;
   left: 44.3%;
   position: absolute;
   width: 350px;
   height: 300px;
-  background: rgb(251, 247, 250);
+  background: #1468a0;
   z-index: 1;
+  border-top: 1px solid #4db7fe;
 }
 div.menu_hidden_7 {
   /* float: left; */
+  color: #e9f6fe;
   left: 39%;
   position: absolute;
   width: 350px;
   height: 300px;
-  background: rgb(250, 224, 244);
+  background: #1468a0;
   z-index: 1;
+  border-top: 1px solid #4db7fe;
 }
 div.menu_hidden_8 {
   /* float: left; */
+  color: #e9f6fe;
   left: 55.4%;
   position: absolute;
   width: 350px;
   height: 300px;
-  background: rgb(251, 247, 250);
+  background: #1468a0;
   z-index: 1;
+  border-top: 1px solid #4db7fe;
 }
 div.menu_hidden_9 {
   /* float: left; */
+  color: #e9f6fe;
   left: 62%;
   position: absolute;
   width: 350px;
   height: 300px;
-  background: rgb(251, 247, 250);
+  background: #1468a0;
   z-index: 1;
+  border-top: 1px solid #4db7fe;
 }
 </style>
 
@@ -321,6 +315,13 @@ a.visited {
 }
 
 a.menu_tab {
+  display: block;
+  line-height: 50px;
+  text-decoration: none;
+  color: aliceblue;
+  font: bold;
+}
+a.menu_tab:hover {
   display: block;
   line-height: 50px;
   text-decoration: none;
@@ -374,7 +375,7 @@ div.hover2 a {
 .hover2:hover {
   /* opacity: 0.6; */
   cursor: pointer;
-  background: rgb(137, 152, 237);
+  background: #1468a0;
 }
 div.menu {
   overflow: hidden;
@@ -397,7 +398,7 @@ p {
   float: left;
 }
 div.title {
-  border-bottom: solid 1px gray;
+  /* border-bottom: solid 1px #4db7fe; */
 }
 @media screen and (max-width: 640px) {
   div {
@@ -406,7 +407,7 @@ div.title {
 @media screen and (min-width: 640px) {
   div.menu {
     width: 100%;
-    background: rgb(89, 44, 50);
+    background: #0f4c75;
     /* background: rgb(49, 74, 154); */
     /* background: linear-gradient(rgb(158, 189, 232), rgb(88, 132, 198)); */
   }
@@ -419,13 +420,14 @@ div.title {
   }
   a.menu_title_student {
     text-decoration: none;
+     color: #e9f6fe;
   }
   a.menu_title_student:hover {
     cursor: pointer;
     opacity: 0.5;
   }
   a.menu_title_student:visited {
-    color: black;
+
   }
 }
 </style>

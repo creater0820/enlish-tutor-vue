@@ -37,6 +37,11 @@
                 {{value.value}}
               </template>
             </div>
+            <div v-if="userErrors.tags">
+              <template v-for="(value,index) in userErrors.tags">
+                <p :key="index" class="errorMessage">{{value}}</p>
+              </template>
+            </div>
           </div>
 
           <div class="form_group">
@@ -44,17 +49,32 @@
             <div class="title_annotation">わかりやすく簡潔なタイトルを入力しましょう</div>
 
             <input type="text" class="c_1" v-model="params.title" placeholder="タイトルを入力して下さい" />
+            <div v-if="userErrors.title">
+              <template v-for="(value,index) in userErrors.title">
+                <p :key="index" class="errorMessage">{{value}}</p>
+              </template>
+            </div>
           </div>
           <div class="form_group">
             <div for class="input_title">教えて欲しい内容</div>
             <div class="title_annotation">2000文字以下</div>
 
             <textarea name id class="c_2" v-model="params.content" placeholder="募集内容を入力して下さい"></textarea>
+            <div v-if="userErrors.content">
+              <template v-for="(value,index) in userErrors.content">
+                <p :key="index" class="errorMessage">{{value}}</p>
+              </template>
+            </div>
           </div>
 
           <div class="form_group">
             <div class="input_title">予算</div>
             <input type="text" v-model="params.amount" placeholder="2,000円" class="c_5" />
+            <div v-if="userErrors.amount">
+              <template v-for="(value,index) in userErrors.amount">
+                <p :key="index" class="errorMessage">{{value}}</p>
+              </template>
+            </div>
           </div>
 
           <div>
@@ -88,6 +108,7 @@ export default {
   data() {
     return {
       success: false,
+      userErrors: [],
       params: {
         title: "",
         content: "",
@@ -158,13 +179,12 @@ export default {
     },
     submitSuccess(response) {
       window.console.log(response.data);
-      //   location.href = "http://localhost:8080/";
-      // this.newTeacher = response.data.members;
+      location.href = "http://localhost:8080/view/registersuccess";
       this.success = true;
     },
     errors(e) {
-      window.console.log(e);
-      //   this.userErrors = e.response.data.errors
+      window.console.log(e.response.data.errors);
+      this.userErrors = e.response.data.errors;
     }
   },
   watch: {
@@ -178,6 +198,9 @@ export default {
 };
 </script>
 <style scoped>
+p.errorMessage {
+  color: red;
+}
 .form_group {
   width: 600px;
   margin: 30px auto;
@@ -228,15 +251,15 @@ div.create_content {
 div.input_user_information {
   margin: 0 auto;
   width: 950px;
-  background: rgb(255, 245, 243);
+  background: #bbe1fa;
   text-align: left;
   padding: 10px;
-  float:left;
+  float: left;
 }
 div.side {
   float: left;
   height: 100%;
- margin-right:10px ;
+  margin-right: 10px;
 }
 div.register_success {
   width: 1200px;

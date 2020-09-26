@@ -88,7 +88,7 @@ export default {
 <style scoped>
 div.search_results {
   width: 1200px;
-  background: rgb(255, 249, 253);
+   background: #f9fcfe;
   margin: 0 auto 10px auto;
 
   border-radius: 1px;

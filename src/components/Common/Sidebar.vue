@@ -31,7 +31,9 @@ export default {
       }
     }
   },
-
+  mounted: function() {
+    this.newTeacherShow();
+  },
   watch: {
     "$store.state.memberId": function() {
       this.newTeacherShow();
@@ -40,8 +42,7 @@ export default {
   methods: {
     newTeacherShow() {
       let params = {
-        from_member_id: this.$store.state.memberId
-        // from_member_id: 3,
+        from_member_id: this.$store.state.memberId || 0
       };
       Axios.get("http://127.0.0.1:8001/api/member/popular/", { params: params })
         .then(this.memberControllerShow)
@@ -71,21 +72,23 @@ div {
     /* width: 30%; */
     float: right;
     width: 300px;
-    margin: 15px 0;
   }
   div.side_bar {
-       border-right: double 4px rgb(230, 217, 217);
-      margin-bottom: 0;
-       /* border-left: dotted 1px rgb(232, 228, 228); */
-       height: 1568px;
-
+    /* border-right: double 4px #0f4c75; */
+    margin-bottom: 0;
+    /* border-left: dotted 1px rgb(232, 228, 228); */
+    /* height: 940px; */
   }
   div.reccomend_for_you {
- background-color: rgb(255, 247, 247);
- border-bottom: 1px dotted rgb(242, 196, 170);
+    background-color: #0f4c75;
+    border-bottom: 1px solid #4db7fe;
+    border-top: 1px solid #0f4c75;
+    color: #e6f3fc;
+    margin-top: 30px;
+    padding:5px;
   }
-  div.common_new_teacher{
-    border-bottom:3px  double rgb(225, 229, 230) ;
+  div.common_new_teacher {
+    border-bottom: 1px solid #3282b8;
   }
 }
 </style>

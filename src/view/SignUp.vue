@@ -117,6 +117,7 @@ export default {
     },
     userError(e) {
       window.console.log(e.response.data.errors);
+      window.console.log(e.response.data);
       this.errors = e.response.data.errors;
       
     },

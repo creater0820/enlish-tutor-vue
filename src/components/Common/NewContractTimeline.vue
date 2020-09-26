@@ -16,6 +16,7 @@
             <div class="name_wrapper">
               <span class="timeline_member_name">
                 <a
+                  class="member_name"
                   :href="'http://localhost:8080/member/profile/'+value.member.id"
                 >{{value.member.name}}</a>
               </span>さんの
@@ -121,10 +122,22 @@ export default {
 div.VueCarousel-pagination {
   display: none;
 }
+div.VueCarousel-slide {
+  /* margin-right: 20px; */
+}
 </style>
 <style scoped>
 a {
   text-decoration: none;
+}
+a.member_name {
+  color: #3282b8;
+}
+a.member_name:visited {
+  color: #3282b8;
+}
+a.member_name:hover {
+opacity: 0.5;
 }
 img.time_line_icon {
   width: 30px;
@@ -132,7 +145,7 @@ img.time_line_icon {
   border-radius: 15px;
 }
 div.hours {
-  color: rgb(39, 92, 92);
+  color: #0f4c75;
   font-size: 0.7em;
 }
 div.minutes {
@@ -141,8 +154,14 @@ div.minutes {
 span.timeline_member_name {
   color: rgb(101, 1, 1);
 }
-span.member_plan {
-  color: rgb(96, 102, 151);
+a.member_plan {
+  color: #3282b8;
+}
+a.member_plan:visited {
+  color: #3282b8;
+}
+a.member_plan:hover {
+opacity: 0.5;
 }
 .example-slide {
   align-items: center;
@@ -152,11 +171,15 @@ div.time_line_wrapper {
 }
 div.img_wrapper {
   float: left;
-  margin-right: 10px;
+  margin-right: 20px;
 }
 div.name_wrapper {
   float: left;
   padding-top: 3px;
+}
+div.example-slide {
+  margin-top: 30px;
+   color: #1b262c;
 }
 @media screen and (max-width: 640px) {
   div {
@@ -164,7 +187,7 @@ div.name_wrapper {
 }
 @media screen and (min-width: 640px) {
   div.newTimeLine {
-    width: 819px;
+    width: 820px;
   }
 }
 </style>

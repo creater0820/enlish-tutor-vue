@@ -4,7 +4,7 @@
     <div class="bar" v-if="success">ログイン</div>
     <div class="introduction_website">
       <div class="top">
-     正常に会員登録が完了しました！
+     正常に登録が完了しました！
       </div>
       <a href="http://localhost:8080">トップページへ</a>
     </div>

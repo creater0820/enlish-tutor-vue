@@ -10,20 +10,22 @@
       <span v-if="Number(value.diff_in_minutes) < 2880 " class="newPlan">[New!]</span>
       <span class="time">[{{time}}]</span>
     </div>
-    <div class="title_price_wrapper">
-      <div class="plan_content">{{value.content}}</div>
-      <div class="plan_price">¥{{price}}</div>
-    </div>
-
-    <div class="img_name_wrapper">
-      <div class="img_wrapper">
-        <img :src="'http://127.0.0.1:8001'+value.member.icon" class="member_icon" />
+    <div class="search_content_wrapper">
+      <div class="title_price_wrapper">
+        <div class="plan_content">{{value.content}}</div>
+        <div class="plan_price">¥{{price}}</div>
       </div>
-      <div class="name_wrapper">
-        <a
-          :href="'http://localhost:8080/member/profile/'+value.member_id"
-          class="to_plan_page"
-        >{{value.member.name}}さん</a>
+
+      <div class="img_name_wrapper">
+        <div class="img_wrapper">
+          <img :src="'http://127.0.0.1:8001'+value.member.icon" class="member_icon" />
+        </div>
+        <div class="name_wrapper">
+          <a
+            :href="'http://localhost:8080/member/profile/'+value.member_id"
+            class="member_name"
+          >{{value.member.name}}さん</a>
+        </div>
       </div>
     </div>
 
@@ -100,46 +102,66 @@ export default {
 </script>
 
 <style scoped>
+div.search_content_wrapper {
+  background: #f9fcfe;
+}
 span.tag_name {
   color: rgb(72, 70, 70);
   padding-right: 7px;
 }
 span.time {
   float: right;
-  color: rgb(118, 86, 86);
+  color: #e9f6fe;
 }
 span.search_results_title {
   font-size: 20px;
   text-decoration: none;
+  color: #bbe1fa;
+}
+span.search_results_title:visited {
+  color: #bbe1fa;
 }
 a.to_plan_page {
   text-decoration: none;
-  color: rgb(31, 29, 29);
+  color: #e7f3fa;
 }
 a.to_plan_page:hover {
   opacity: 0.5;
   cursor: pointer;
 }
 a.to_plan_page:visited {
-  color: rgb(31, 29, 29);
+  color: #e7f3fa;
+}
+a.member_name {
+  color: #0f4c75;
+  text-decoration: none;
+}
+a.member_name:visited {
+  color: #0f4c75;
+  text-decoration: none;
 }
 a.tags {
   text-decoration: none;
-  color: rgb(86, 84, 84);
+  color: #0f4c75;
+  background: #d7efff;
+  padding:3px;
+  font-size: 12px;
 }
 a.tags:hover {
   opacity: 0.5;
   cursor: pointer;
 }
 a.tags:visited {
-  color: rgb(86, 84, 84);
+  color: #0f4c75;
+  background: #d7efff;
 }
 
 div.search_result_wrapper_title {
-  background: rgb(234, 178, 166);
-  border-bottom: 1px dotted black;
+  background: #0f4c75;
+  border-bottom: 2px solid #bbe1fa;
   padding: 2px 0 2px 7px;
 }
+
 span.newPlan {
   color: lightcoral;
   font-size: 20px;
@@ -170,7 +192,7 @@ div.plan_price {
   margin-left: 10px;
 }
 div.title_price_wrapper {
-  margin: 15px 6px 15px 4px;
+  /* margin: 15px 6px 15px 4px; */
 }
 div.tag_name {
   margin-left: 6px;

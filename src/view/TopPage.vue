@@ -86,6 +86,7 @@ export default {
 <style scoped>
 div.top_page {
   overflow: hidden;
+  background: #bbe1fa;
 }
 @media screen and (max-width: 640px) {
   div.top_page {
@@ -94,7 +95,7 @@ div.top_page {
 }
 @media screen and (min-width: 640px) {
   div.top_page {
-    background: rgb(254, 253, 253);
+    background: #f3f7fa;
   }
 }
 </style>

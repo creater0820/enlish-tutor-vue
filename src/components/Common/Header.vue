@@ -4,9 +4,9 @@
       <a href="http://localhost:8080/" class="titlelogo"></a>
     </div>
 
-    <a href="http://localhost:8080/member/signup" v-if="!success">新規登録</a>
+    <a href="http://localhost:8080/member/signup" v-if="!success" class="sign_up">新規登録</a>
     <div class="header_logout" @click="logout()" v-if="success">ログアウト</div>
-    <a href="http://localhost:8080/member/login" v-if="!success">ログイン</a>
+    <a href="http://localhost:8080/member/login" v-if="!success" class="login">ログイン</a>
   </div>
 </template>
 
@@ -144,6 +144,9 @@ div.header_logout {
   float: right;
   widows: 100px;
   margin-right: 15px;
+  color: #bbe1fa;
+  text-decoration: none;
+  font-size: 18px;
 }
 div.header_logout:hover {
   opacity: 0.5;
@@ -168,10 +171,26 @@ div.search_teacher:hover .hidden_menu {
 }
 
 div.header {
-  background-color: rgb(255, 246, 246);
+  background-color: #1b262c;
   /* background: white; */
   overflow: hidden;
   height: 100px;
+}
+a.sign_up {
+  color: #bbe1fa;
+  text-decoration: none;
+  font-size: 18px;
+}
+a.sign_up:visited {
+  color: #bbe1fa;
+}
+a.login {
+  color: #bbe1fa;
+  text-decoration: none;
+  font-size: 18px;
+}
+a.login:visited {
+  color: #bbe1fa;
 }
 
 @media screen and (min-witdth: 768px) {

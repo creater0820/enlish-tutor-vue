@@ -49,8 +49,7 @@
               <option value="0">選択してください</option>
               <option value="1">英語全般 (English)</option>
               <option value="2">大学受験</option>
-              <option value="3">文系資格</option>
-              <option value="4">理系資格</option>
+        
             </select>
 
             <div class="tags_check_box">
@@ -128,45 +127,11 @@ export default {
           { key: 2, value: "ビジネス英語" },
           { key: 3, value: "TOEIC対策" },
           { key: 4, value: "英文添削" },
-          { key: 5, value: "大学受験英語" },
-          { key: 6, value: "英ネイティブ" },
-          { key: 7, value: "米ネイティブ" }
+          { key: 5, value: "大学受験英語" }
         ],
         [
-          { key: 1, value: "英語" },
-          { key: 2, value: "数学" },
-          { key: 3, value: "物理" },
-          { key: 4, value: "化学" },
-          { key: 5, value: "現代文" },
-          { key: 6, value: "日本史" },
-          { key: 7, value: "世界史" }
-        ],
-        [
-          { key: 1, value: "日商簿記検定" },
-          { key: 2, value: "税理士" },
-          { key: 3, value: "行政書士" },
-          { key: 4, value: "司法書士" },
-          { key: 5, value: "宅地建物取引士" },
-          { key: 6, value: "弁護士" },
-          { key: 7, value: "社会保険労務士" }
-        ],
-        [
-          { key: 1, value: "弁理士" },
-          { key: 2, value: "税理士" },
-          { key: 3, value: "行政書士" },
-          { key: 4, value: "司法書士" },
-          { key: 5, value: "宅地建物取引士" },
-          { key: 6, value: "危険物取扱者" },
-          { key: 7, value: "社会保険労務士" }
-        ],
-        [
-          { key: 1, value: "基本情報技術者" },
-          { key: 2, value: "応用情報技術者" },
-          { key: 3, value: "ITパスポート" },
-          { key: 4, value: "司法書士" },
-          { key: 5, value: "宅地建物取引士" },
-          { key: 6, value: "危険物取扱者" },
-          { key: 7, value: "社会保険労務士" }
+          { key: 1, value: "" },
+          { key: 2, value: "" }
         ]
       ]
     };
@@ -272,7 +237,7 @@ div.create_content {
 div.input_user_information {
   margin: 0 auto;
   width: 950px;
-  background: rgb(250, 234, 230);
+  background: #bbe1fa;
   text-align: center;
   padding: 10px;
   float: left;

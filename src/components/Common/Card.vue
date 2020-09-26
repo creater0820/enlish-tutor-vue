@@ -2,10 +2,7 @@
   <div class="card">
     <div class="card_title_wrapper">
       <span class="new">New [教えてください]</span>
-      <span
-        class="hours"
-        v-if="value.diff_in_minutes>=60"
-      >[{{time}}]</span>
+      <span class="hours" v-if="value.diff_in_minutes>=60">[{{time}}]</span>
       <span class="minutes" v-else>{{time}}</span>
     </div>
 
@@ -16,7 +13,7 @@
         <a :href="'http://localhost:8080/member/profile/'+value.member_id +'?params=top'">
           <img :src="'http://127.0.0.1:8001'+value.member.icon" alt class="icon" />
         </a>
-        <span>{{value.member.name}}さん</span>
+        <span class="member_name">{{value.member.name}}さん</span>
       </div>
       <div class="title">
         <a
@@ -111,6 +108,7 @@ a {
 div.card {
   margin-bottom: 15px;
   margin-top: 15px;
+  background: #f5fafe;
 }
 img.icon {
   width: 60px;
@@ -120,6 +118,9 @@ img.icon {
 }
 div.profile_wrapper {
   overflow: hidden;
+}
+span.member_name {
+  color: #1b262c;
 }
 
 @media screen and (max-width: 640px) {
@@ -132,15 +133,17 @@ div.profile_wrapper {
     box-shadow: 0 3px 3px 0 rgb(144, 159, 182);
     overflow: hidden;
     border-radius: 1px;
+    background: #f9fcfe;
   }
   div.card_title_wrapper {
-    background: rgb(255, 248, 248);
-    border-bottom: 1px dotted black;
+    background: #0f4c75;
+    border-bottom: 1px solid #4db7fe;
+    border-top: 1px solid #1b262c;
     padding: 5px;
   }
   span.hours {
     font-size: 10px;
-    color: rgb(35, 30, 30);
+    color: #f0f7fc;
     float: right;
     margin-top: 7px;
   }
@@ -154,7 +157,7 @@ div.profile_wrapper {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    max-width: 400px;
+    max-width: 310px;
     margin-top: 5px;
     font-size: 20px;
     padding: 5px;
@@ -164,10 +167,11 @@ div.profile_wrapper {
     font-size: 16px;
     margin: 5px 0;
     padding: 5px;
+    color: #3282b8;
   }
   span.new {
     font-size: 0.8em;
-    color: rgb(255, 121, 123);
+    color: #f0f7fc;
   }
   div.name {
     font-size: 0.8em;
@@ -180,7 +184,10 @@ div.profile_wrapper {
     white-space: nowrap;
     overflow: hidden;
     max-width: 285px;
-    font-size: 14px;
+    font-size: 13px;
+    padding-left: 2px;
+    padding-top: 2px;
+    color: #1b262c;
   }
 
   a.to_plan_page:hover {
@@ -188,10 +195,10 @@ div.profile_wrapper {
     opacity: 0.5;
   }
   a.to_plan_page:visited {
-    color: rgb(28, 10, 9);
+    color: #0f4c75;
   }
   a.to_plan_page {
-    color: rgb(28, 10, 9);
+    color: #0f4c75;
     font-size: 20px;
   }
 
@@ -200,10 +207,13 @@ div.profile_wrapper {
     opacity: 0.5;
   }
   a.tag_style:visited {
-    color: rgb(121, 91, 91);
+    color: #0f4c75;
   }
   a.tag_style {
-    color: rgb(121, 91, 91);
+    color: #0f4c75;
+    background: #d7efff;
+    padding: 3px;
+    font-size: 12px;
   }
   div.tag {
     overflow: hidden;

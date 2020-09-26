@@ -60,7 +60,11 @@ export default {
 <style scoped>
 div.student_plan_wrapper {
   /* width: 800px; */
-  background: rgb(255, 240, 240); 
+  background: #fafdfe;
+}
+div.student_plan_content {
+  /* width: 800px; */
+  background: #cdedff;
 }
 div.studentPlanTitle {
   font-size: 30px;

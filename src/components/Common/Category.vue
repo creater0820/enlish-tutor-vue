@@ -24,15 +24,15 @@
 
     <!-- <div class="ranking" :class="{'mr-2':isCenter(n)}" v-for="n of 9" :key="'ranking_'+n">
       <common-teacher-ranking></common-teacher-ranking>
-    </div> -->
-      <!-- <div
+    </div>-->
+    <!-- <div
         class="education_materials"
         :class="{'mr-2':isCenter(n)}"
         v-for="n of 6"
         :key="'education_'+n"
       >
         <common-education-materials></common-education-materials>
-      </div> -->
+    </div>-->
   </div>
 </template>
 
@@ -135,17 +135,18 @@ div.what {
 div.recruit_teacher_left {
   font-size: 15px;
   float: left;
+  color: #1b262c;
 }
 div.recruit_teacher_right {
   font-size: 13px;
-  color: rgb(39, 31, 60);
+  color: #1b262c;
   float: right;
 }
 div.recruit_teacher_wrapper {
-  width: 810px;
+  width: 820px;
   overflow: hidden;
-  background-color: rgb(255, 249, 249);
-  border-bottom: 0.1px dotted rgb(79, 55, 55);
+  background-color: #bbe1fa;
+  border-bottom: 1px solid #94d4fe;
 }
 
 div.education_materials {
@@ -175,9 +176,7 @@ div.ranking {
     /* flex: 3; */
     float: left;
     width: 821px;
-    margin: 15px 0;
-    border-right: double 4px rgb(230, 217, 217);
-    border-left: double 4px rgb(232, 228, 228);
+    border-right: solid 1px #3282b8;
   }
   div.time_line {
     overflow: hidden;
