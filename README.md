@@ -29,3 +29,5 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 プラン検索をしてもし気に入ったプランがあれば先生に対してメッセージを送る
 ![movie](https://github.com/creater0820/enlish-tutor-vue/blob/my-branch/movie/top-to-message.gif)
+ユーザーが登録しているタグに応じて右側に興味のありそうな先生を表示、その先生をフォローできる。
+![movie](https://github.com/creater0820/enlish-tutor-vue/blob/my-branch/movie/follow.gif)
