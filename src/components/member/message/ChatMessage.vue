@@ -1,17 +1,15 @@
 <template>
-  <div>
+  <div class="message_wrapper">
     <div
-      class="member_name"
-      :class="{'member_name_right':Number(message.member.id) === Number(toMemberId)}"
+      :class="[Number(message.member.id === Number(toMemberId)) ? 'member_name_right': 'member_name']"
     >
-      <p
+      <img
+        :src="'http://127.0.0.1:8001'+message.member.icon"
         class="member_name_icon"
         :class="{'to_member_id':Number(message.member.id) === Number(toMemberId)}"
-      >
-        <img :src="'http://127.0.0.1:8001'+message.member.icon" />
-        <br />
-      </p>
-        <p class="member_name_cut">{{message.member.name}}</p>
+      />
+
+      <p class="member_name_cut">{{message.member.name}}</p>
     </div>
     <div
       :class="[Number(message.member.id === Number(toMemberId)) ? 'user_message_right': 'user_message']"
@@ -51,6 +49,10 @@ export default {
 };
 </script>
 <style scoped>
+div.message_wrapper {
+  overflow: hidden;
+  padding-left:50px;
+}
 div.diff_in_minutes {
   float: right;
   font-size: 0.7em;
@@ -59,15 +61,20 @@ div.diff_in_minutes {
 div.member_name {
   overflow: hidden;
   float: left;
+  margin-top: 30px;
 }
 div.member_name_right {
   overflow: hidden;
   float: right;
+  margin-top: 30px;
+  margin-right: 18px;
+  text-align: center;
+
 }
 div.user_message {
   float: left;
-  width: 630px;
-  background: rgb(203, 221, 247);
+  width: 670px;
+  background: #bbe1fa;
   border-radius: 5px;
   margin: 0 auto 0 30px;
   margin-top: 20px;
@@ -78,7 +85,7 @@ div.user_message {
 div.user_message::before {
   position: absolute;
   content: "";
-  border-right: 30px solid rgb(203, 221, 247);
+  border-right: 30px solid #bbe1fa;
   border-top: 20px solid transparent;
   border-bottom: 20px solid transparent;
   top: 15px;
@@ -88,14 +95,14 @@ div.user_message::before {
 }
 div.user_message_right {
   float: left;
-  width: 630px;
+  width: 670px;
   background: rgb(203, 221, 247);
   border-radius: 5px;
-  margin: 0 auto 0 70px;
+  margin: 0 auto 0 30px;
   margin-top: 20px;
-  padding: 15px;
-  font-size: 0.9em;
+  padding: 15px ;
   position: relative;
+  margin-left: 80px;
 }
 
 div.user_message_right::after {
@@ -114,10 +121,15 @@ pre.member_chat_message {
   white-space: pre-wrap;
   word-wrap: break-word;
 }
-p.member_name_cut{
-  width: 10px;
+p.member_name_cut {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  padding: 0;
+  margin: 0;
+}
+img.member_name_icon {
+  width: 50px;
+  height: 50px;
 }
 </style>

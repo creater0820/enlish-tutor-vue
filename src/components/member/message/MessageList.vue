@@ -9,15 +9,16 @@
       <div class="messageRight">
         <div class="messageRightTitle">メッセージ一覧</div>
         <div v-for="(value, index) in message_exchange" :key="index" class="member_message_list">
+          <div class="wrapper">
           <div class="inner_member_message_list">
             <a :href="'http://localhost:8080/member/profile/'+value.exchange_member_id">
-              <img :src="'http://127.0.0.1:8001'+value.member.icon" />
+              <img :src="'http://127.0.0.1:8001'+value.member.icon" class="icon" />
             </a>
-            <br />
           </div>
           <div class="member_name_cut_list">
             {{value.member.name}}
           </div>
+</div>
           <a :href="'http://localhost:8080/member/message/'+value.exchange_member_id">
             <div class="inner_member_message_cut">{{value.current_message}}</div>
           </a>
@@ -143,14 +144,20 @@ div.member_name_cut_list{
     text-overflow: ellipsis;
     white-space: nowrap;
     max-width: 180px;
-    margin-left: 30px;
+    margin-left: 10px;
+    float: right;
+    width: 200px;
 }
 div.inner_member_message_cut{
    overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     max-width: 500px;
-    margin-left: 30px;
+    padding-left: 60px;
+    margin-top: 25px;;
+}
+div.wrapper{
+  float: left;
 }
 a {
   text-decoration: none;
@@ -161,7 +168,9 @@ a:visited {
 div.messageRight {
   width: 800px;
   float: left;
-  background: rgb(233, 233, 244);
+  background: #e9f6fe;
+   overflow: hidden;
+   margin-left: 30px;
 }
 div.messageRightTitle {
   width: 790px;
@@ -175,10 +184,11 @@ div.messageContents {
 }
 div.messageLeft {
   float: left;
+   overflow: hidden;
 }
 div.member_message_list {
   width: 799px;
-  box-shadow: 0 3px 3px 0 rgb(240, 237, 254);
+  box-shadow: 0 3px 3px 0 #3282b8;
   background: rgb(217, 226, 255);
   border-radius: 1px;
   float: left;
@@ -188,12 +198,12 @@ div.member_message_list {
 }
 div.inner_member_message_list {
   /* float: left; */
-  margin-right: 50px;
-  /* width: 200px; */
-  padding: 10px;
+
+  padding-top: 10px;
+  padding-left: 10px;
 }
 div.inner_member_message {
-  padding: 30px;
+  padding: 10px;
 }
 div.inner_member_message:hover {
   opacity: 0.3;
@@ -205,5 +215,11 @@ div.message_current_date {
   font-size: 0.8em;
   /* color: gray; */
   float: right;
+  margin-top: 20px;
+}
+img.icon{
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
 }
 </style>

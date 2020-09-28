@@ -19,6 +19,10 @@ import SearchResults from "@/view/SearchResults";
 import MyFollowList from "@/components/member/follow/MyFollowList";
 import SearchResultTeacher from "@/view/SearchResultTeacher";
 import RegisterSuccess from "@/view/RegisterSuccess";
+import Review from "@/components/Common/Review";
+import InputReview from "@/components/Form/InputReview";
+import EndPlan from "@/view/EndPlan";
+import StarAmount from "@/components/Common/StarAmount";
 
 
 
@@ -124,6 +128,26 @@ export default new Router({
             path: '/view/registersuccess',           //パスの設定
             component:RegisterSuccess ,    //表示するコンポーネント
             name: 'registersuccess',       //ルートの名前を指定
+        },
+        {
+            path: '/member/inputreview',           //パスの設定
+            component:InputReview ,    //表示するコンポーネント
+            name: 'inputreview',       //ルートの名前を指定
+        },
+        {
+            path: '/member/review',           //パスの設定
+            component:Review ,    //表示するコンポーネント
+            name: 'review',       //ルートの名前を指定
+        },
+        {
+            path: '/member/endplan/:id',           //パスの設定
+            component:EndPlan ,    //表示するコンポーネント
+            name: 'endplan',       //ルートの名前を指定
+        },
+        {
+            path: '/member/staramount',           //パスの設定
+            component:StarAmount ,    //表示するコンポーネント
+            name: 'staramount',       //ルートの名前を指定
         },
     ]
 });

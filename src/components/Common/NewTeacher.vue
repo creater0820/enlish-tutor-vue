@@ -30,7 +30,7 @@ export default {
 
 <style scoped>
 div.new_teacher {
-  margin: 30px 0;
+margin-top: 30px;
 }
 div.recommend_teacher_name {
   text-overflow: ellipsis;
@@ -86,7 +86,7 @@ a.popular_member_name:visited {
     cursor: pointer;
     opacity: 0.5;
   }
-
+  
 
   img.new_teacher_img {
     width: 60px;

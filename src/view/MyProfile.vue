@@ -38,8 +38,18 @@
           <follow-button @showFollowNumber="showFollowNumber"></follow-button>
         </div>
         <div class="form_group" v-if="Number($store.state.memberId)!==Number($route.params.id)">
-          <a :href="'http://localhost:8080/member/message/'+$route.params.id">メッセージを送る</a>
+          <!-- <button
+            type="button"
+            @click="location.href='http://localhost:8080/member/message/'"
+            +this.$route.params.id
+            }
+          ></button> -->
+          <a
+            :href="'http://localhost:8080/member/message/'+$route.params.id"
+            class="sendMessage"
+          >メッセージを送る</a>
         </div>
+        <div><a :href="'http://localhost:8080/member/endplan/'+$route.params.id+'?params='+params.id">評価をする</a></div>
       </div>
     </div>
     <common-footer></common-footer>
@@ -74,7 +84,8 @@ export default {
         profile: "",
         email: "",
         qualification: "",
-        educational_background: ""
+        educational_background: "",
+        id:"",
       }
     };
   },
@@ -103,6 +114,7 @@ export default {
         response.data.member.educational_background;
       this.params.language_type = response.data.member.language_type;
       this.params.icon = response.data.member.icon;
+      this.params.id = response.data.member.id;
       this.success = "true";
       window.console.log(response.data);
       this.$store.commit("isLoading", false);
@@ -124,6 +136,10 @@ export default {
     },
     followError(e) {
       window.console.log(e);
+    },
+    sendMessage() {
+      location.href =
+        "http://localhost:8080/member/message/" + this.$route.params.id;
     }
   }
 };
@@ -139,7 +155,7 @@ div.input_user_information {
   float: left;
   width: 300px;
   height: 450px;
-  background:#bbe1fa;
+  background: #bbe1fa;
 
   text-align: center;
   border-radius: 3px;
@@ -228,5 +244,16 @@ div.follow_member {
 }
 div.favorite {
   margin-bottom: 10px;
+}
+a.sendMessage {
+  text-decoration: none;
+  color: #0f4c75;
+  
+}
+a.sendMessage:visited {
+  color: #0f4c75;
+}
+a.sendMessage:hover {
+  opacity: 0.5;
 }
 </style>

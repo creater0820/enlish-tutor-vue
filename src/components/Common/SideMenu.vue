@@ -90,7 +90,10 @@ div.side_menu {
   width: 200px;
   background: #3282b8;
   padding: 10px 5px 10px 5px;
-  border-bottom: 0.2px solid rgb(223, 228, 237);
+  /* border-bottom: 0.2px solid rgb(223, 228, 237); */
+    border-bottom: 1px solid #4db7fe;
+    /* margin-top: 1px; */
+
 }
 div.side_menu:hover {
   opacity: 0.3;

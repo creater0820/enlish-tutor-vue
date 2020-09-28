@@ -1,8 +1,8 @@
 <template>
   <div class="card">
     <div class="card_title_wrapper">
-      <span class="new">New [教えてください]</span>
-      <span class="hours" v-if="value.diff_in_minutes>=60">[{{time}}]</span>
+      <span class="new"> 先生を募集中</span>
+      <span class="hours" v-if="value.diff_in_minutes>=60">{{time}}</span>
       <span class="minutes" v-else>{{time}}</span>
     </div>
 
@@ -61,6 +61,12 @@ export default {
     time() {
       if (
         Number(this.value.diff_in_minutes) >= 2880 &&
+        Number(this.value.diff_in_minutes) <= 4320
+      ) {
+        return "New! "+"["+Math.floor(this.value.diff_in_minutes / 1440) + "日前]";
+      }
+      if (
+        Number(this.value.diff_in_minutes) >= 4320 &&
         Number(this.value.diff_in_minutes) <= 43200
       ) {
         return Math.floor(this.value.diff_in_minutes / 1440) + "日前";
@@ -69,10 +75,10 @@ export default {
         Number(this.value.diff_in_minutes) < 60 &&
         Number(this.value.diff_in_minutes) > 0
       ) {
-        return Math.floor(this.value.diff_in_minutes) + "分前";
+        return "New! " + "["+Math.floor(this.value.diff_in_minutes) + "分前]";
       }
       if (Number(this.value.diff_in_minutes) === 0) {
-        return "たった今";
+        return "New! [たった今]";
       }
       if (
         Number(this.value.diff_in_minutes) >= 43200 &&
@@ -95,7 +101,7 @@ export default {
       if (Number(this.value.diff_in_minutes) >= 172800) {
         return "３ヶ月以上前";
       }
-      return Math.floor(this.value.diff_in_minutes / 60) + "時間前";
+      return "New! "+"["+Math.floor(this.value.diff_in_minutes / 60) + "時間前]";
     }
   }
 };

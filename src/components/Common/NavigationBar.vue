@@ -5,7 +5,7 @@
       v-if=" 'http://localhost:8080'+$route.path === 'http://localhost:8080/member/profile/'+$store.state.memberId"
     >
       <a class="navigationTop" href="http://localhost:8080">TOP</a> > マイページ
-    </div> -->
+    </div>-->
 
     <div class="navigationMenu" v-if=" Number($store.state.memberId) !==Number($route.params.id)">
       <div
@@ -89,6 +89,7 @@ a:visited {
 div.navigationBar {
   width: 100%;
   background: #0f4c75;
+  border-bottom: 1px solid #4db7fe;
 }
 div.navigationMenu {
   padding: 3px;

@@ -5,23 +5,28 @@
     <template v-for="(value,index) in popular_members">
       <div class="common_new_teacher" :key="index">
         <common-new-teacher :value="value"></common-new-teacher>
+         <star-amount/>
       </div>
     </template>
+   
   </div>
 </template>
 
 <script>
 import CommonNewTeacher from "@/components/Common/NewTeacher";
-import Axios from "axios";
+import axios from "axios";
+import StarAmount from "@/components/Common/StarAmount";
 export default {
   data() {
     return {
       popular_members: [],
-      tags: []
+      tags: [],
+      star:[],
     };
   },
   components: {
-    CommonNewTeacher
+    CommonNewTeacher,
+    StarAmount,
   },
   props: {
     newTeacher: {
@@ -30,6 +35,9 @@ export default {
         return [];
       }
     }
+  },
+   created:function(){
+      this.getStarAmount();
   },
   mounted: function() {
     this.newTeacherShow();
@@ -44,7 +52,7 @@ export default {
       let params = {
         from_member_id: this.$store.state.memberId || 0
       };
-      Axios.get("http://127.0.0.1:8001/api/member/popular/", { params: params })
+      axios.get("http://127.0.0.1:8001/api/member/popular/", { params: params })
         .then(this.memberControllerShow)
         .catch(this.error);
     },
@@ -54,7 +62,21 @@ export default {
       window.console.log(response.data.value);
       this.popular_members = response.data.reccomend_teachers;
       this.tags = response.data.tags;
+    },
+       getStarAmount() {
+        let params= {
+            from_member_id : this.$store.state.memberId
+        }
+      axios
+        .get("http://127.0.0.1:8001/api/getreview",{params:params})
+        .then(this.starShow)
+        .catch(this.error);
+    },
+    starShow(response) {
+      window.console.log(response.data.starAmount);
+      this.star = response.data.starAmount;
     }
+
   }
 };
 </script>

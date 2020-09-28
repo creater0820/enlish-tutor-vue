@@ -205,7 +205,7 @@ export default {
 </script>
 <style>
 div.menu{
-  border-bottom: 1px solid #4db7fe;;
+  border-bottom: 1px solid #4db7fe;
 }
 div.menu_hidden_1 {
   /* float: left; */
