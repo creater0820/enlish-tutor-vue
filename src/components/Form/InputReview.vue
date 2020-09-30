@@ -4,7 +4,7 @@
     <textarea v-model="params.review"></textarea>
     <select v-model="params.star">
       <option value="0" selected>評価を選択してください</option>
-      <option value="1" selected>⭐️</option>
+      <option value="1">⭐️</option>
       <option value="2">⭐️⭐️</option>
       <option value="3">⭐️⭐️⭐️</option>
       <option value="4">⭐️⭐️⭐️⭐️</option>

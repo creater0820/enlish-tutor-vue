@@ -37,7 +37,7 @@ export default {
     }
   },
    created:function(){
-      this.getStarAmount();
+      // this.getStarAmount();
   },
   mounted: function() {
     this.newTeacherShow();

@@ -23,6 +23,7 @@ import Review from "@/components/Common/Review";
 import InputReview from "@/components/Form/InputReview";
 import EndPlan from "@/view/EndPlan";
 import StarAmount from "@/components/Common/StarAmount";
+import ReviewList from "@/components/Common/ReviewList";
 
 
 
@@ -148,6 +149,11 @@ export default new Router({
             path: '/member/staramount',           //パスの設定
             component:StarAmount ,    //表示するコンポーネント
             name: 'staramount',       //ルートの名前を指定
+        },
+        {
+            path: '/member/reviewlist',           //パスの設定
+            component:ReviewList ,    //表示するコンポーネント
+            name: 'reviewlist',       //ルートの名前を指定
         },
     ]
 });

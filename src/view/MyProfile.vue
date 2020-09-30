@@ -8,6 +8,11 @@
       </div>
       <div class="user_information_center">
         <show-student-plan></show-student-plan>
+        <template v-for="(value,index) in member_review">
+          <div :key="index" class="review_roop">
+            <review-list :value="value"></review-list>
+          </div>
+        </template>
       </div>
       <div class="input_user_information">
         <div class="edit" v-if="Number($store.state.memberId)===Number($route.params.id)">
@@ -43,13 +48,17 @@
             @click="location.href='http://localhost:8080/member/message/'"
             +this.$route.params.id
             }
-          ></button> -->
+          ></button>-->
           <a
             :href="'http://localhost:8080/member/message/'+$route.params.id"
             class="sendMessage"
           >メッセージを送る</a>
         </div>
-        <div><a :href="'http://localhost:8080/member/endplan/'+$route.params.id+'?params='+params.id">評価をする</a></div>
+        <div>
+          <a
+            :href="'http://localhost:8080/member/endplan/'+$route.params.id+'?params='+params.id"
+          >評価をする</a>
+        </div>
       </div>
     </div>
     <common-footer></common-footer>
@@ -63,6 +72,7 @@ import CommonSideMenu from "@/components/Common/SideMenu";
 import CommonFooter from "@/components/Common/Footer";
 import FollowButton from "@/components/member/follow/FollowButton";
 import ShowStudentPlan from "@/components/member/lesson/ShowStudentPlan";
+import ReviewList from "@/components/Common/ReviewList";
 import axios from "axios";
 
 export default {
@@ -72,10 +82,12 @@ export default {
     CommonFooter,
     FollowButton,
     NavigationBar,
-    ShowStudentPlan
+    ShowStudentPlan,
+    ReviewList
   },
   data() {
     return {
+      member_review: [],
       follower: "",
       to_member_id: this.$route.params.id,
       params: {
@@ -85,7 +97,7 @@ export default {
         email: "",
         qualification: "",
         educational_background: "",
-        id:"",
+        id: ""
       }
     };
   },
@@ -93,9 +105,24 @@ export default {
   created: function() {
     this.submit();
     this.showFollowNumber();
+    this.showMemberReview();
   },
 
   methods: {
+    showMemberReview() {
+      this.memberId = this.$route.params.id;
+      axios
+        .get("http://127.0.0.1:8001/api/getreview/" + this.memberId)
+        .then(this.showReview)
+        .catch(this.errors);
+    },
+    showReview(response) {
+      window.console.log(response.data.member);
+      window.console.log(response.data.review);
+      this.member_review = response.data.review;
+      // this.from_member_id = response.data.member.from_member_id;
+      // window.console.log(this.from_member_id);
+    },
     submit() {
       this.$store.commit("isLoading", true);
       this.memberId = this.$route.params.id;
@@ -166,13 +193,7 @@ div.input_user_information {
 div.user_information_center {
   float: left;
   width: 638px;
-  background: rgb(255, 243, 240);
-  /* min-height: 600px; */
   margin: 0 10px;
-  border-left: 2px dotted rgb(227, 223, 223);
-  border-right: 2px dotted rgb(211, 208, 208);
-  border-bottom: 2px dotted rgb(211, 208, 208);
-  border-top: 2px dotted rgb(211, 208, 208);
 }
 img.icon {
   width: 100px;
@@ -248,7 +269,6 @@ div.favorite {
 a.sendMessage {
   text-decoration: none;
   color: #0f4c75;
-  
 }
 a.sendMessage:visited {
   color: #0f4c75;
