@@ -36,7 +36,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 プラン検索をしてユーザーが気に入ったプランがあればその先生に対してメッセージを送る機能
 ![movie](https://github.com/creater0820/enlish-tutor-vue/blob/my-branch/movie/top-to-message.gif)
 ユーザーが登録しているタグに応じて興味のありそうな先生を表示、その先生をフォローできる機能
-![movie](https://github.com/creater0820/enlish-tutor-vue/blob/my-branch/movie/follow2.gif)
+![movie](https://github.com/creater0820/enlish-tutor-vue/blob/my-branch/movie/follow3.gif)
 他の細かい機能を挙げると、新規契約情報をトップページ上部にスクロール表示しユーザーの購買意欲を高める機能
 プランにタグ付をしユーザーが興味のある分野のプランを検索しやすくする機能
 ![movie](https://github.com/creater0820/enlish-tutor-vue/blob/my-branch/movie/timeline.gif)
