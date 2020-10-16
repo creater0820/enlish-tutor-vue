@@ -4,9 +4,21 @@
       <div v-if="Number(value.id)=== Number($route.query.params)" class="student_plan_wrapper">
         <!-- <div v-if="'top'+value.id === $route.query.params" class="student_plan_wrapper"> -->
 
-        <div class="studentPlanTitle">{{value.title}}</div>
-        <div class="studentPlanAmount">¥{{price}}</div>
-        <div class="studentPlanContent">{{value.content}}</div>
+        <div class="student_plan_wrapper_next">
+          <div class="wrapper_top">
+            <div class="studentPlanTitle">{{value.title}}</div>
+            <div class="studentPlanContent">{{value.content}}</div>
+          </div>
+
+          <div class="wrapper_bottom">
+            <div class="studentPlanAmount">¥{{price}}</div>
+            <div class="contract">
+              <a :href="'http://localhost:8080/member/contract/'+value.id">契約する</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div v-if="planTags.student_plan_tags == false">プランはまだ登録されていません</div> -->
         <template v-for="(values,indexs) in planTags.student_plan_tags">
           <div :key="indexs" class="student_plan_content">{{values}}</div>
         </template>
@@ -16,7 +28,7 @@
 </template>
 
     <script>
-import Axios from "axios";
+import axios from "axios";
 export default {
   data() {
     return {
@@ -37,13 +49,14 @@ export default {
       window.console.log(this.$store.state.memberId);
       window.console.log(this.$route.params.id);
 
-      Axios.get("http://127.0.0.1:8001/api/studentplan", { params: params })
+      axios
+        .get("http://127.0.0.1:8001/api/studentplan", { params: params })
         .then(this.studentPlanControllerShow)
         .catch(this.error);
     },
     studentPlanControllerShow(response) {
       // todoタグを表示したいができない
-      window.console.log(response.data.student_plans);
+      window.console.log(response.data.plan);
       // this.student_plan = response.data.student_plan;
       this.plans = response.data.plan;
       this.planTags = response.data.student_plans;
@@ -67,20 +80,39 @@ div.student_plan_content {
   background: #cdedff;
 }
 div.studentPlanTitle {
-  font-size: 30px;
-  padding: 20px;
-  margin: 0 0 5px 0;
+  border-bottom: 1px solid #bbe1fa;
+  color: #3282b8;
+  padding-left: 15px;
+  float: left;
 }
 div.studentPlanAmount {
   font-size: 18px;
-  padding: 22px;
-  margin: 5px 0;
+  padding-left: 15px;
+  color: #3282b8;
+  float: left;
 }
 div.studentPlanContent {
-  font-size: 18px;
-  padding: 20px;
-  margin: 5px 0;
+  font-size: 16px;
+  padding-left: 15px;
+  color: #1b262c;
+  float: left;
 }
-
-
+div.student_plan_wrapper_next {
+  box-shadow: 2px 2px 3px rgb(144, 159, 182);
+  overflow: hidden;
+  border-radius: 1px;
+  background: #f9fcfe;
+  margin-bottom: 10px;
+}
+div.wrapper_bottom {
+  overflow: hidden;
+}
+div.wrapper_top {
+  overflow: hidden;
+}
+div.contract {
+  float: left;
+  width: 200px;
+  margin-left: 195px;
+}
 </style>

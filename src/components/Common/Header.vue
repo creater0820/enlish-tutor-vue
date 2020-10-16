@@ -3,6 +3,9 @@
     <div class="search_teacher">
       <a href="http://localhost:8080/" class="titlelogo"></a>
     </div>
+    <div class="menu_wrapper">
+      <Menu />
+    </div>
 
     <a href="http://localhost:8080/member/signup" v-if="!success" class="sign_up">新規登録</a>
     <div class="header_logout" @click="logout()" v-if="success">ログアウト</div>
@@ -12,9 +15,14 @@
 
 <script>
 import axios from "axios";
+import Menu from "@/components/Common/Menu";
+
 export default {
   props: {
     username: String
+  },
+  components: {
+    Menu
   },
   data() {
     return {
@@ -64,14 +72,13 @@ export default {
 <style scoped>
 a.header_search {
   text-decoration: none;
-
   color: rgb(32, 32, 38);
 }
-div.search_teacher {
-  /* overflow: hidden;
-  height: 40px;
-  width: 400px;
-  margin: 0 auto; */
+div.menu_wrapper{
+  width: 600px;
+  margin: 0 auto;
+  position: absolute;
+  left: 18%;
 }
 img.title {
   width: 1100px;
@@ -142,11 +149,10 @@ a.titlelogo {
 }
 div.header_logout {
   float: right;
-  widows: 100px;
   margin-right: 15px;
-  color: #bbe1fa;
+  color: #f1f3f8;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 15px;
 }
 div.header_logout:hover {
   opacity: 0.5;
@@ -171,23 +177,23 @@ div.search_teacher:hover .hidden_menu {
 }
 
 div.header {
-  background-color: #1b262c;
+  background-color: #393b44;
   /* background: white; */
   overflow: hidden;
-  height: 100px;
+  height: 50px;
 }
 a.sign_up {
-  color: #bbe1fa;
+  color: #f1f3f8;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 15px;
 }
 a.sign_up:visited {
   color: #bbe1fa;
 }
 a.login {
-  color: #bbe1fa;
+  color: #f1f3f8;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 15px;
 }
 a.login:visited {
   color: #bbe1fa;

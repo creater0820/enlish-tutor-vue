@@ -10,15 +10,13 @@
         <div class="messageRightTitle">メッセージ一覧</div>
         <div v-for="(value, index) in message_exchange" :key="index" class="member_message_list">
           <div class="wrapper">
-          <div class="inner_member_message_list">
-            <a :href="'http://localhost:8080/member/profile/'+value.exchange_member_id">
-              <img :src="'http://127.0.0.1:8001'+value.member.icon" class="icon" />
-            </a>
+            <div class="inner_member_message_list">
+              <a :href="'http://localhost:8080/member/profile/'+value.exchange_member_id">
+                <img :src="'http://127.0.0.1:8001'+value.member.icon" class="icon" />
+              </a>
+            </div>
+            <div class="member_name_cut_list">{{value.member.name}}</div>
           </div>
-          <div class="member_name_cut_list">
-            {{value.member.name}}
-          </div>
-</div>
           <a :href="'http://localhost:8080/member/message/'+value.exchange_member_id">
             <div class="inner_member_message_cut">{{value.current_message}}</div>
           </a>
@@ -76,7 +74,7 @@ export default {
     CommonHeader,
     CommonFooter,
     CommonSideMenu,
-    NavigationBar,
+    NavigationBar
     // DiffInMinutes,
   },
   created: function() {
@@ -139,24 +137,25 @@ export default {
 }
 @media screen and (min-width: 640px) {
 }
-div.member_name_cut_list{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    max-width: 180px;
-    margin-left: 10px;
-    float: right;
-    width: 200px;
+div.member_name_cut_list {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 180px;
+  margin-left: 10px;
+  float: right;
+  width: 200px;
 }
-div.inner_member_message_cut{
-   overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    max-width: 500px;
-    padding-left: 60px;
-    margin-top: 25px;;
+div.inner_member_message_cut {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 500px;
+  padding-left: 60px;
+  margin-top: 25px;
+  color:#3282b8;
 }
-div.wrapper{
+div.wrapper {
   float: left;
 }
 a {
@@ -168,13 +167,13 @@ a:visited {
 div.messageRight {
   width: 800px;
   float: left;
-  background: #e9f6fe;
-   overflow: hidden;
-   margin-left: 30px;
+  overflow: hidden;
+  margin-left: 30px;
+  padding: 5px;
 }
 div.messageRightTitle {
   width: 790px;
-  background: linear-gradient(#dde7ed, #91cae5);
+  background: #f1f3f8;
   padding: 5px;
   font-size: 15px;
   border-radius: 3px;
@@ -184,12 +183,12 @@ div.messageContents {
 }
 div.messageLeft {
   float: left;
-   overflow: hidden;
+  overflow: hidden;
 }
 div.member_message_list {
   width: 799px;
-  box-shadow: 0 3px 3px 0 #3282b8;
-  background: rgb(217, 226, 255);
+  box-shadow: 1px 1px 3px  #8d93ab;
+  background: #eaf1fc;
   border-radius: 1px;
   float: left;
   margin-bottom: 20px;
@@ -217,7 +216,7 @@ div.message_current_date {
   float: right;
   margin-top: 20px;
 }
-img.icon{
+img.icon {
   width: 50px;
   height: 50px;
   border-radius: 25px;

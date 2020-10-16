@@ -68,12 +68,9 @@ export default {
 };
 </script>
 <style>
-body {
-  margin: 0;
-}
+
 div.follow_active {
   background: rgb(214, 239, 189);
-  /* text-align: center; */
 }
 div.follow_list_active {
   background: rgb(214, 239, 189);
@@ -82,13 +79,9 @@ div.follow_list_active {
 
 div.follow div {
   float: left;
-  padding: 20px 0;
   width: 400px;
 }
-div.followPage_wrapper {
- /* overflow: hidden;
- width: 1500px; */
-}
+
 
 div.followPage {
   width: 1200px;

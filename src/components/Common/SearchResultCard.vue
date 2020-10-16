@@ -1,21 +1,15 @@
 <template>
   <div class="search_result_wrapper">
-    <div class="search_result_wrapper_title">
-      <span class="search_results_title">
-        <a
-          :href="'http://localhost:8080/member/profile/'+value.member_id +'?params='+value.id"
-          class="to_plan_page"
-        >{{value.title}}</a>
-      </span>
-      <span v-if="Number(value.diff_in_minutes) < 2880 " class="newPlan">[New!]</span>
-      <span class="time">[{{time}}]</span>
+    <div class="wrapper">
+      <a
+        :href="'http://localhost:8080/member/profile/'+value.member_id +'?params='+value.id"
+        class="to_plan_page"
+      >[ {{value.title}} ]</a>
+      <div class="time">{{time}}</div>
     </div>
-    <div class="search_content_wrapper">
-      <div class="title_price_wrapper">
-        <div class="plan_content">{{value.content}}</div>
-        <div class="plan_price">¥{{price}}</div>
-      </div>
 
+    <span v-if="Number(value.diff_in_minutes) < 2880 " class="newPlan">[New!]</span>
+    <div class="name_content_wrapper">
       <div class="img_name_wrapper">
         <div class="img_wrapper">
           <img :src="'http://127.0.0.1:8001'+value.member.icon" class="member_icon" />
@@ -27,6 +21,10 @@
           >{{value.member.name}}さん</a>
         </div>
       </div>
+      <div class="wrapper_price_content">
+        <div class="plan_content">{{value.content}}</div>
+        <div class="plan_price">¥{{price}}円</div>
+      </div>
     </div>
 
     <div class="template_roop_wrapper">
@@ -36,6 +34,16 @@
             :href="'http://localhost:8080/member/searchresults/' +tags.tag_id+'?page=1'"
             class="tags"
           >#{{tags.tag_name}}</a>
+        </div>
+      </template>
+    </div>
+    <div class="template_roop_wrapper">
+      <template v-for="(tags,index) in value.teacher_plan_tags" class="wrapper">
+        <div class="tag_name" :key="index">
+          <a
+            :href="'http://localhost:8080/member/searchresultsteacher/' +tags.tag.id+'?page=1'"
+            class="tags"
+          >#{{tags.tag.name}}</a>
         </div>
       </template>
     </div>
@@ -103,34 +111,42 @@ export default {
 
 <style scoped>
 div.search_content_wrapper {
-  background: #f9fcfe;
+  overflow: hidden;
 }
 span.tag_name {
   color: rgb(72, 70, 70);
   padding-right: 7px;
 }
-span.time {
+div.time {
   float: right;
-  color: #e9f6fe;
+  color: #0f4c75;
+  padding-right: 2px;
+  padding-top: 5px;
 }
-span.search_results_title {
-  font-size: 20px;
-  text-decoration: none;
-  color: #bbe1fa;
+div.search_results_title {
+  float: left;
 }
 span.search_results_title:visited {
   color: #bbe1fa;
 }
 a.to_plan_page {
   text-decoration: none;
-  color: #e7f3fa;
+  color: #3282b8;
+  display: block;
+  font-size: 20px;
+  width:700px;
+  float: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  padding-bottom:15px ;
 }
 a.to_plan_page:hover {
   opacity: 0.5;
   cursor: pointer;
 }
 a.to_plan_page:visited {
-  color: #e7f3fa;
+  color: #3282b8;
 }
 a.member_name {
   color: #0f4c75;
@@ -144,7 +160,7 @@ a.tags {
   text-decoration: none;
   color: #0f4c75;
   background: #d7efff;
-  padding:3px;
+  padding: 3px;
   font-size: 12px;
 }
 a.tags:hover {
@@ -155,11 +171,28 @@ a.tags:visited {
   color: #0f4c75;
   background: #d7efff;
 }
+a.to_plan_page_content {
+  text-decoration: none;
+  color: #0f4c75;
+  display: block;
+}
+a.to_plan_page_content:hover {
+  opacity: 0.5;
+}
+a.to_plan_page_content:visited {
+  color: #0f4c75;
+}
 
 div.search_result_wrapper_title {
-  background: #0f4c75;
-  border-bottom: 2px solid #bbe1fa;
-  padding: 2px 0 2px 7px;
+  padding: 2px 7px 2px 7px;
+  overflow: hidden;
+}
+div.search_result_wrapper {
+  padding: 5px 10px 5px 10px;
+  overflow: hidden;
+}
+div.search_result_wrapper_title :hover {
+  /* opacity: 0.5; */
 }
 
 span.newPlan {
@@ -174,22 +207,23 @@ img.member_icon {
 }
 div.img_name_wrapper {
   overflow: hidden;
+  float: left;
 }
 div.img_wrapper {
-  float: left;
-  margin-right: 10px;
-  margin-left: 6px;
+  padding-left: 10px;
+  margin-bottom: -6px;
 }
 div.name_wrapper {
-  float: left;
-  padding-top: 6px;
+  padding-left: 5px;
 }
 div.plan_content {
   margin-left: 10px;
   margin-bottom: 5px;
+  color: #1b262c;
+ 
 }
 div.plan_price {
-  margin-left: 10px;
+  padding-left:13px ;
 }
 div.title_price_wrapper {
   /* margin: 15px 6px 15px 4px; */
@@ -199,6 +233,20 @@ div.tag_name {
   float: left;
 }
 div.template_roop_wrapper {
+  overflow: hidden;
+}
+div.wrapper {
+  overflow: hidden;
+}
+div.wrapper_price_content {
+  overflow: hidden;
+  float: left;
+  width: 685px;
+}
+span.price_size {
+  font-size: 18px;
+}
+div.name_content_wrapper {
   overflow: hidden;
 }
 </style>

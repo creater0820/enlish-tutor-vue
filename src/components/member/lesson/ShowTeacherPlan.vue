@@ -1,56 +1,101 @@
 <template>
   <div>
-    <div v-for="(value,index) in student_plan" :key="index">
-      <div class="student_plan_wrapper">
-        <div>生徒募集中</div>
-        <div>タイトル:{{value.title}}</div>
-        <div>金額:{{value.amount}}</div>
-        <div>内容:{{value.content}}</div>
+    <div v-for="(value,index) in plans" :key="index" class="studentPlan">
+      <div v-if="Number(value.id)=== Number($route.query.params)" class="student_plan_wrapper">
+        <div class="student_plan_wrapper_next">
+          <div class="wrapper_top">
+            <div class="studentPlanTitle">{{value.title}}</div>
+            <div class="studentPlanContent">{{value.content}}</div>
+          </div>
+
+          <div class="wrapper_bottom">
+            <div class="studentPlanAmount">¥{{price}}</div>
+            <div class="contract">
+              <a :href="'http://localhost:8080/member/contract/'+value.id">契約する</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
     <script>
-import Axios from "axios";
+import axios from "axios";
 export default {
   data() {
     return {
-      student_plan: ""
+      plans: []
     };
   },
   created: function() {
-    this.showStudentPlan();
+    this.showTeacherPlan();
   },
   methods: {
-    showStudentPlan() {
+    showTeacherPlan() {
       let params = {
-        from_member_id: this.$store.state.memberId,
-        to_member_id: this.$route.params.id
+        to_member_id: this.$route.params.id,
       };
-      window.console.log(this.$store.state.memberId);
-      window.console.log(this.$route.params.id);
-
-      Axios.get("http://127.0.0.1:8001/api/studentplan/" + { params: params })
-        .then(this.studentPlanControllerShow)
-        .catch(this.error);
+      axios
+        .get("http://127.0.0.1:8001/api/teacherplan/"+this.$route.query.params, { params: params })
+        .then(this.studentPlanControllerShow);
     },
     studentPlanControllerShow(response) {
-      window.console.log(response.data.student_plan);
-      this.student_plan = response.data.student_plan;
+      window.console.log(response.data.plan);
+      this.plans = response.data.plan;
     }
   },
   computed: {
     price() {
-      return this.student_plan.amount.toLocaleString();
+      return this.plans[0].amount.toLocaleString();
     }
   }
 };
 </script>
 
-    <style scoped>
+<style scoped>
 div.student_plan_wrapper {
-  width: 800px;
-  background: rgb(148, 206, 242);
+  /* width: 800px; */
+  background: #fafdfe;
+}
+div.student_plan_content {
+  /* width: 800px; */
+  background: #cdedff;
+}
+div.studentPlanTitle {
+  border-bottom: 1px solid #bbe1fa;
+  color: #3282b8;
+  padding-left: 15px;
+  float: left;
+}
+div.studentPlanAmount {
+  font-size: 18px;
+  padding-left: 15px;
+  color: #3282b8;
+  float: left;
+}
+div.studentPlanContent {
+  font-size: 16px;
+  padding-left: 15px;
+  color: #1b262c;
+  float: left;
+}
+div.student_plan_wrapper_next {
+  box-shadow: 2px 2px 3px rgb(144, 159, 182);
+  overflow: hidden;
+  border-radius: 1px;
+  background: #f9fcfe;
+  margin-bottom: 10px;
+}
+div.wrapper_bottom {
+  overflow: hidden;
+}
+div.wrapper_top {
+  overflow: hidden;
+}
+div.contract {
+  float: left;
+  width: 200px;
+  margin-left: 195px;
 }
 </style>

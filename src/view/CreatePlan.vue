@@ -8,86 +8,82 @@
         <common-side-menu></common-side-menu>
       </div>
       <div class="input_user_information">
-        <form action>
-          <div class="c_0">
-            <p>レッスンを作成する</p>
+        <div class="lesson_name_wrapper">
+          <div class="name_input_wrapper">
+            <div class="lesson_name">レッスン名</div>
+            <input type="text" class="c_1" v-model="params.title" />
           </div>
 
-          <div class="form_group">
-            <label for>レッスン名</label>
+          <div v-if="validationErrors.title" class="validationMessage">
+            <template v-for="(value,index) in this.validationErrors.title">
+              <div :key="index">{{value}}</div>
+            </template>
+          </div>
+        </div>
 
-            <br />
-            <input type="text" class="c_1" v-model="params.title" placeholder="例：TOEICスコアアップ講座！" />
-            <div v-if="validationErrors.title" class="validationMessage">
-              <template v-for="(value,index) in this.validationErrors.title">
+        <div class="content_wrapper">
+          <div class="content">内容</div>
+          <textarea name id class="c_2" v-model="params.content"></textarea>
+          <div v-if="validationErrors.content" class="validationMessage">
+            <template v-for="(value,index) in this.validationErrors.content">
+              <p :key="index">{{value}}</p>
+            </template>
+          </div>
+        </div>
+
+        <div class="category_wrapper">
+          <div class="category">カテゴリー</div>
+          <select name id class="c_4" v-model="params.category_type">
+            <option value="0">選択してください</option>
+            <option value="1">英語全般 (English)</option>
+            <option value="2">大学受験</option>
+          </select>
+
+          <div class="tags_check_box">
+            <template v-for="(value,index) in selectTypeList">
+              <input
+                type="checkbox"
+                name="tags"
+                :key="index"
+                :value="value.key"
+                v-model="params.tags"
+              />
+              {{value.value}}
+            </template>
+            <div v-if="validationErrors.tags" class="validationMessage">
+              <template v-for="(value,index) in this.validationErrors.tags">
                 <p :key="index">{{value}}</p>
               </template>
             </div>
           </div>
-          <div class="form_group">
-            <label for>内容</label>
+        </div>
 
-            <br />
-            <textarea
-              name
-              id
-              class="c_2"
-              v-model="params.content"
-              placeholder="例：この授業では主にTOEICのスコアアップを目指したカリキュラムを組んで指導していきます。ご興味のある方は是非一度お問い合わせください。e.g. I can offer you high quality plan to improve your english skills.Please contact me if you like.Best regards"
-            ></textarea>
-            <div v-if="validationErrors.content" class="validationMessage">
-              <template v-for="(value,index) in this.validationErrors.content">
-                <p :key="index">{{value}}</p>
-              </template>
-            </div>
+        <div class="tuition_fee_wrapper">
+          <div class="tuition_fee">授業料</div>
+          <div class="c_5">
+            <input type="text" v-model="params.amount" class="input_tuition_fee" />
+            <span>円</span>
           </div>
-          <div class="form_group">
-            <label for>カテゴリー</label>
-
-            <br />
-            <select name id class="c_4" v-model="params.category_type">
-              <option value="0">選択してください</option>
-              <option value="1">英語全般 (English)</option>
-              <option value="2">大学受験</option>
-        
-            </select>
-
-            <div class="tags_check_box">
-              <template v-for="(value,index) in selectTypeList">
-                <input
-                  type="checkbox"
-                  name="tags"
-                  :key="index"
-                  :value="value.key"
-                  v-model="params.tags"
-                />
-                {{value.value}}
-              </template>
-              <div v-if="validationErrors.tags" class="validationMessage">
-                <template v-for="(value,index) in this.validationErrors.tags">
-                  <p :key="index">{{value}}</p>
-                </template>
-              </div>
-            </div>
+          <div v-if="validationErrors.amount" class="validationMessage">
+            <template v-for="(value,index) in this.validationErrors.amount">
+              <p :key="index">{{value}}</p>
+            </template>
           </div>
+        </div>
 
-          <div class="form_group">
-            <label for>授業料：¥ {{params.amount}}円/ 1回</label>
-
-            <br />
-            <input type="text" v-model="params.amount" placeholder="2,000円" class="c_5" />
-            <span>一回の金額です</span>
-            <div v-if="validationErrors.amount" class="validationMessage">
-              <template v-for="(value,index) in this.validationErrors.amount">
-                <p :key="index">{{value}}</p>
-              </template>
-            </div>
+        <div class="contract_span_wrapper">
+          <div class="contract_span_title">契約期間</div>
+          <div class="fee_month">
+            <input type="radio" value="1" v-model="params.contract_span" />毎月
           </div>
-
-          <div>
-            <button type="button" @click="storeTeacherPlan()">送信する</button>
+          <div class="fee_day">
+            <input type="radio" value="0" v-model="params.contract_span" />単発
           </div>
-        </form>
+        </div>
+
+        <div>
+          <button type="button" class="submit_button" @click="storeTeacherPlan()">送信する</button>
+        </div>
       </div>
     </div>
     <common-footer></common-footer>
@@ -116,7 +112,8 @@ export default {
         english_category: "",
         token: localStorage.getItem("token"),
         amount: "",
-        tags: []
+        tags: [],
+        contract_span: ""
       },
       validationErrors: [],
       selectTypeList: [],
@@ -163,7 +160,6 @@ export default {
     submitSuccess(response) {
       this.success = true;
       window.console.log(response.data);
-
       // location.href = "http://localhost:8080/member/lesson";
       // localStorage.setItem("token", response.data.token);
       //   location.href = "http://localhost:8080/";
@@ -208,11 +204,13 @@ div.validationMessage {
   width: 800px;
   height: 30px;
   padding: 0;
+  float: left;
 }
 .c_2 {
   width: 800px;
   height: 200px;
   padding: 0;
+  float: left;
 }
 .c_3 {
   width: 200px;
@@ -223,23 +221,22 @@ div.validationMessage {
   width: 200px;
   height: 30px;
   padding: 0;
+  float: left;
 }
-.c_5 {
-  width: 100px;
-  height: 30px;
+div.c_5 {
   padding: 0;
+  float: left;
 }
 div.create_content {
   overflow: hidden;
   width: 1200px;
   margin: 10px auto;
-}
+} 
 div.input_user_information {
   margin: 0 auto;
   width: 950px;
-  background: #bbe1fa;
   text-align: center;
-  padding: 10px;
+
   float: left;
 }
 div.side {
@@ -248,5 +245,80 @@ div.side {
 }
 div.parent {
   overflow: hidden;
+}
+div.lesson_name_wrapper {
+  overflow: hidden;
+  border-bottom: 1px solid #a1a4a5;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+div.lesson_name {
+  float: left;
+  padding-top: 5px;
+  padding-right: 30px;
+}
+div.content_wrapper {
+  overflow: hidden;
+  border-bottom: 1px solid #a1a4a5;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+div.content {
+  float: left;
+  padding-top: 5px;
+  padding-right: 77px;
+}
+div.category_wrapper {
+  overflow: hidden;
+  border-bottom: 1px solid #a1a4a5;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+div.category {
+  float: left;
+  padding-top: 5px;
+  padding-right: 30px;
+}
+div.tuition_fee_wrapper {
+  overflow: hidden;
+  border-bottom: 1px solid #a1a4a5;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+div.tuition_fee {
+  float: left;
+  padding-top: 5px;
+  padding-right: 59px;
+}
+button.submit_button {
+  margin-top: 30px;
+  width: 500px;
+  background: #bbe1fa;
+}
+button.submit_button:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+div.name_input_wrapper {
+  overflow: hidden;
+}
+input.input_tuition_fee {
+  width: 194px;
+}
+div.contract_span_wrapper {
+  overflow: hidden;
+}
+div.fee_month {
+  float: left;
+  padding: 10px 0 10px 0;
+}
+div.fee_day {
+  float: left;
+  padding: 10px 0 10px 0;
+}
+div.contract_span_title {
+  float: left;
+  margin-right: 38px;
+  padding: 10px 0 10px 0;
 }
 </style>

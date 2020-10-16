@@ -19,11 +19,17 @@ import SearchResults from "@/view/SearchResults";
 import MyFollowList from "@/components/member/follow/MyFollowList";
 import SearchResultTeacher from "@/view/SearchResultTeacher";
 import RegisterSuccess from "@/view/RegisterSuccess";
-import Review from "@/components/Common/Review";
+import Review from "@/view/Review";
 import InputReview from "@/components/Form/InputReview";
 import EndPlan from "@/view/EndPlan";
 import StarAmount from "@/components/Common/StarAmount";
 import ReviewList from "@/components/Common/ReviewList";
+import Contract from "@/view/Contract";
+import PlanStudent from "@/view/PlanStudent";
+import PlanTeacher from "@/view/PlanTeacher";
+import PlanStudentList from "@/view/PlanStudentList";
+import SalesLog from "@/view/SalesLog";
+import PaymentLog from "@/view/PaymentLog";
 
 
 
@@ -136,7 +142,7 @@ export default new Router({
             name: 'inputreview',       //ルートの名前を指定
         },
         {
-            path: '/member/review',           //パスの設定
+            path: '/member/review/:id',           //パスの設定
             component:Review ,    //表示するコンポーネント
             name: 'review',       //ルートの名前を指定
         },
@@ -155,5 +161,36 @@ export default new Router({
             component:ReviewList ,    //表示するコンポーネント
             name: 'reviewlist',       //ルートの名前を指定
         },
+        {
+            path: '/member/contract/:id',           //パスの設定
+            component:Contract ,    //表示するコンポーネント
+            name: 'contract',       //ルートの名前を指定
+        },
+        {
+            path: '/member/planstudent/:id',           //パスの設定
+            component:PlanStudent ,    //表示するコンポーネント
+            name: 'planstudent',       //ルートの名前を指定
+        },
+        {
+            path: '/member/planstudentlist/:id',           //パスの設定
+            component:PlanStudentList ,    //表示するコンポーネント
+            name: 'planstudentlist',       //ルートの名前を指定
+        },
+        {
+            path: '/member/planteacher/:id',           //パスの設定
+            component:PlanTeacher ,    //表示するコンポーネント
+            name: 'planteacher',       //ルートの名前を指定
+        },
+        {
+            path: '/member/saleslog/:id',           //パスの設定
+            component:SalesLog ,    //表示するコンポーネント
+            name: 'saleslog',       //ルートの名前を指定
+        },
+        {
+            path: '/member/paymentlog/:id',           //パスの設定
+            component:PaymentLog ,    //表示するコンポーネント
+            name: 'saleslog',       //ルートの名前を指定
+        },
+      
     ]
 });

@@ -65,19 +65,6 @@ export default {
         default:
           return "⭐️⭐️⭐☆☆";
       }
-    },
-    getMemberNameIcon($id) {
-      axios
-        .get("http://127.0.0.1:8001/api/getmembernameicon/" + $id)
-        .then(this.showName, this.showIcon)
-        .catch(this.errors);
-    },
-    // showName(response) {
-    //   window.console.log(response.data.member);
-    //   return response.data.member.name;
-    // },
-    showIcon(response) {
-      return response.data.member.icon;
     }
   },
   computed: {
@@ -139,7 +126,7 @@ export default {
 
 <style scoped>
 div.review_list_wrapper {
-  background: #bbe1fa;
+  border-bottom: 1px solid rgb(194, 192, 192);
   color: #1b262c;
 }
 div.review_roop {
@@ -164,16 +151,19 @@ div.name {
   padding-left: 10px;
   padding-top: 9px;
   font-size: 13px;
+  color: #1b262c;
 }
 div.date {
   color: #3282b8;
   padding-left: 15px;
+ 
 }
 div.review_star {
   padding-left: 15px;
 }
 div.comment {
   padding: 5px 15px 30px 15px;
+
 }
 @media screen and (max-width: 640px) {
 }

@@ -83,14 +83,14 @@ export default {
   padding: 0;
 }
 div.create_content {
-  
+    background: #f1f3f8;
+
   /* overflow: hidden; */
 }
 div.input_user_information {
   /* float: left; */
   width: 100%;
   
-  background: rgb(199, 240, 219);
    
    text-align: center;
 }

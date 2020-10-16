@@ -2,27 +2,36 @@
 <template>
   <div>
     <div class="follow">
-      <div @click="success=true" :class="[success?'lesson_active':'lesson_inactive']">指導レッスン</div>
-      <div @click="success=false" :class="[!success?'lesson_active':'lesson_inactive']">受講レッスン</div>
+      <div @click="success=true" :class="[success?'lesson_active':'lesson_inactive']">指導中プラン</div>
+      <div @click="success=false" :class="[!success?'lesson_active':'lesson_inactive']">受講中プラン</div>
     </div>
-    <div class="lessonRight">
+    <div class="myFollowRight">
       <div class="list">
         <div v-if="success">
-          <div v-for="(value,index) in follows" :key="index" :class="[success?'list_active':'']">
-            <!-- todo修正 -->
-            <div>
-               <div class="member_name_cut">{{value.member.name}}</div>
-            <div class="member_name_cut_after">さん:TOEICテスト対策</div>
+          <template v-for="(value,index) in takePlans" :class="[success?'list_active':'']">
+            <div class="follow_wrapper" :key="index">
+              <div class="name">
+                <a
+                  :href="'http://localhost:8080/member/planstudent/'+value.member_id+'?params='+value.id"
+                  class="to_profile"
+                >{{value.title}}</a>
+              </div>
+              <div class="date">契約日/{{value.created_at | moment}}</div>
             </div>
-           
-          </div>
+          </template>
         </div>
         <div v-if="!success">
-          <div
-            v-for="(value,index) in follows"
-            :key="index"
-            :class="[!success?'list_active':'']"
-          >{{value.member.name}}さん</div>
+          <template v-for="(value,index) in teachPlans" :class="[success?'list_active':'']">
+            <div class="follow_wrapper" :key="index">
+              <div class="name">
+                <a
+                  :href="'http://localhost:8080/member/planteacher/'+value.member_id+'?params='+value.id"
+                  class="to_profile"
+                >{{value.title}}</a>
+              </div>
+              <div class="date">契約日/{{value.created_at | moment}}</div>
+            </div>
+          </template>
         </div>
       </div>
     </div>
@@ -30,59 +39,50 @@
 </template>
 
 <script>
+import moment from "moment";
 import axios from "axios";
-
 export default {
+  filters: {
+    moment: function(date) {
+      return moment(date).format("YYYY/MM/DD HH:mm");
+    }
+  },
   data() {
     return {
       params: {
         name: "",
         email: "",
-        password: ""
+        password: "",
+        memberId: this.$route.params.id
       },
-      follows: [],
-      givePlans: [],
+      teachPlans: [],
       takePlans: [],
-      success: false,
+      success: true,
+      deleteSuccess: true,
       userErrors: {}
     };
   },
   components: {},
   created: function() {
     this.submit();
-    this.submitPlan();
   },
   methods: {
     submit() {
       window.console.log(this.params);
       axios
-        .get("http://127.0.0.1:8001/api/follows")
+        .get("http://127.0.0.1:8001/api/getcontractedplan", {
+          params: this.params
+        })
         .then(this.submitSuccess)
         .catch(this.errors);
     },
     submitSuccess(response) {
-      this.success = true;
-      this.follows = response.data.follows;
-      window.console.log(response.data.follows);
+      window.console.log(response.data.takePlans);
+      window.console.log(response.data.teachPlans);
+      this.takePlans = response.data.takePlans;
+      this.teachPlans = response.data.teachPlans;
     },
     errors(e) {
-      window.console.log(e.response.data.errors.name);
-    },
-
-    submitPlan() {
-      axios
-        .get(
-          "http://127.0.0.1:8001/api/plan/lesson/" + this.$store.state.memberId
-        )
-        .then(this.planControllerGetLessons)
-        .catch(this.errors);
-    },
-    planControllerGetLessons(response) {
-      window.console.log(response.data);
-      this.givePlans = response.data.give_plans;
-      this.takePlans = response.data.take_plans;
-    },
-    error(e) {
       window.console.log(e.response.data.errors.name);
     }
   }
@@ -90,47 +90,70 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
 body {
   margin: 0;
 }
 div.lesson_active {
-  background: linear-gradient(rgb(200, 206, 250), rgb(187, 228, 255));
   border-radius: 3px 3px 0 0;
+
 }
 div.lesson_inactive {
-  background: linear-gradient(rgb(229, 230, 244), rgb(239, 246, 250));
   border-radius: 3px 3px 0 0;
-  padding: 0;
   cursor: pointer;
+    background: #f1f3f8;
 }
 div.lesson_inactive:hover {
   opacity: 0.6;
 }
 
-div.lessonRight {
+div.myFollowRight {
   width: 800px;
   margin: 0 auto;
   float: left;
-  /* background: linear-gradient(rgb(154, 164, 245), rgb(202, 222, 235)); */
-  background: rgb(213, 235, 250);
   min-height: 600px;
-  /* cursor: pointer; */
 }
-div.list_active {
-  /* background: linear-gradient(rgb(154, 164, 245), rgb(202, 222, 235)); */
-  /* width: 800px; */
-  /* text-align: center; */
-}
-div.member_name_cut {
+
+div.follow_wrapper {
   overflow: hidden;
+  border-bottom: 1px solid gray;
+}
+div.icon {
+  float: left;
+  padding: 16px 10px 10px 10px;
+}
+img.icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+}
+div.name {
+  float: left;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 100px;
-  float: left;
+  overflow: hidden;
+  width: 200px;
+  padding: 19px 10px 10px 10px;
 }
-div.member_name_cut_after {
-  float: left;
+div.button {
+  float: right;
+  padding: 19px 10px 10px 10px;
+}
+a.to_profile {
+  color: #0f4c75;
+  text-decoration: none;
+}
+a.to_profile:hover {
+  color: #0f4c75;
+  cursor: pointer;
+  opacity: 0.5;
+}
+a.to_profile:visited {
+  color: #0f4c75;
+}
+div.date {
+  padding: 15px;
+  float: right;
 }
 
 @media screen and (max-width: 640px) {

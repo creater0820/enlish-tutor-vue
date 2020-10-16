@@ -255,7 +255,6 @@ div.parent {
 }
 div.input_user_information {
   float: left;
-  background: rgb(239, 253, 255);
   width: 800px;
 }
 div.side {

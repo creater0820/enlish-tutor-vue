@@ -156,7 +156,6 @@ div.parent {
 }
 div.input_user_information {
   width: 800px;
-  background: rgb(255, 220, 217);
   text-align: center;
   margin: 0 auto;
   padding: 10px;

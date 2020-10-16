@@ -125,6 +125,8 @@ p.member_name_cut {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  max-width: 60px;
+  font-size: 10px;
   padding: 0;
   margin: 0;
 }

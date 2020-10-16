@@ -93,12 +93,32 @@ div.favorite_button {
 }
 
 button.follow_active {
-  background: rgb(255, 235, 225);
-  border-radius: 4px;
+  background: #3282b8;
+  color: #e3f2fc;
+  border:none;
+  padding:7px;
+}
+button.follow_active:hover{
+ opacity: 0.5;
+ cursor: pointer;
+}
+button.follow_active:visited{
+ text-decoration: none;
+ border:none;
 }
 button.follow_inactive {
-  background: rgb(198, 234, 249);
+  background: #0f4c75;
   border-radius: 4px;
+  border:none;
+  color: #e3f2fc;
+  padding:7px;
+}
+button.follow_inactive:hover {
+  opacity: 0.5;
+}
+button.follow_inactive:visited{
+ text-decoration: none;
+ border:none;
 }
 div.favorite_button_wrapper{
   /* width: 10px;

@@ -1,7 +1,10 @@
 <template>
   <div class="contents">
-    <common-sidebar :newTeacher="newTeacher"></common-sidebar>
     <common-category :newTeacher="newTeacher"></common-category>
+    <common-sidebar :newTeacher="newTeacher"></common-sidebar>
+    <div id="test">
+      <LoadExternal :url="some_url"></LoadExternal>
+    </div>
   </div>
 </template>
 
@@ -9,13 +12,17 @@
 import CommonSidebar from "@/components/Common/Sidebar";
 import CommonCategory from "@/components/Common/Category";
 
+import LoadExternal from "@/components/Common/LoadExternal.vue";
+
 export default {
   components: {
     CommonSidebar,
-    CommonCategory
+    CommonCategory,
+    LoadExternal
   },
   data() {
     return {
+      some_url: "https://api.repl-ai.jp/v1/registration",
       setValue: ""
     };
   },
@@ -31,21 +38,14 @@ export default {
 </script>
 
 <style scoped>
-div {
-  padding: 0 30px;
-  /* display:flex; */
-}
 @media screen and (max-width: 640px) {
-  div {
-  }
 }
 @media screen and (min-width: 640px) {
   div.contents {
     overflow: hidden;
-    max-width: 1260px;
-    margin: 0 auto 0 auto;
-    border-left: solid 1px #3282b8;
-    border-right: solid 1px #3282b8;
+    max-width: 1360px;
+    margin: 0 auto;
+    background: #f1f3f8;
   }
 }
 </style>
