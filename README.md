@@ -43,4 +43,7 @@ DB:MySQL
 ![movie](https://github.com/creater0820/enlish-tutor-vue/blob/master/movie/newfollow.gif)
 他の細かい機能を挙げると、新規契約情報をトップページ上部にスクロール表示しユーザーの購買意欲を高める機能
 プランにタグ付をしユーザーが興味のある分野のプランを検索しやすくする機能
-![movie](https://github.com/creater0820/enlish-tutor-vue/blob/my-branch/movie/timeline.gif)
+![movie](https://github.com/creater0820/enlish-tutor-vue/blob/master/movie/otherfunction.gif)
+
+![movie](https://github.com/creater0820/enlish-tutor-vue/blob/master/movie/otherfunction.gif)
+
