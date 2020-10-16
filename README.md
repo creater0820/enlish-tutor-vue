@@ -32,6 +32,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 完成度は６割ほどで今後は決済機能も実装していく予定です。
 
 フレームワーク:Laravel+Vue.js
+
 DB:MySQL
 
 ・実装機能紹介
