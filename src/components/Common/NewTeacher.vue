@@ -1,18 +1,21 @@
 <template>
   <div class="new_teacher">
-    <div class="member_icon">
-      <img class="new_teacher_img" :src="'http://127.0.0.1:8001'+value.icon" alt />
-    </div>
-    <div class="recommend_teacher_name">
-      <a
-        :href="'http://localhost:8080/member/profile/'+value.id"
-        class="popular_member_name"
-      >{{value.name}}</a>
-    </div>
+    <div class="wrapper">
+      <div class="member_icon">
+        <img class="new_teacher_img" :src="'http://127.0.0.1:8001'+value.icon" alt />
+      </div>
+      <div class="inner_wrapper">
+        <div class="recommend_teacher_name">
+          <a
+            :href="'http://localhost:8080/member/profile/'+value.id"
+            class="popular_member_name"
+          >{{value.name}}</a>
+        </div>
 
-    <div>
-      <div class="new_teacher_information_profile">{{value.profile}}</div>
-      <!-- <div class="new_teacher_information">{{value.tag_name[0]}}</div> -->
+        <div class="reviewStar">
+          <div :class="calculate"></div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -22,21 +25,47 @@ export default {
   props: {
     value: Object
   },
-  data() {
-    return {};
+
+  computed: {
+    calculate: function() {
+      if (!this.value.review) {
+        return "⭐️⭐️⭐☆☆";
+      }
+      let total = this.value.review.reduce((sum, i) => sum + i.amount, 0);
+      let result = Math.round(total / this.value.review.length);
+      if (result >= 0 && result < 1.5) {
+        return "starAmount";
+      } else if (result >= 1.5 && result < 2) {
+        return "starAmount";
+      } else if (result >= 2 && result < 2.5) {
+        return "starAmount";
+      } else if (result >= 2.5 && result < 3) {
+        return "starAmount";
+      } else if (result >= 3 && result < 3.5) {
+        return "starAmount";
+      } else if (result >= 3.5 && result < 4) {
+        return "starAmount";
+      } else if (result >= 4 && result < 4.5) {
+        return "starAmount";
+      } else if (result >= 4.5 && result < 5) {
+        return "starAmount";
+      } else if (result >= 5) {
+        return "starAmount";
+      } else {
+        return "starAmount";
+      }
+    }
   }
 };
 </script>
 
 <style scoped>
-div.new_teacher {
-  margin: 30px 0;
-}
 div.recommend_teacher_name {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
   color: #3282b8;
+  max-width: 77px;
 }
 div.recommend_teacher_name:visited {
   color: #3282b8;
@@ -57,15 +86,14 @@ div.new_teacher_information_profile {
 }
 a.popular_member_name {
   text-decoration: none;
-  font-size: 15px;
+  font-size: 11px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  max-width: 100px;
-  color: #3282b8;
+  color: #393b44;
 }
 a.popular_member_name:visited {
-  color: #3282b8;
+  color: #393b44;
 }
 
 @media screen and (max-width: 640px) {
@@ -76,23 +104,49 @@ a.popular_member_name:visited {
   div. {
     width: 400px;
   }
-  img.new_teacher_img {
-    width: 40px;
-    float: left;
-    margin-right: 10px;
-  }
 
   a.popular_member_name:hover {
     cursor: pointer;
     opacity: 0.5;
   }
 
-
   img.new_teacher_img {
-    width: 60px;
-    height: 60px;
+    width: 45px;
+    height: 45px;
     display: block;
-    border-radius: 30px;
+    border-radius: 22.5px;
+    /* position: absolute;
+    z-index: 2; */
+
+    margin-right: 10px;
+    border: 1px solid rgb(216, 215, 215);
+  }
+  div.starAmount {
+    background-image: url("~@/assets/image/star.png");
+    background-size: auto 20px;
+    background-repeat: no-repeat;
+    height: 39px;
+    width: 77px;
+    margin: 0 auto;
+  }
+  div.new_teacher {
+    width: 200px;
+  }
+  div.wrapper {
+    width: 160px;
+    margin: 0 auto;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  div.member_icon {
+    margin-top: 7px;
+    width: 62px;
+    float: left;
+  }
+  div.inner_wrapper {
+    float: left;
+    padding-top: 6px;
   }
 }
 </style>

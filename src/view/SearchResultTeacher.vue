@@ -4,10 +4,7 @@
     <navigation-bar />
     <pagination :planUrl="teacherPlanUrl" :plan="paginatedPlan" />
     <div class="create_content">
-         <div class="search_title">
-        <span>検索結果を表示</span>
-        <span class="look_for_teacher">[先生を募集中]</span>
-      </div>
+        
       <div class="side">
         <common-side-menu></common-side-menu>
       </div>
@@ -79,9 +76,7 @@ export default {
         .catch(this.errors);
     },
     showSearchResults(response) {
-      window.console.log(response.data.teacher_plans);
       window.console.log(response.data.paginated_plans);
-      window.console.log(response.data.teacher_plans);
       this.searchResults = response.data.teacher_plans;
       this.paginatedPlan = response.data.paginated_plans;
     }
@@ -90,8 +85,7 @@ export default {
 </script>
 <style scoped>
 div.search_results {
-  width: 1200px;
-  background: rgb(255, 249, 253);
+  width: 800px;
   margin: 0 auto 10px auto;
 
   border-radius: 1px;
@@ -122,15 +116,16 @@ span.look_for_teacher {
 
 div.create_content {
   overflow: hidden;
-  width: 1500px;
+  width: 1200px;
   margin: 10px auto 10px auto;
+  background: #f1f3f8;
 
 }
 div.search_results_wrapper {
   float: left;
   margin-left: 20px;
+  background: white;
 }
 div.search_result_wrapper{
-  background: #f9fcfe;
 }
 </style>

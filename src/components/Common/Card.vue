@@ -1,27 +1,30 @@
 <template>
   <div class="card">
     <div class="card_title_wrapper">
-      <span class="new">New [教えてください]</span>
-      <span class="hours" v-if="value.diff_in_minutes>=60">[{{time}}]</span>
-      <span class="minutes" v-else>{{time}}</span>
+      <div class="new">先生を募集中</div>
+      <div class="hours" v-if="value.diff_in_minutes>=60">{{time}}</div>
+      <div class="minutes" v-else>{{time}}</div>
+      <div class="triangle"></div>
     </div>
-
-    <br />
-
+<div class="space"></div>
     <div class="profile_wrapper">
       <div class="name">
         <a :href="'http://localhost:8080/member/profile/'+value.member_id +'?params=top'">
           <img :src="'http://127.0.0.1:8001'+value.member.icon" alt class="icon" />
         </a>
-        <span class="member_name">{{value.member.name}}さん</span>
+        <div class="member_name">{{value.member.name}}</div>
       </div>
+
       <div class="title">
         <a
-          :href="'http://localhost:8080/member/profile/'+value.member_id +'?params='+value.id"
+          :href="'http://localhost:8080/member/planstudent/'+value.member_id +'?params='+value.id"
           class="to_plan_page"
         >{{value.title}}</a>
+
         <div class="plan_content">{{value.content}}</div>
-        <div class="amount">¥{{price}}円</div>
+        <div class="amount">
+          <span class="price">¥{{price}}円</span>
+        </div>
       </div>
     </div>
     <div></div>
@@ -36,6 +39,7 @@
         </span>
       </template>
     </div>
+    <div class="triangle_bottom"></div>
   </div>
 </template>
 
@@ -61,6 +65,17 @@ export default {
     time() {
       if (
         Number(this.value.diff_in_minutes) >= 2880 &&
+        Number(this.value.diff_in_minutes) <= 4320
+      ) {
+        return (
+          "New! " +
+          "[" +
+          Math.floor(this.value.diff_in_minutes / 1440) +
+          "日前]"
+        );
+      }
+      if (
+        Number(this.value.diff_in_minutes) >= 4320 &&
         Number(this.value.diff_in_minutes) <= 43200
       ) {
         return Math.floor(this.value.diff_in_minutes / 1440) + "日前";
@@ -69,10 +84,10 @@ export default {
         Number(this.value.diff_in_minutes) < 60 &&
         Number(this.value.diff_in_minutes) > 0
       ) {
-        return Math.floor(this.value.diff_in_minutes) + "分前";
+        return "New! " + "[" + Math.floor(this.value.diff_in_minutes) + "分前]";
       }
       if (Number(this.value.diff_in_minutes) === 0) {
-        return "たった今";
+        return "New! [たった今]";
       }
       if (
         Number(this.value.diff_in_minutes) >= 43200 &&
@@ -95,7 +110,9 @@ export default {
       if (Number(this.value.diff_in_minutes) >= 172800) {
         return "３ヶ月以上前";
       }
-      return Math.floor(this.value.diff_in_minutes / 60) + "時間前";
+      return (
+        "New! " + "[" + Math.floor(this.value.diff_in_minutes / 60) + "時間前]"
+      );
     }
   }
 };
@@ -105,78 +122,85 @@ export default {
 a {
   text-decoration: none;
 }
-div.card {
-  margin-bottom: 15px;
-  margin-top: 15px;
-  background: #f5fafe;
-}
+
 img.icon {
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   display: block;
-  border-radius: 30px;
+  border-radius: 20px;
+  border: 1px solid rgb(234, 233, 233);
 }
 div.profile_wrapper {
   overflow: hidden;
 }
-span.member_name {
-  color: #1b262c;
+div.member_name {
+  color: #393b44;
+  padding-left: 3px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 11px;
 }
 
 @media screen and (max-width: 640px) {
-
 }
 @media screen and (min-width: 640px) {
   div.card {
-    /* width: 350px; */
-    box-shadow: 0 3px 3px 0 rgb(144, 159, 182);
+    box-shadow: 1px 1px 3px  #b8babf;
     overflow: hidden;
     border-radius: 1px;
-    background: #f9fcfe;
+    background: white;
+    position: relative;
   }
+  
   div.card_title_wrapper {
-    background: #0f4c75;
-    border-bottom: 1px solid #4db7fe;
-    border-top: 1px solid #1b262c;
-    padding: 5px;
+    color: #393b44;
+    padding: 3px;
+    overflow: hidden;
   }
-  span.hours {
+  div.hours {
     font-size: 10px;
-    color: #f0f7fc;
+    color: #393b44;
     float: right;
-    margin-top: 7px;
+    padding-top: 2px;
   }
-  span.minutes {
+  div.minutes {
     font-size: 10px;
-    color: rgb(132, 99, 99);
+    color: #393b44;
     float: right;
-    margin-top: 7px;
+    padding-top: 2px;
   }
   div.title {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     max-width: 310px;
-    margin-top: 5px;
+    min-width: 300px;
+    /* margin-top: 5px; */
     font-size: 20px;
-    padding: 5px;
+    padding-left: 7px;
     float: left;
+    color: #3282b8;
   }
   div.amount {
     font-size: 16px;
     margin: 5px 0;
     padding: 5px;
-    color: #3282b8;
+    color: #1b262c;
   }
-  span.new {
+  span.price {
+    padding: 3px;
+    color: #393b44;
+  }
+  div.new {
     font-size: 0.8em;
-    color: #f0f7fc;
+    color: #393b44;
+    float: left;
   }
   div.name {
-    font-size: 0.8em;
     padding: 5px;
-    border-radius: 3px;
     float: left;
+    width: 100px;
   }
   div.plan_content {
     text-overflow: ellipsis;
@@ -186,7 +210,7 @@ span.member_name {
     font-size: 13px;
     padding-left: 2px;
     padding-top: 2px;
-    color: #1b262c;
+    color: #393b44;
   }
 
   a.to_plan_page:hover {
@@ -194,11 +218,16 @@ span.member_name {
     opacity: 0.5;
   }
   a.to_plan_page:visited {
-    color: #0f4c75;
+    color: #393b44;
   }
   a.to_plan_page {
-    color: #0f4c75;
+    color: #3282b8;
     font-size: 20px;
+  }
+  div.to_plan_page {
+    color: #3282b8;
+    font-size: 20px;
+    width: 80px;
   }
 
   a.tag_style:hover {
@@ -206,11 +235,11 @@ span.member_name {
     opacity: 0.5;
   }
   a.tag_style:visited {
-    color: #0f4c75;
+    color: #393b44;
   }
   a.tag_style {
-    color: #0f4c75;
-    background: #d7efff;
+    color: #393b44;
+    background: #edf0f5;
     padding: 3px;
     font-size: 12px;
   }
@@ -219,10 +248,13 @@ span.member_name {
     text-overflow: ellipsis;
     white-space: nowrap;
 
-    padding: 5px 0 7px 7px;
+    padding: 0 0 5px 7px;
   }
   span.tag_name {
     padding-right: 7px;
+  }
+  div.space{
+    height: 10px;
   }
 }
 </style>

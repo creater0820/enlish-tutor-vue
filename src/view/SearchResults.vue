@@ -1,13 +1,9 @@
 <template>
   <div>
     <common-header></common-header>
-    <navigation-bar nowPage="search_results"/>
-    <pagination :planUrl="teacherPlanUrl" :plan ="paginatedPlan" />
+    <navigation-bar nowPage="search_results" />
+    <pagination :planUrl="teacherPlanUrl" :plan="paginatedPlan" />
     <div class="create_content">
-      <div class="search_title">
-        <span>検索結果を表示</span>
-        <span class="look_for_teacher">[先生を募集中]</span>
-      </div>
       <div class="side">
         <common-side-menu></common-side-menu>
       </div>
@@ -55,7 +51,7 @@ export default {
       searchResults: [],
       paginatedPlan: {},
       currentPage: "1",
-      teacherPlanUrl: 'http://localhost:8080/member/searchresults/'
+      teacherPlanUrl: "http://localhost:8080/member/searchresults/"
     };
   },
 
@@ -87,8 +83,7 @@ export default {
 </script>
 <style scoped>
 div.search_results {
-  width: 1200px;
-   background: #f9fcfe;
+  width: 800px;
   margin: 0 auto 10px auto;
 
   border-radius: 1px;
@@ -118,11 +113,13 @@ span.look_for_teacher {
 
 div.create_content {
   overflow: hidden;
-  width: 1500px;
+  width: 1200px;
   margin: 10px auto 10px auto;
+  background: #f1f3f8;
 }
 div.search_results_wrapper {
   float: left;
   margin-left: 20px;
+  background: white;
 }
 </style>

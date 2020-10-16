@@ -3,14 +3,7 @@
     <div class="new_contract_timeline">
       <common-new-contract-timeline></common-new-contract-timeline>
     </div>
-    <div class="side_scroll">
-      <common-side-scroll></common-side-scroll>
-    </div>
 
-    <div class="recruit_teacher_wrapper">
-      <div class="recruit_teacher_left">先生を募集中</div>
-      <div class="recruit_teacher_right">新着案件をさらに表示する</div>
-    </div>
     <div class="time_line">
       <div
         v-for="(value,index) in interestedPlans"
@@ -21,36 +14,30 @@
         <common-card :value="value"></common-card>
       </div>
     </div>
-
-    <!-- <div class="ranking" :class="{'mr-2':isCenter(n)}" v-for="n of 9" :key="'ranking_'+n">
-      <common-teacher-ranking></common-teacher-ranking>
-    </div>-->
-    <!-- <div
-        class="education_materials"
-        :class="{'mr-2':isCenter(n)}"
-        v-for="n of 6"
-        :key="'education_'+n"
+    <div class="teacher_plan">
+      <div
+        v-for="(value,index) in interestedPlans"
+        :key="index"
+        :class="{'mr-1':isOdd(index)}"
+        class="time_line_card"
       >
-        <common-education-materials></common-education-materials>
-    </div>-->
+        <common-teacher-card :value="value"></common-teacher-card>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import CommonCard from "@/components/Common/Card";
+import CommonTeacherCard from "@/components/Common/TeacherCard";
 import CommonNewContractTimeline from "@/components/Common/NewContractTimeline";
-// import CommonTeacherRanking from "@/components/Common/TeacherRanking";
-// import CommonEducationMaterials from "@/components/Common/EducationMaterials";
-import CommonSideScroll from "@/components/Common/SideScroll";
 import axios from "axios";
 
 export default {
   components: {
     CommonCard,
-    CommonNewContractTimeline,
-    // CommonTeacherRanking,
-    // CommonEducationMaterials,
-    CommonSideScroll
+    CommonTeacherCard,
+    CommonNewContractTimeline
   },
   props: {
     newTeacher: {
@@ -143,18 +130,17 @@ div.recruit_teacher_right {
   float: right;
 }
 div.recruit_teacher_wrapper {
-  width: 820px;
+  width: 892px;
   overflow: hidden;
-  background-color: #bbe1fa;
-  border-bottom: 1px solid #94d4fe;
+  /* background-color: #edf6fc; */
+  /* border-bottom: 1px solid #3282b8; */
 }
 
 div.education_materials {
   float: left;
 }
 div.new_contract_timeline {
-  float: left;
-  margin-bottom: 15px;
+  padding-left: 70px;
 }
 div.side_scroll {
   float: left;
@@ -162,35 +148,39 @@ div.side_scroll {
 }
 div.card_container {
   float: left;
-  /* margin-bottom:20px; */
 }
 div.ranking {
   float: left;
 }
 @media screen and (max-width: 640px) {
-  div.category {
-  }
 }
 @media screen and (min-width: 640px) {
   div.category {
-    /* flex: 3; */
     float: left;
-    width: 821px;
-    border-right: solid 1px #3282b8;
+    width: 940px;
+    padding: 2px;
   }
   div.time_line {
     overflow: hidden;
+    width: 1000px;
+    margin-top: 10px;
   }
   div.time_line_card {
-    width: 400px;
+    width: 440px;
     float: left;
     margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 15px;
   }
   .mr-1 {
     /* margin-right: 15px; */
   }
   .mr-2 {
     margin: 0 27px;
+  }
+  div.teacher_plan {
+    margin-top: 50px;
+    width: 950px;
   }
 }
 </style>

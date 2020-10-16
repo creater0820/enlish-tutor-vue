@@ -1,14 +1,15 @@
 
 <template>
-  <div class="lessonPageWrapper">
-    <common-header />
-    <navigation-bar />
-    <div class="lessonPage">
-      <div class="lessonLeft">
-        <common-side-menu />
+  <div class="followPage_wrapper">
+    <common-header></common-header>
+    <navigation-bar></navigation-bar>
+
+    <div class="followPage">
+      <div class="followLeft">
+        <common-side-menu></common-side-menu>
       </div>
-      <div class="lessonRight">
-        <my-lesson-list />
+      <div class="followRight">
+        <my-lesson-list></my-lesson-list>
       </div>
     </div>
     <common-footer></common-footer>
@@ -18,10 +19,10 @@
 <script>
 import CommonHeader from "@/components/Common/Header";
 import CommonFooter from "@/components/Common/Footer";
+import CommonSideMenu from "@/components/Common/SideMenu";
 import MyLessonList from "@/components/member/lesson/MyLessonList";
 import NavigationBar from "@/components/Common/NavigationBar";
 
-import CommonSideMenu from "@/components/Common/SideMenu";
 import axios from "axios";
 
 export default {
@@ -33,8 +34,6 @@ export default {
         password: ""
       },
       follows: [],
-      givePlans: [],
-      takePlans: [],
       success: false,
       userErrors: {}
     };
@@ -42,13 +41,12 @@ export default {
   components: {
     CommonHeader,
     CommonFooter,
-    MyLessonList,
     CommonSideMenu,
+    MyLessonList,
     NavigationBar
   },
   created: function() {
     this.submit();
-    this.submitPlan();
   },
   methods: {
     submit() {
@@ -65,61 +63,44 @@ export default {
     },
     errors(e) {
       window.console.log(e.response.data.errors.name);
-    },
-
-    submitPlan() {
-      axios
-        .get(
-          "http://127.0.0.1:8001/api/plan/lesson/" + this.$store.state.memberId
-        )
-        .then(this.planControllerGetLessons)
-        .catch(this.errors);
-    },
-    planControllerGetLessons(response) {
-      window.console.log(response.data);
-      this.givePlans = response.data.give_plans;
-      this.takePlans = response.data.take_plans;
-    },
-    error(e) {
-      window.console.log(e.response.data.errors.name);
     }
   }
 };
 </script>
-
-
 <style>
 body {
   margin: 0;
 }
-div.lesson_active {
+div.follow_active {
+  background: rgb(214, 239, 189);
   /* text-align: center; */
-  background: linear-gradient(rgb(200, 206, 250), rgb(187, 228, 255));
-  border-radius: 3px 3px 0 0;
 }
-div.lesson_inactive {
-  background: linear-gradient(rgb(229, 230, 244), rgb(239, 246, 250));
-  border-radius: 3px 3px 0 0;
-  padding: 0;
-  cursor: pointer;
-}
-div.lesson_inactive:hover {
-  opacity: 0.6;
+div.follow_list_active {
+  background: rgb(214, 239, 189);
+  text-align: center;
 }
 
-div.lessonPage{
-  overflow: hidden;
+div.follow div {
+  float: left;
+  padding: 20px 0;
+  width: 400px;
+}
+div.followPage_wrapper {
+ /* overflow: hidden;
+ width: 1500px; */
+}
+
+div.followPage {
   width: 1200px;
   margin: 10px auto;
+  overflow: hidden;
 }
-div.lessonRight {
+div.followLeft {
   float: left;
-  background: rgb(213, 235, 250);
+}
+div.followRight {
+  float: left;
   margin-left: 10px;
-}
-div.lessonLeft {
-  float: left;
-  background: rgb(213, 235, 250);
 }
 
 @media screen and (max-width: 640px) {

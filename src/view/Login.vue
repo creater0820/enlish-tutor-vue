@@ -85,14 +85,17 @@ export default {
 
 <style scoped>
 div.login {
-  background: rgb(1, 150, 155);
+  background: #3282b8;
+
 }
 img {
   width: 30px;
 }
 div.contents {
-  background: rgb(1, 150, 155);
+  background:#3282b8;
   text-align: center;
+  height: 1000px;
+  vertical-align: middle;
 }
 button {
   font-weight: 700;
@@ -116,7 +119,7 @@ div.validationMessage{
   div.contents {
     width: 1000px;
     margin: 0 auto;
-    background: rgb(1, 150, 155);
+    background: #3282b8;
   }
 }
 </style>

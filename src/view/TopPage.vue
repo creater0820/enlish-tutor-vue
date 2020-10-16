@@ -1,7 +1,6 @@
 <template>
   <div class="top_page">
     <common-header></common-header>
-    <common-menu :memberId="memberId"></common-menu>
     <top-contents :newTeacher="newTeacher"></top-contents>
 
     <common-footer></common-footer>
@@ -12,7 +11,6 @@
 import CommonHeader from "@/components/Common/Header";
 import TopContents from "@/components/Top/Contents";
 import CommonFooter from "@/components/Common/Footer";
-import CommonMenu from "@/components/Common/Menu";
 import axios from "axios";
 
 export default {
@@ -20,7 +18,6 @@ export default {
     CommonHeader,
     CommonFooter,
     TopContents,
-    CommonMenu
   },
   
   
@@ -86,7 +83,7 @@ export default {
 <style scoped>
 div.top_page {
   overflow: hidden;
-  background: #bbe1fa;
+  background: #f1f3f8;
 }
 @media screen and (max-width: 640px) {
   div.top_page {
@@ -94,8 +91,6 @@ div.top_page {
   }
 }
 @media screen and (min-width: 640px) {
-  div.top_page {
-    background: #f3f7fa;
-  }
+
 }
 </style>

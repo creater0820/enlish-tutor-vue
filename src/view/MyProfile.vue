@@ -6,15 +6,9 @@
       <div class="side">
         <common-side-menu></common-side-menu>
       </div>
-      <div class="user_information_center">
-        <show-student-plan></show-student-plan>
-      </div>
+      <div class="user_information_center">自己紹介</div>
       <div class="input_user_information">
-        <div class="edit" v-if="Number($store.state.memberId)===Number($route.params.id)">
-          <a href="http://localhost:8080/member/editprofile">
-            <img src="@/assets/image/edit-24px.svg" />プロフィールを編集する
-          </a>
-        </div>
+       
         <div class="form_group_img">
           <img :src="'http://127.0.0.1:8001'+params.icon" alt class="icon" />
           <br />
@@ -23,11 +17,20 @@
           <label for>{{params.name}}</label>
           <br />
         </div>
+       
         <div>
           <div class="form_group">
             <p>{{params.profile}}</p>
             <br />
           </div>
+          <div class="reviewStar">
+            <div class="title">評価</div>
+            <a
+              class="total"
+              :href="'http://localhost:8080/member/review/'+$route.params.id"
+            >{{calculate()}}</a>
+          </div>
+
           <div class="follow_member">
             <span>フォロワー</span>
             <span class="count_follower">{{follower}}</span>
@@ -37,8 +40,34 @@
         <div class="favorite" v-if="Number($store.state.memberId)!==Number($route.params.id)">
           <follow-button @showFollowNumber="showFollowNumber"></follow-button>
         </div>
-        <div class="form_group" v-if="Number($store.state.memberId)!==Number($route.params.id)">
-          <a :href="'http://localhost:8080/member/message/'+$route.params.id">メッセージを送る</a>
+        <div
+          class="form_group_message"
+          v-if="Number($store.state.memberId)!==Number($route.params.id)"
+        >
+          <!-- <button
+            type="button"
+            @click="location.href='http://localhost:8080/member/message/'"
+            +this.$route.params.id
+            }
+          ></button>-->
+          <a
+            :href="'http://localhost:8080/member/message/'+$route.params.id"
+            class="sendMessage"
+          >メッセージを送る</a>
+        </div>
+        <div class="review">
+          <a
+            :href="'http://localhost:8080/member/endplan/'+$route.params.id+'?params='+params.id"
+            class="review"
+          >評価をする</a>
+        </div>
+
+
+        <a :href="'http://localhost:8080/member/planstudentlist/'+$route.params.id">指導可能プラン一覧</a>
+          <div class="edit" v-if="Number($store.state.memberId)===Number($route.params.id)">
+          <a href="http://localhost:8080/member/editprofile" class="edit">
+            <img src="@/assets/image/edit-24px.svg" />プロフィール編集
+          </a>
         </div>
       </div>
     </div>
@@ -52,7 +81,6 @@ import NavigationBar from "@/components/Common/NavigationBar";
 import CommonSideMenu from "@/components/Common/SideMenu";
 import CommonFooter from "@/components/Common/Footer";
 import FollowButton from "@/components/member/follow/FollowButton";
-import ShowStudentPlan from "@/components/member/lesson/ShowStudentPlan";
 import axios from "axios";
 
 export default {
@@ -61,11 +89,15 @@ export default {
     CommonSideMenu,
     CommonFooter,
     FollowButton,
-    NavigationBar,
-    ShowStudentPlan
+    NavigationBar
   },
   data() {
     return {
+      total: "",
+      arrayLength: "",
+      result: "",
+      amount: [],
+      member_review: [],
       follower: "",
       to_member_id: this.$route.params.id,
       params: {
@@ -74,7 +106,8 @@ export default {
         profile: "",
         email: "",
         qualification: "",
-        educational_background: ""
+        educational_background: "",
+        id: ""
       }
     };
   },
@@ -82,9 +115,63 @@ export default {
   created: function() {
     this.submit();
     this.showFollowNumber();
+    this.showMemberReview();
+    this.getMemberReviewStar();
   },
 
   methods: {
+    calculate() {
+      this.result = Math.round(Number(this.total) / Number(this.arrayLength));
+      if (this.result >= 0 && this.result < 1.5) {
+        return "⭐️☆☆☆☆";
+      } else if (this.result >= 1.5 && this.result < 2) {
+        return "⭐️☆☆☆☆";
+      } else if (this.result >= 2 && this.result < 2.5) {
+        return "⭐️⭐️☆☆☆";
+      } else if (this.result >= 2.5 && this.result < 3) {
+        return "⭐️⭐️☆☆☆";
+      } else if (this.result >= 3 && this.result < 3.5) {
+        return "⭐️⭐️⭐️☆☆";
+      } else if (this.result >= 3.5 && this.result < 4) {
+        return "⭐️⭐️⭐️☆☆";
+      } else if (this.result >= 4 && this.result < 4.5) {
+        return "⭐️⭐️⭐️⭐️☆";
+      } else if (this.result >= 4.5 && this.result < 5) {
+        return "⭐️⭐️⭐️⭐️☆";
+      } else if (this.result >= 5) {
+        return "⭐️⭐️⭐️⭐️⭐️";
+      } else {
+        return "☆☆☆☆☆";
+      }
+    },
+
+    getMemberReviewStar() {
+      this.memberId = this.$route.params.id;
+      axios
+        .get("http://127.0.0.1:8001/api/getmemberreviewstar/" + this.memberId)
+        .then(this.showReviewStar);
+    },
+    showReviewStar(response) {
+      window.console.log(response.data.amount);
+      window.console.log(response.data.amount.length);
+      this.total = response.data.amount.reduce((sum, i) => sum + i.amount, 0);
+      this.arrayLength = response.data.amount.length;
+      this.amount = response.data.amount;
+    },
+    showMemberReview() {
+      this.memberId = this.$route.params.id;
+      axios
+        .get("http://127.0.0.1:8001/api/getreview/" + this.memberId)
+        .then(this.showReview)
+        .catch(this.errors);
+    },
+    showReview(response) {
+      window.console.log(response.data.member);
+      window.console.log(response.data.review);
+      this.member_review = response.data.review;
+      // this.from_member_id = response.data.member.from_member_id;
+      // window.console.log(this.from_member_id);
+    },
     submit() {
       this.$store.commit("isLoading", true);
       this.memberId = this.$route.params.id;
@@ -103,6 +190,7 @@ export default {
         response.data.member.educational_background;
       this.params.language_type = response.data.member.language_type;
       this.params.icon = response.data.member.icon;
+      this.params.id = response.data.member.id;
       this.success = "true";
       window.console.log(response.data);
       this.$store.commit("isLoading", false);
@@ -124,6 +212,10 @@ export default {
     },
     followError(e) {
       window.console.log(e);
+    },
+    sendMessage() {
+      location.href =
+        "http://localhost:8080/member/message/" + this.$route.params.id;
     }
   }
 };
@@ -138,25 +230,15 @@ div.wrapper {
 div.input_user_information {
   float: left;
   width: 300px;
-  height: 450px;
-  background:#bbe1fa;
-
+  background: white;
   text-align: center;
   border-radius: 3px;
-  padding: 10px;
-  border-left: 4px double rgb(227, 223, 223);
-  border-right: 4px double rgb(211, 208, 208);
 }
 div.user_information_center {
   float: left;
   width: 638px;
-  background: rgb(255, 243, 240);
-  /* min-height: 600px; */
   margin: 0 10px;
-  border-left: 2px dotted rgb(227, 223, 223);
-  border-right: 2px dotted rgb(211, 208, 208);
-  border-bottom: 2px dotted rgb(211, 208, 208);
-  border-top: 2px dotted rgb(211, 208, 208);
+  background: #;
 }
 img.icon {
   width: 100px;
@@ -166,8 +248,20 @@ img.icon {
 }
 div.edit {
   /* float: right; */
-  font-size: 1.2em;
-  color: rgb(99, 91, 91);
+  font-size: 13px;
+  color: #393b44;
+}
+a.edit{
+   font-size: 13px;
+  color: #393b44;
+  text-decoration: none;
+  }
+a.edit:visited{
+   font-size: 13px;
+  color: #393b44;
+  }
+a.edit:hover{
+  opacity: 0.5;
 }
 div.favorite {
   font-size: １５px;
@@ -186,6 +280,8 @@ div.form_group_name_cut {
 }
 .form_group span {
   color: rgb(115, 127, 179);
+}
+div.form_group_message {
 }
 :focus::-webkit-input-placeholder {
   color: white;
@@ -228,5 +324,43 @@ div.follow_member {
 }
 div.favorite {
   margin-bottom: 10px;
+}
+a.sendMessage {
+  text-decoration: none;
+  color: #e3f2fc;
+  background: #0f4c75;
+  padding: 5px;
+  font-size: 15px;
+}
+a.sendMessage:visited {
+  color: #e3f2fc;
+}
+a.sendMessage:hover {
+  opacity: 0.5;
+}
+div.review {
+  margin-top: 10px;
+}
+a.review {
+  text-decoration: none;
+  color: #e3f2fc;
+  background: #0f4c75;
+  padding: 5px;
+}
+a.review:visited {
+  color: #e3f2fc;
+}
+a.review:hover {
+  opacity: 0.5;
+}
+div.reviewStar {
+  overflow: hidden;
+  width: 130px;
+  margin: 0 auto;
+}
+div.title {
+  float: left;
+  padding-top: 3px;
+  padding-right: 6px;
 }
 </style>

@@ -1,17 +1,17 @@
 <template>
   <div class="sideScroll">
     
-    <carousel :data="image" :autoplay="true" :autoplayTimeout="Number(15000)" :loop="true">
+    <!-- <carousel :data="image" :autoplay="true" :autoplayTimeout="Number(15000)" :loop="true" >
       <slide v-for="(value,index) in image" :key="index">
         <div><img :src="value"></div>
       </slide>
-    </carousel>
+    </carousel> -->
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import { Carousel, Slide } from "vue-carousel";
+// import { Carousel, Slide } from "vue-carousel";
 export default {
   data() {
     return {
@@ -19,8 +19,8 @@ export default {
     };
   },
   components: {
-    Carousel,
-    Slide,
+    // Carousel,
+    // Slide,
   },
 
   created: function() {

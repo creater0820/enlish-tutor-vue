@@ -26,8 +26,8 @@ div.footer p {
   font-size: 13px;
 }
 div.footer {
-  border-top: 1px solid #3282b8;
-  background: #1b262c;
+  border-top: 1px solid #8d93ab;
+  background: #393b44;
   color: white;
   width: 100%;
 }

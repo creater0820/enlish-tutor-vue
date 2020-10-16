@@ -1,6 +1,12 @@
 <template>
-  <div class="newTimeLine">
-    <carousel :autoplay="true" :loop="true" :autoplayTimeout="Number(4000)" :perPage="Number(1)">
+  <div class="newTimeLine" >
+    <carousel
+      :autoplay="true"
+      :loop="true"
+      :autoplayTimeout="Number(4000)"
+      :perPage="Number(1)"
+      :navigation-enabled="true"
+    >
       <slide v-for="(value,index) in contract" :key="index">
         <!-- オブジェクトが空かどうかの判定(Js唯一の方法)object.keysでキーの数を数えてる -->
         <div
@@ -27,9 +33,7 @@
         </div>
       </slide>
     </carousel>
-    <div>
-      <img src="this.image" alt />
-    </div>
+  
   </div>
 </template>
 
@@ -42,18 +46,12 @@ export default {
       //配列にしておく、型を合わせる
       minutes: false,
       contract: [],
-      difference: "",
-      differenceTimeHours: "",
-      number: 3,
-      plan: "",
-      icon: ""
     };
   },
   components: {
     Carousel,
     Slide
   },
-  computed: {},
   created: function() {
     this.newPlans();
   },
@@ -109,7 +107,6 @@ export default {
     },
     newPlan(response) {
       this.contract = response.data.newPlans;
-      this.icon = response.data.icon;
       window.console.log(response.data.newPlans);
     },
     error(e) {
@@ -118,26 +115,19 @@ export default {
   }
 };
 </script>
-<style>
-div.VueCarousel-pagination {
-  display: none;
-}
-div.VueCarousel-slide {
-  /* margin-right: 20px; */
-}
-</style>
+
 <style scoped>
 a {
   text-decoration: none;
 }
 a.member_name {
-  color: #3282b8;
+  color: #3d7ea6;
 }
 a.member_name:visited {
-  color: #3282b8;
+  color: #3d7ea6;
 }
 a.member_name:hover {
-opacity: 0.5;
+  opacity: 0.5;
 }
 img.time_line_icon {
   width: 30px;
@@ -145,7 +135,7 @@ img.time_line_icon {
   border-radius: 15px;
 }
 div.hours {
-  color: #0f4c75;
+  color: #393b44;
   font-size: 0.7em;
 }
 div.minutes {
@@ -155,13 +145,13 @@ span.timeline_member_name {
   color: rgb(101, 1, 1);
 }
 a.member_plan {
-  color: #3282b8;
+  color: #3d7ea6;
 }
 a.member_plan:visited {
-  color: #3282b8;
+  color: #3d7ea6;
 }
 a.member_plan:hover {
-opacity: 0.5;
+  opacity: 0.5;
 }
 .example-slide {
   align-items: center;
@@ -178,12 +168,11 @@ div.name_wrapper {
   padding-top: 3px;
 }
 div.example-slide {
-  margin-top: 30px;
-   color: #1b262c;
+  margin-top: 15px;
+  color: #393b44;
 }
 @media screen and (max-width: 640px) {
-  div {
-  }
+
 }
 @media screen and (min-width: 640px) {
   div.newTimeLine {

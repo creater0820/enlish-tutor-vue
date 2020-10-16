@@ -2,13 +2,13 @@
 <template>
   <div class="message">
     <common-header></common-header>
-    <navigation-bar/>
+    <navigation-bar />
     <div class="messageContents">
       <div class="messageLeft">
         <common-side-menu></common-side-menu>
       </div>
       <div class="userMessageRight">
-        <div class="innerMessage">メッセージ</div>
+        <!-- <div class="innerMessage">メッセージ</div> -->
         <div class="message_caution">メッセージの内容は必要に応じて運営でチェックしています</div>
         <div class="submit_message">
           <textarea class="submit_textarea" cols="40" rows="5" v-model="params.text"></textarea>
@@ -149,7 +149,7 @@ button.message_button {
   width: 700px;
   padding: 20px;
   margin-bottom: 30px;
-  background: rgb(129, 137, 148);
+  background: #0f4c75;
   border-radius: 7px;
   border: none;
   font: bold;
@@ -175,9 +175,8 @@ textarea.submit_textarea {
   width: 694px;
 }
 div.comment_wrapper {
-  overflow: hidden;
-  /* width: 900px; */
-  /* margin: 0 auto; */
+  /* overflow: hidden; */
+  padding-left: 20px;
 }
 
 body {
@@ -191,13 +190,13 @@ div.messageContents {
 }
 div.messageLeft {
   /* background: rgb(194, 215, 240); */
-  width: 270px;
+  width: 200px;
   float: left;
 }
 div.userMessageRight {
-  background: rgb(249, 238, 238);
-  width: 800px;
-  margin: 0 auto;
+  background: #f1f9ff;
+  width: 970px;
+  margin-left: 30px;
   float: left;
   padding-bottom: 50px;
 }

@@ -11,38 +11,9 @@
           マイページ
           <i class="img_mypage" :class="{rotate:hidden_1}"></i>
         </a>
-
-        <div
-          class="menu_hidden_1"
-          v-show="hidden_1"
-          @mouseover="hidden_1=true"
-          @mouseleave="hidden_1=false"
-        >
-          <div class="title">
-            <p>Mypage</p>
-          </div>
-          <p>トップ</p>
-          <p>メッセージ</p>
-          <p>リンク</p>
-        </div>
       </div>
-      <div class="hover2">
-        <a class="menu_tab" @mouseover="hidden_2=true" @mouseleave="hidden_2=false">
-          メッセージ
-          <i class="img_mypage" :class="{rotate:hidden_2}"></i>
-        </a>
-
-        <div
-          class="menu_hidden_2"
-          v-show="hidden_2"
-          @mouseover="hidden_2=true"
-          @mouseleave="hidden_2=false"
-        >
-          <div class="title">
-            <p>Message</p>
-          </div>
-          <span>新着</span>
-        </div>
+      <div class="hover3">
+        <input type="text" class="input_text" placeholder="キーワードで検索" />
       </div>
       <div class="hover2">
         <a class="menu_tab" @mouseover="hidden_3=true" @mouseleave="hidden_3=false">
@@ -56,10 +27,6 @@
           @mouseover="hidden_3=true"
           @mouseleave="hidden_3=false"
         >
-          <div class="title">
-            <p></p>
-          </div>
-
           <template v-for="(value,index) in tags">
             <div :key="index">
               <div>
@@ -84,9 +51,6 @@
           @mouseover="hidden_4=true"
           @mouseleave="hidden_4=false"
         >
-          <div class="title">
-            <p></p>
-          </div>
           <template v-for="(value,index) in tags">
             <div :key="index">
               <div>
@@ -112,45 +76,8 @@
           @mouseover="hidden_7=true"
           @mouseleave="hidden_7=false"
         >
-          <p>先生を募集する</p>
-          <p>生徒を募集する</p>
-          <p>リンク</p>
-        </div>
-      </div>
-      <div class="hover2">
-        <a class="menu_tab" @mouseover="hidden_8=true" @mouseleave="hidden_8=false">
-          未定
-          <i class="img_mypage" :class="{rotate:hidden_8}"></i>
-        </a>
-        <div
-          class="menu_hidden_8"
-          v-show="hidden_8"
-          @mouseover="hidden_8=true"
-          @mouseleave="hidden_8=false"
-        >
-          <div class="title">
-            <p>Business English</p>
-          </div>
-          <p>リンク</p>
-          <p>リンク</p>
-        </div>
-      </div>
-      <div class="hover2">
-        <a class="menu_tab" @mouseover="hidden_9=true" @mouseleave="hidden_9=false">
-          未定
-          <i class="img_mypage" :class="{rotate:hidden_9}"></i>
-        </a>
-        <div
-          class="menu_hidden_9"
-          v-show="hidden_9"
-          @mouseover="hidden_9=true"
-          @mouseleave="hidden_9=false"
-        >
-          <div class="title">
-            <p>Another Language</p>
-          </div>
-          <p>リンク</p>
-          <p>リンク</p>
+          <div>先生を募集する</div>
+          <div>生徒を募集する</div>
         </div>
       </div>
     </div>
@@ -204,128 +131,77 @@ export default {
 };
 </script>
 <style>
-div.menu{
-  border-bottom: 1px solid #4db7fe;;
-}
-div.menu_hidden_1 {
-  /* float: left; */
-  left: 21.7%;
-  position: absolute;
-  width: 350px;
-  height: 300px;
-  background: #1468a0;
-  animation: fadeIn 0.2s ease 0.1s normal;
-  z-index: 1;
-  color: #e9f6fe;
-  border-top: 1px solid #4db7fe;
-}
-div.menu_hidden_2 {
-  /* float: left; */
-  left: 26.7%;
-  position: absolute;
-  width: 350px;
-  height: 300px;
-  background: #1468a0;
-  border-top: 1px solid #4db7fe;
-  z-index: 1;
-  color: #e9f6fe;
-}
 div.menu_hidden_3 {
-  /* float: left; */
-  color: #e9f6fe;
-  left: 31.5%;
+  background: #f1f3f8;
+  color: #393b44;
+  left: 11%;
+  /* top:-5%; */
   position: absolute;
-  width: 350px;
-  height: 300px;
-  background: #1468a0;
+  width: 150px;
+  height: 250px;
+  box-shadow: 1px 1px 3px #393b44;
   z-index: 1;
-  border-top: 1px solid #4db7fe;
+  font-size: 13px;
+  transition: ease 0.5s;
+  opacity: 0.9;
+}
+div.menu_hidden_3:hover {
+  background: #d6e0f0;
+  color: #93b5cb;
+  left: 11%;
+  top: 90%;
+  position: absolute;
+  width: 150px;
+  height: 255px;
+  box-shadow: 1px 1px 3px #7f8291;
+  z-index: 1;
+  font-size: 13px;
+  opacity: 1;
 }
 div.menu_hidden_4 {
-  /* float: left; */
-  color: #e9f6fe;
-  left: 39%;
+  background: #f1f3f8;
+  color: #393b44;
+  left: 30%;
   position: absolute;
-  width: 200px;
-  height: 300px;
-  background: #1468a0;
+  width: 150px;
+  height: 250px;
+  box-shadow: 1px 1px 3px #393b44;
   z-index: 1;
-  border-top: 1px solid #4db7fe;
+  font-size: 13px;
 }
-div.menu_hidden_5 {
-  /* float: left; */
-  color: #e9f6fe;
-  left: 39%;
-  position: absolute;
-  width: 350px;
-  height: 300px;
-  background: #1468a0;
-  z-index: 1;
-  border-top: 1px solid #4db7fe;
-}
-div.menu_hidden_6 {
-  /* float: left; */
-  color: #e9f6fe;
-  left: 44.3%;
-  position: absolute;
-  width: 350px;
-  height: 300px;
-  background: #1468a0;
-  z-index: 1;
-  border-top: 1px solid #4db7fe;
-}
+
 div.menu_hidden_7 {
-  /* float: left; */
-  color: #e9f6fe;
-  left: 39%;
+  background: #f1f3f8;
+  color: #393b44;
+
+  left: 48%;
   position: absolute;
-  width: 350px;
-  height: 300px;
-  background: #1468a0;
+  width: 150px;
+  height: 100px;
+  box-shadow: 1px 1px 3px #393b44;
   z-index: 1;
-  border-top: 1px solid #4db7fe;
-}
-div.menu_hidden_8 {
-  /* float: left; */
-  color: #e9f6fe;
-  left: 55.4%;
-  position: absolute;
-  width: 350px;
-  height: 300px;
-  background: #1468a0;
-  z-index: 1;
-  border-top: 1px solid #4db7fe;
-}
-div.menu_hidden_9 {
-  /* float: left; */
-  color: #e9f6fe;
-  left: 62%;
-  position: absolute;
-  width: 350px;
-  height: 300px;
-  background: #1468a0;
-  z-index: 1;
-  border-top: 1px solid #4db7fe;
+  font-size: 13px;
 }
 </style>
 
 <style scoped>
 a.visited {
-  color: rgb(234, 241, 242);
+  color: rgb(11, 12, 12);
 }
 
 a.menu_tab {
   display: block;
   line-height: 50px;
   text-decoration: none;
-  color: aliceblue;
-  font: bold;
+  color: rgb(22, 24, 26);
+  font-size: 13px;
+  background: #393b44;
+  color: #f1f3f8;
+  transition: 0.4s ease;
 }
 a.menu_tab:hover {
-  display: block;
-  line-height: 50px;
   text-decoration: none;
-  color: aliceblue;
+  color: #51adcf;
   font: bold;
 }
 
@@ -375,23 +251,20 @@ div.hover2 a {
 .hover2:hover {
   /* opacity: 0.6; */
   cursor: pointer;
-  background: #1468a0;
 }
-div.menu {
-  overflow: hidden;
-  /* position: relative; */
-}
+
 div.menu_wrapper {
   margin: 0 auto;
-  width: 1200px;
+  width: 1170px;
   overflow: hidden;
 }
 
-div {
-  overflow: hidden;
-}
 div.hover2 {
   float: left;
+  margin: 0 7px;
+}
+div.hover3 {
+  float: right;
   margin: 0 7px;
 }
 p {
@@ -407,9 +280,7 @@ div.title {
 @media screen and (min-width: 640px) {
   div.menu {
     width: 100%;
-    background: #0f4c75;
-    /* background: rgb(49, 74, 154); */
-    /* background: linear-gradient(rgb(158, 189, 232), rgb(88, 132, 198)); */
+    background: #393b44;
   }
   p {
     width: 120px;
@@ -420,14 +291,19 @@ div.title {
   }
   a.menu_title_student {
     text-decoration: none;
-     color: #e9f6fe;
+    color: #e9f6fe;
   }
   a.menu_title_student:hover {
     cursor: pointer;
     opacity: 0.5;
   }
   a.menu_title_student:visited {
-
+    color: #393b44;
+  }
+  input.input_text {
+    width: 200px;
+    margin-top: 10px;
+    height: 22px;
   }
 }
 </style>

@@ -5,7 +5,7 @@
       v-if=" 'http://localhost:8080'+$route.path === 'http://localhost:8080/member/profile/'+$store.state.memberId"
     >
       <a class="navigationTop" href="http://localhost:8080">TOP</a> > マイページ
-    </div> -->
+    </div>-->
 
     <div class="navigationMenu" v-if=" Number($store.state.memberId) !==Number($route.params.id)">
       <div
@@ -28,15 +28,9 @@
 
     <div
       class="navigationMenu"
-      v-if=" 'http://localhost:8080'+$route.path === 'http://localhost:8080/member/lesson/'+$store.state.memberId"
-    >
-      <a class="navigationTop" href="http://localhost:8080">TOP</a> > レッスン一覧
-    </div>
-    <div
-      class="navigationMenu"
       v-if=" 'http://localhost:8080'+$route.path === 'http://localhost:8080/member/follows/'+$store.state.memberId"
     >
-      <a class="navigationTop" href="http://localhost:8080">TOP</a> > フォロー
+      <a class="navigationTop" href="http://localhost:8080">TOP</a> > フォローリスト
     </div>
     <div
       class="navigationMenu"
@@ -61,6 +55,21 @@
     </div>
     <div class="navigationMenu" v-if=" $route.name === 'memberprofile'">
       <a href="http://localhost:8080" class="navigationTop">TOP</a> > プロフィール
+    </div>
+    <div class="navigationMenu" v-if=" $route.name === 'planstudent'">
+      <a href="http://localhost:8080" class="navigationTop">TOP</a> > ユーザープラン
+    </div>
+    <div class="navigationMenu" v-if=" $route.name === 'review'">
+      <a href="http://localhost:8080" class="navigationTop">TOP</a> > レビュー一覧
+    </div>
+    <div class="navigationMenu" v-if=" $route.name === 'planstudentlist'">
+      <a href="http://localhost:8080" class="navigationTop">TOP</a> > 指導プラン一覧
+    </div>
+    <div class="navigationMenu" v-if=" $route.name === 'contract'">
+      <a href="http://localhost:8080" class="navigationTop">TOP</a> > 契約情報の確認
+    </div>
+    <div class="navigationMenu" v-if=" $route.name === 'memberlessonmylessonlist'">
+      <a href="http://localhost:8080" class="navigationTop">TOP</a> > 契約情報の確認
     </div>
   </div>
 </template>
@@ -88,13 +97,15 @@ a:visited {
 }
 div.navigationBar {
   width: 100%;
-  background: #0f4c75;
+  background: #f1f3f8;
 }
 div.navigationMenu {
+  
+  width: 1186px;
   padding: 3px;
-  width: 1172px;
   margin: 0 auto;
-  color: rgb(217, 237, 255);
+  color: #393b44;
+  font-size:13px;
 }
 div.member_name_cut_navigation {
   float: left;
@@ -108,6 +119,6 @@ div.member_name_cut_name {
   padding-left: 5px;
 }
 a.navigationTop {
-  color: rgb(227, 202, 202);
+  color: #393b44;
 }
 </style>
