@@ -41,11 +41,13 @@ DB:MySQL
 ![movie](https://github.com/creater0820/enlish-tutor-vue/blob/master/movie/message.gif)
 ユーザーが登録しているタグに応じて興味のありそうな先生を表示、その先生の評価を見てフォローできる機能
 ![movie](https://github.com/creater0820/enlish-tutor-vue/blob/master/movie/newfollow.gif)
-他の細かい機能を挙げると、新規契約情報をトップページ上部にスクロール表示しユーザーの購買意欲を高める機能
-プランにタグ付をしユーザーが興味のある分野のプランを検索しやすくする機能
+
+
+新規契約情報をトップページ上部にスクロール表示しユーザーの購買意欲を高める機能
+売上履歴の管理機能
 ![movie](https://github.com/creater0820/enlish-tutor-vue/blob/master/movie/otherfunction.gif)
 
 
-売上履歴の管理機能
+フォローリストの表示、契約中プランの表示機能
 ![movie](https://github.com/creater0820/enlish-tutor-vue/blob/master/movie/contractfollow.gif)
 
