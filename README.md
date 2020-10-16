@@ -43,9 +43,10 @@ DB:MySQL
 ![movie](https://github.com/creater0820/enlish-tutor-vue/blob/master/movie/newfollow.gif)
 
 
-新規契約情報をトップページ上部にスクロール表示しユーザーの購買意欲を高める機能
+
 売上履歴の管理機能
 ![movie](https://github.com/creater0820/enlish-tutor-vue/blob/master/movie/otherfunction.gif)
+
 
 
 フォローリストの表示、契約中プランの表示機能
