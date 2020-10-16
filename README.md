@@ -45,5 +45,7 @@ DB:MySQL
 プランにタグ付をしユーザーが興味のある分野のプランを検索しやすくする機能
 ![movie](https://github.com/creater0820/enlish-tutor-vue/blob/master/movie/otherfunction.gif)
 
-![movie](https://github.com/creater0820/enlish-tutor-vue/blob/master/movie/otherfunction.gif)
+
+売上履歴の管理機能
+![movie](https://github.com/creater0820/enlish-tutor-vue/blob/master/movie/contractfollow.gif)
 
