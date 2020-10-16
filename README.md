@@ -40,7 +40,7 @@ DB:MySQL
 プラン検索をしてユーザーが気に入ったプランがあればその先生に対してメッセージを送る機能
 ![movie](https://github.com/creater0820/enlish-tutor-vue/blob/master/movie/message.gif)
 ユーザーが登録しているタグに応じて興味のありそうな先生を表示、その先生の評価を見てフォローできる機能
-![movie](https://github.com/creater0820/enlish-tutor-vue/blob/my-branch/movie/follow3.gif)
+![movie](https://github.com/creater0820/enlish-tutor-vue/blob/my-branch/movie/newfollow3.gif)
 他の細かい機能を挙げると、新規契約情報をトップページ上部にスクロール表示しユーザーの購買意欲を高める機能
 プランにタグ付をしユーザーが興味のある分野のプランを検索しやすくする機能
 ![movie](https://github.com/creater0820/enlish-tutor-vue/blob/my-branch/movie/timeline.gif)
