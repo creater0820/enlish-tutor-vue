@@ -51,7 +51,7 @@ DB:MySQL
 
 
 
-売上履歴の管理機能
+売上の管理機能
 ![movie](https://github.com/creater0820/enlish-tutor-vue/blob/master/movie/otherfunction.gif)
 
 
