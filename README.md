@@ -31,9 +31,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 契約促進させるように設計しています。基本機能として、フォロー、メッセージ、プラン登録、プラン検索、レビュー機能などがあります
 完成度は６割ほどで今後は決済機能も実装していく予定です。
 
-フレームワーク:Laravel+Vue.js
-
-DB:MySQL
+Flamework [Laravel Vue.js]
+Database [MySQL]
 
 ・実装機能紹介
 
