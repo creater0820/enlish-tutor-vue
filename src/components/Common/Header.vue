@@ -26,9 +26,10 @@ export default {
   },
   data() {
     return {
-      success: false
+      success: false,
     };
   },
+  
   created: function() {
     this.isLogin();
   },
@@ -64,7 +65,8 @@ export default {
     },
     error(e) {
       window.console.log(e);
-    }
+    },
+   
   }
 };
 </script>
@@ -74,7 +76,7 @@ a.header_search {
   text-decoration: none;
   color: rgb(32, 32, 38);
 }
-div.menu_wrapper{
+div.menu_wrapper {
   width: 600px;
   margin: 0 auto;
   position: absolute;
@@ -182,6 +184,7 @@ div.header {
   overflow: hidden;
   height: 50px;
 }
+
 a.sign_up {
   color: #f1f3f8;
   text-decoration: none;

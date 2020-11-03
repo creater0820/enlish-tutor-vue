@@ -15,16 +15,26 @@
       :class="[Number(message.member.id === Number(toMemberId)) ? 'user_message_right': 'user_message']"
     >
       <pre class="member_chat_message">{{message.text}}</pre>
-      <div class="diff_in_minutes">{{diffInTime}}</div>
+      <div class="wrapper">
+        <div class="read" v-if="message.read===1&&message.from_member_id===$store.state.memberId">既読</div>
+        <div class="diff_in_minutes">{{diffInTime}}</div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      params: {
+        to_member_id: this.$route.params.id
+      }
+    };
+  },
   props: {
     message: Object,
-    toMemberId: Number
+    toMemberId: String
   },
   computed: {
     diffInTime() {
@@ -51,13 +61,9 @@ export default {
 <style scoped>
 div.message_wrapper {
   overflow: hidden;
-  padding-left:50px;
+  padding-left: 50px;
 }
-div.diff_in_minutes {
-  float: right;
-  font-size: 0.7em;
-  color: black;
-}
+
 div.member_name {
   overflow: hidden;
   float: left;
@@ -69,7 +75,6 @@ div.member_name_right {
   margin-top: 30px;
   margin-right: 18px;
   text-align: center;
-
 }
 div.user_message {
   float: left;
@@ -100,7 +105,7 @@ div.user_message_right {
   border-radius: 5px;
   margin: 0 auto 0 30px;
   margin-top: 20px;
-  padding: 15px ;
+  padding: 15px;
   position: relative;
   margin-left: 80px;
 }
@@ -133,5 +138,18 @@ p.member_name_cut {
 img.member_name_icon {
   width: 50px;
   height: 50px;
+}
+div.wrapper {
+  overflow: hidden;
+}
+div.read {
+  float: right;
+  font-size: 12px;
+  color:#858ba2;
+}
+div.diff_in_minutes {
+  float: right;
+  font-size: 12px;
+  padding-right: 5px;
 }
 </style>

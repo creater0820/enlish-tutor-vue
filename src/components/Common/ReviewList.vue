@@ -46,7 +46,7 @@ export default {
         .then(this.showMemberName);
     },
     showMemberName(response) {
-      //   window.console.log(response.data.member.name);
+        window.console.log(response.data.member);
       this.member_name = response.data.member.name;
       this.member_icon = response.data.member.icon;
     },

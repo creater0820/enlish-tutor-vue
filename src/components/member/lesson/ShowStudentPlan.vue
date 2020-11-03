@@ -12,9 +12,6 @@
 
           <div class="wrapper_bottom">
             <div class="studentPlanAmount">¥{{price}}</div>
-            <div class="contract">
-              <a :href="'http://localhost:8080/member/contract/'+value.id">契約する</a>
-            </div>
           </div>
         </div>
 

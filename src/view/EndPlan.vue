@@ -1,13 +1,17 @@
 <template>
   <div class="introduction">
     <common-header></common-header>
-    <div class="bar" v-if="success">ログイン</div>
-    <div class="introduction_website">
-      <div class="top">契約を終了しました！</div>
-      <a href="http://localhost:8080">トップページへ</a>
-    </div>
-    <div class="inputReview">
-      <input-review />
+    <div class="wrapper">
+      <div class="side_menu">
+        <side-menu />
+      </div>
+      <div class="inner_wrapper_end_plan">
+        <div class="top" v-if="success">契約が終了しました。評価をお願いします。</div>
+        <div class="review_end" v-if="!success">評価を送信しました</div>
+        <div class="inputReview" v-if="success">
+          <input-review @childMethod="doChildMethod"></input-review>
+        </div>
+      </div>
     </div>
     <common-footer></common-footer>
   </div>
@@ -17,17 +21,20 @@
 import CommonHeader from "@/components/Common/Header";
 import CommonFooter from "@/components/Common/Footer";
 import InputReview from "@/components/Form/InputReview";
+import SideMenu from "@/components/Common/SideMenu";
 
 export default {
   components: {
     CommonHeader,
     CommonFooter,
-    InputReview
+    InputReview,
+    SideMenu
   },
   data() {
     return {
       setValue: "",
-      success: false
+      success: true,
+      title: ""
     };
   },
   props: {
@@ -37,16 +44,32 @@ export default {
         return [];
       }
     }
+  },
+  methods: {
+    doChildMethod($title) {
+      this.success = false;
+      this.title = $title;
+    }
   }
 };
 </script>
 
 <style scoped>
-div.introduction_website {
-  width: 1000px;
+div.wrapper {
+  width: 1200px;
   margin: 0 auto;
-  text-align: center;
-  margin-bottom: 30px;
+  overflow: hidden;
+}
+div.side_menu {
+  float: left;
+}
+div.top {
+  /* float: left; */
+}
+div.inner_wrapper_end_plan{
+  overflow: hidden;
+  margin: 0 auto;
+  width: 1000px;
 }
 button.button {
   width: 300px;
@@ -73,9 +96,9 @@ div.introduction {
   overflow: hidden;
 }
 div.inputReview {
-  width: 1200px;
-  margin: 0 auto;
-  text-align: center;
+  /* width: 1200px; */
+  /* margin: 0 auto;
+  text-align: center; */
 }
 .sign_up {
   width: 200px;

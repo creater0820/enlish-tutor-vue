@@ -16,7 +16,7 @@
     </div>
     <div class="teacher_plan">
       <div
-        v-for="(value,index) in interestedPlans"
+        v-for="(value,index) in teacherPlans"
         :key="index"
         :class="{'mr-1':isOdd(index)}"
         class="time_line_card"
@@ -50,7 +50,8 @@ export default {
   data() {
     return {
       interestedPlans: [],
-      newPlans: []
+      newPlans: [],
+      teacherPlans: []
     };
   },
   watch: {
@@ -61,6 +62,7 @@ export default {
   created: function() {
     this.submit();
     this.getStudentPlan();
+    this.getTeacherPlan();
   },
   methods: {
     isOdd(key) {
@@ -107,6 +109,16 @@ export default {
     },
     error(e) {
       window.console.log(e);
+    },
+
+    getTeacherPlan() {
+      axios
+        .get("http://127.0.0.1:8001/api/getteacherplan")
+        .then(this.teacherCard);
+    },
+    teacherCard(response) {
+      window.console.log(response.data.teacher_plans);
+      this.teacherPlans = response.data.teacher_plans;
     }
   }
 };
