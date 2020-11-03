@@ -30,6 +30,7 @@ import PlanTeacher from "@/view/PlanTeacher";
 import PlanStudentList from "@/view/PlanStudentList";
 import SalesLog from "@/view/SalesLog";
 import PaymentLog from "@/view/PaymentLog";
+import ShowTeacherPlan from "@/components/member/lesson/ShowTeacherPlan";
 
 
 
@@ -190,6 +191,11 @@ export default new Router({
             path: '/member/paymentlog/:id',           //パスの設定
             component:PaymentLog ,    //表示するコンポーネント
             name: 'saleslog',       //ルートの名前を指定
+        },
+        {
+            path: '/member/showteacherplan/:id',           //パスの設定
+            component:ShowTeacherPlan ,    //表示するコンポーネント
+            name: 'showteacherplan',       //ルートの名前を指定
         },
       
     ]

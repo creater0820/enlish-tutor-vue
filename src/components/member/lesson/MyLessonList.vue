@@ -2,8 +2,8 @@
 <template>
   <div>
     <div class="follow">
-      <div @click="success=true" :class="[success?'lesson_active':'lesson_inactive']">指導中プラン</div>
-      <div @click="success=false" :class="[!success?'lesson_active':'lesson_inactive']">受講中プラン</div>
+      <div @click="success=true" :class="[success?'lesson_active':'lesson_inactive']">受講中プラン</div>
+      <div @click="success=false" :class="[!success?'lesson_active':'lesson_inactive']">指導中プラン</div>
     </div>
     <div class="myFollowRight">
       <div class="list">

@@ -1,6 +1,7 @@
 <template>
   <div class="menu">
     <div class="menu_wrapper">
+      <div v-if="counts!==0" class="new_message">{{counts}}</div>
       <div class="hover2">
         <a
           class="menu_tab"
@@ -89,6 +90,7 @@ import axios from "axios";
 export default {
   data() {
     return {
+      counts: 0,
       tags: [],
       setValue: "",
       hidden_1: false,
@@ -99,9 +101,17 @@ export default {
       hidden_6: false,
       hidden_7: false,
       hidden_8: false,
-      hidden_9: false
-      // memberId:"",
+      hidden_9: false,
+      params: {
+        to_member_id: this.$store.state.memberId
+      }
     };
+  },
+  watch: {
+    "$store.state.memberId": function() {
+      this.$set(this.params, "to_member_id", this.$store.state.memberId);
+      this.getNewMessage();
+    }
   },
   created: function() {
     this.getTags();
@@ -113,6 +123,15 @@ export default {
     tagsShow(response) {
       window.console.log(response.data.tags);
       this.tags = response.data.tags;
+    },
+    getNewMessage() {
+      axios
+        .get("http://127.0.0.1:8001/api/newmessage", { params: this.params })
+        .then(this.confirmMessage);
+    },
+    confirmMessage(response) {
+      window.console.log(response.data.counts);
+      this.counts = response.data.counts;
     }
   },
   components: {},
@@ -270,8 +289,15 @@ div.hover3 {
 p {
   float: left;
 }
-div.title {
-  /* border-bottom: solid 1px #4db7fe; */
+div.new_message {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background: rgb(223, 115, 115);
+  color: white;
+  float: left;
+  font-size: 14px;
+  margin-top: 14px;
 }
 @media screen and (max-width: 640px) {
   div {

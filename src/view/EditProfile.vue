@@ -1,94 +1,84 @@
 <template>
   <div class="parent">
     <common-header></common-header>
-    <navigation-bar/>
-    <div class="wrapper_content">
+    <navigation-bar />
+    <div class="wrapper">
       <div class="side">
         <common-side-menu></common-side-menu>
       </div>
-      <div class="input_user_information">
-        <div class="c_0">
-          <p>プロフィール編集</p>
-        </div>
+      <div class="wrapper_content" v-if="!judge">
+        <div class="input_user_information">
+          <div class="c_0">
+            <p>プロフィール編集</p>
+          </div>
 
-        <div class="form_group">
-          <label for>ユーザー名</label>
-          <span>[必須]</span>
-          <br />
-          <input type="text" v-model="params.name" class="c_3" placeholder="ニックネーム" />
-        </div>
-        <!-- todo アイコンの登録 -->
-        <!-- <div class="form_group_img">
-          <label for class="icon">アイコン</label>
-          <br />
-          <input type="file" class="c_3" placeholder />
-        </div>-->
+          <div class="form_group">
+            <label for>ユーザー名</label>
+            <span>[必須]</span>
+            <br />
+            <input type="text" v-model="params.name" class="c_3" placeholder="ニックネーム" />
+          </div>
 
-        <div class="form_group">
-          <label for>保有資格</label>
+          <div class="form_group">
+            <label for>保有資格</label>
 
-          <br />
-          <div v-if="success" class="qualification">
+            <br />
+            <div v-if="success" class="qualification">
+              <input
+                type="text"
+                class="c_3"
+                :placeholder="this.params.qualification"
+                v-model="params.qualification"
+              />
+            </div>
+            <div v-if="!success" class="qualification">
+              <input
+                type="text"
+                class="c_3"
+                placeholder="例：TOEIC860 英検1級"
+                v-model="params.qualification"
+              />
+            </div>
+          </div>
+          <div class="form_group">
+            <label for>最終学歴</label>
+
+            <br />
             <input
               type="text"
               class="c_3"
-              :placeholder="this.params.qualification"
-              v-model="params.qualification"
+              placeholder="例：京都大学工学部卒"
+              v-model="params.educational_background"
             />
           </div>
-          <div v-if="!success" class="qualification">
-            <input
-              type="text"
-              class="c_3"
-              placeholder="例：TOEIC860 英検1級"
-              v-model="params.qualification"
-            />
+          <div class="form_group">
+            <label for>ネイティブ言語</label>
+            <span>[必須]</span>
+            <br />
+            <input type="text" class="c_3" placeholder="例：English" v-model="params.language_type" />
           </div>
-        </div>
-        <div class="form_group">
-          <label for>最終学歴</label>
-
-          <br />
-          <input
-            type="text"
-            class="c_3"
-            placeholder="例：京都大学工学部卒"
-            v-model="params.educational_background"
-          />
-        </div>
-        <div class="form_group">
-          <label for>ネイティブ言語</label>
-          <span>[必須]</span>
-          <br />
-          <input type="text" class="c_3" placeholder="例：English" v-model="params.language_type" />
-        </div>
-        <div class="form_group">
-          <label for>メールアドレス</label>
-          <br />
-          <input type="text" class="c_3" placeholder v-model="params.email" />
-        </div>
-
-        <div class="form_group">
-          <label for>経歴・指導方針</label>
-          <span>[必須]</span>
-          <br />
-          <textarea
-            name
-            id
-            class="c_2"
-            placeholder=""
-            v-model="params.profile"
-          ></textarea>
-          <div id="app">
-            <input @change="selectedFile" type="file" name="file" />
+          <div class="form_group">
+            <label for>メールアドレス</label>
+            <br />
+            <input type="text" class="c_3" placeholder v-model="params.email" />
           </div>
 
-          <button type="button" @click="
+          <div class="form_group">
+            <label for>経歴・指導方針</label>
+            <span>[必須]</span>
+            <br />
+            <textarea name id class="c_2" placeholder v-model="params.profile"></textarea>
+            <div id="app">
+              <input @change="selectedFile" type="file" name="file" />
+            </div>
+
+            <button type="button" @click="
           updateProfile()">更新する</button>
+          </div>
         </div>
       </div>
+       <div class="wrapper_success" v-else>プロフィールを更新しました</div>
     </div>
-
     <common-footer></common-footer>
   </div>
 </template>
@@ -104,13 +94,14 @@ export default {
     CommonHeader,
     CommonSideMenu,
     CommonFooter,
-    NavigationBar,
+    NavigationBar
   },
   created: function() {
     this.init();
   },
   data() {
     return {
+      judge: false,
       uploadFile: null,
       success: false,
       memberId: 0,
@@ -184,14 +175,13 @@ export default {
     },
     showProfile(response) {
       window.console.log(response.data);
-      location.href="http://localhost:8080/member/editprofile"
+      // location.href="http://localhost:8080/member/editprofile";
+      this.judge = true;
     },
     selectedFile(e) {
       // 選択された File の情報を保存しておく
       e.preventDefault();
-      let files = e.target.files;
-      // this.params.icon = files[0];
-      this.$set(this.params, "icon", files[0]);
+      this.$set(this.params, "icon", e.target.files[0]);
       window.console.log(this.params);
     }
   }
@@ -201,11 +191,13 @@ export default {
 label.icon {
   width: 100px;
 }
-
-div.wrapper_content {
+div.wrapper{
   overflow: hidden;
   width: 1200px;
   margin: 0 auto;
+}
+div.wrapper_content {
+float: left;
 }
 div.side {
   float: left;
@@ -214,15 +206,12 @@ div.side {
 div.form_group {
   width: 600px;
   margin: 0 auto;
-  /* height: 100px; */
-  /* background: rgb(249, 249, 249); */
   margin-bottom: 30px;
 }
 div.form_group_img {
   width: 600px;
   margin: 0 auto;
   height: 100px;
-  /* background: rgb(249, 249, 249); */
 }
 .form_group span {
   /* color: rgb(115, 127, 179); */
@@ -256,8 +245,5 @@ div.parent {
 div.input_user_information {
   float: left;
   width: 800px;
-}
-div.side {
-  /* float: left; */
 }
 </style>

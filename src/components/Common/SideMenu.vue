@@ -5,9 +5,14 @@
         <div class="side_menu">マイページ</div>
       </a>
 
-      <a :href="'http://localhost:8080/member/message/list/'+$store.state.memberId">
-        <div class="side_menu">メッセージ</div>
-      </a>
+      <div class="wrapper">
+        <a :href="'http://localhost:8080/member/message/list/'+$store.state.memberId">
+          <div class="side_menu_mail">メッセージ</div>
+        </a>
+        <div class="new_message" v-if="counts!==0">
+          <a href class="new">{{counts}}</a>
+        </div>
+      </div>
 
       <a :href="'http://localhost:8080/member/follows/'+$store.state.memberId">
         <div class="side_menu">フォローリスト</div>
@@ -29,19 +34,18 @@
         <div class="side_menu">ユーザー情報</div>
       </a>
 
-     
-        <a :href="'http://localhost:8080/member/saleslog/'+$store.state.memberId">
-          <div class="side_menu">売上履歴</div>
-        </a>
+      <a :href="'http://localhost:8080/member/saleslog/'+$store.state.memberId">
+        <div class="side_menu">売上履歴</div>
+      </a>
       <a :href="'http://localhost:8080/member/paymentlog/'+$store.state.memberId">
-      <div class="side_menu">課金履歴</div>
-          </a>
+        <div class="side_menu">課金履歴</div>
+      </a>
     </div>
-   
   </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   data() {
     return {
@@ -49,12 +53,31 @@ export default {
       member_id: "",
       success: false,
       userErrors: {},
+      counts: 0,
       params: {
         name: "",
         email: "",
-        password: ""
+        password: "",
+        to_member_id: ""
       }
     };
+  },
+  watch: {
+    "$store.state.memberId": function() {
+      this.$set(this.params, "to_member_id", this.$store.state.memberId);
+      this.getNewMessage();
+    }
+  },
+  methods: {
+    getNewMessage() {
+      axios
+        .get("http://127.0.0.1:8001/api/newmessage", { params: this.params })
+        .then(this.confirmMessage);
+    },
+    confirmMessage(response) {
+      window.console.log(response.data);
+      this.counts = response.data.counts;
+    }
   },
   components: {}
 };
@@ -76,11 +99,15 @@ div.side_menu {
 }
 div.side_menu:hover {
   /* transition:ease 0.8s; */
-  color:#51adcf;
+  color: #51adcf;
   font: bold;
-  /* opacity: 0.3; */
   cursor: pointer;
-  /* border-bottom: 1px solid gray; */
+}
+div.side_menu_mail:hover {
+  /* transition:ease 0.8s; */
+  color: #51adcf;
+  font: bold;
+  cursor: pointer;
 }
 div.sidebar_search_students {
   background: white;
@@ -93,5 +120,33 @@ div.sidebar_search_teacher {
 @media screen and (max-width: 640px) {
 }
 @media screen and (min-width: 640px) {
+}
+div.wrapper {
+  overflow: hidden;
+}
+div.side_menu_mail {
+  float: left;
+  /* width: 160px; */
+  background: white;
+  padding: 10px 5px 10px 5px;
+  border-bottom: 1px solid #e1e7f2;
+  font-size: 13px;
+}
+div.new_message {
+  float: left;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  text-align: center;
+  line-height: 20px;
+  background: #ff7b84;
+  margin-top: 9px;
+  margin-left: 3px;
+}
+a.new {
+  color: white;
+  font-size: 13px;
+  padding: none;
+  margin: none;
 }
 </style>

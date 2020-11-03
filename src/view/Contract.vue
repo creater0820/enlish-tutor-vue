@@ -3,11 +3,11 @@
     <common-header></common-header>
     <navigation-bar nowPage="search_results" />
 
-    <div class="sidemenu_contract_wrapper">
+    <div class="sidemenu_contract_wrapper" >
       <div class="sidemenu">
         <common-side-menu></common-side-menu>
       </div>
-      <div class="contract_wrapper">
+      <div class="contract_wrapper" v-if="!success">
         <div class="confirm">契約内容の確認</div>
 
         <div class="wrapper_1">
@@ -35,6 +35,8 @@
           <button class="contract_button" type="button" @click="decideContract()">上記の内容で契約する</button>
         </div>
       </div>
+      <div v-else>契約が完了しました</div>
+     
     </div>
 
     <common-footer></common-footer>
@@ -61,6 +63,7 @@ export default {
   },
   data() {
     return {
+      success: false,
       params: {
         planId: this.$route.params.id,
         title: "",
@@ -94,6 +97,7 @@ export default {
     },
     submitContract(response) {
       window.console.log(response.data.plans);
+      this.success = true;
     }
   }
 };

@@ -17,7 +17,7 @@
 
       <div class="title">
         <a
-          :href="'http://localhost:8080/member/planstudent/'+value.member_id +'?params='+value.id"
+          :href="'http://localhost:8080/member/planteacher/'+value.member_id +'?params='+value.id"
           class="to_plan_page"
         >{{value.title}}</a>
 

@@ -1,6 +1,7 @@
 <template>
   <div class="top_page">
     <common-header></common-header>
+    <div class="header2">a</div>
     <top-contents :newTeacher="newTeacher"></top-contents>
 
     <common-footer></common-footer>
@@ -17,24 +18,27 @@ export default {
   components: {
     CommonHeader,
     CommonFooter,
-    TopContents,
+    TopContents
   },
-  
-  
- 
-  
+
   data() {
     return {
       memberId: "",
-
       setValue: "",
       newTeacher: [],
       success: false,
       params: {
         email: "",
-        password: ""
+        password: "",
+        to_member_id: this.$store.state.memberId
       }
     };
+  },
+  watch:{
+"$store.state.memberId":function(){
+  this.$set(this.params,"to_member_id",this.$store.state.memberId);
+  this.getNewMessage();
+}
   },
   created: function() {
     this.submit();
@@ -75,6 +79,14 @@ export default {
     errors(e) {
       window.console.log(e);
       //   this.userErrors = e.response.data.errors
+    },
+    getNewMessage() {
+      axios
+        .get("http://127.0.0.1:8001/api/newmessage", { params: this.params })
+        .then(this.confirmMessage);
+    },
+    confirmMessage(response) {
+      window.console.log(response.data);
     }
   }
 };
@@ -85,12 +97,14 @@ div.top_page {
   overflow: hidden;
   background: #f1f3f8;
 }
+div.header2 {
+  background: orange;
+}
 @media screen and (max-width: 640px) {
   div.top_page {
     background-color: rgb(84, 85, 86);
   }
 }
 @media screen and (min-width: 640px) {
-
 }
 </style>

@@ -11,20 +11,20 @@
         <!-- オブジェクトが空かどうかの判定(Js唯一の方法)object.keysでキーの数を数えてる -->
         <div
           class="example-slide"
-          v-if="Object.keys(value.member).length && Object.keys(value.plan).length"
+          v-if="Object.keys(value.plan.member).length && Object.keys(value.plan).length"
         >
           おめでとうございます！
           <br />
           <div class="time_line_wrapper">
             <div class="img_wrapper">
-              <img class="time_line_icon" :src="'http://127.0.0.1:8001'+value.member.icon" />
+              <img class="time_line_icon" :src="'http://127.0.0.1:8001'+value.plan.member.icon" />
             </div>
             <div class="name_wrapper">
               <span class="timeline_member_name">
                 <a
                   class="member_name"
-                  :href="'http://localhost:8080/member/profile/'+value.member.id"
-                >{{value.member.name}}</a>
+                  :href="'http://localhost:8080/member/profile/'+value.plan.member.id"
+                >{{value.plan.member.name}}</a>
               </span>さんの
               <a class="member_plan" href>{{value.plan.title}}</a>が契約されました
             </div>
